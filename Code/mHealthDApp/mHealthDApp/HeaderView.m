@@ -2,8 +2,6 @@
 //  HeaderView.m
 //  mHealthDApp
 //
-//  Created by Sonam Agarwal on 11/17/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #import "HeaderView.h"

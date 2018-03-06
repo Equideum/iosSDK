@@ -2,8 +2,7 @@
 //  ViewGrantPermissionsViewController.m
 //  mHealthDAP
 //
-//  Created by bhavesh devnani on 17/11/17.
-//  Copyright © 2017 bhavesh devnani. All rights reserved.
+
 //
 
 #import "ViewGrantPermissionsViewController.h"

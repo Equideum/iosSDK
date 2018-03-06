@@ -2,8 +2,6 @@
 //  SelectFamilyMemberTableViewCell.m
 //  mHealthDApp
 //
-//  Created by Sonam Agarwal on 11/21/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #import "SelectFamilyMemberTableViewCell.h"

@@ -2,8 +2,7 @@
 //  PermissionResourcesDetailsViewController.m
 //  FBlocksCSA
 //
-//  Created by dhaval tannarana on 31/01/18.
-//  Copyright © 2018 bhavesh devnani. All rights reserved.
+
 //
 
 #import "PermissionResourcesDetailsViewController.h"

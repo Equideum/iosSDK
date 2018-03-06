@@ -2,8 +2,6 @@
 //  DateTableViewCell.m
 //  mHealthDAP
 //
-//  Created by bhavesh devnani on 13/11/17.
-//  Copyright © 2017 bhavesh devnani. All rights reserved.
 //
 
 #import "DateTableViewCell.h"

@@ -2,8 +2,6 @@
 //  PermissionResourcesTableViewCell.m
 //  mHealthDApp
 //
-//  Created by bhavesh devnani on 06/12/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #import "PermissionResourcesTableViewCell.h"

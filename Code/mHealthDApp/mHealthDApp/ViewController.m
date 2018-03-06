@@ -2,8 +2,6 @@
 //  ViewController.m
 //  mHealthDAP
 //
-//  Created by bhavesh devnani on 09/11/17.
-//  Copyright © 2017 bhavesh devnani. All rights reserved.
 //
 
 #import "ViewController.h"

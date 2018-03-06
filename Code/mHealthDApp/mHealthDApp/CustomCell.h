@@ -2,8 +2,6 @@
 //  CustomCell.h
 //  DoctorList
 //
-//  Created by Bhavesh Ashok Devnani on 11/13/17.
-//  Copyright © 2017 Bhavesh Ashok Devnani. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

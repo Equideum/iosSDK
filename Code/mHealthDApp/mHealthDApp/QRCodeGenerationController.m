@@ -2,8 +2,6 @@
 //  QRCodeGenerationController.m
 //  mHealthDApp
 //
-//  Created by Sonam Agarwal on 12/4/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #import "QRCodeGenerationController.h"

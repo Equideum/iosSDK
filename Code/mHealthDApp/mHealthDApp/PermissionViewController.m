@@ -2,8 +2,7 @@
 //  PermissionViewController.m
 //  FBlocksCSA
 //
-//  Created by dhaval tannarana on 30/01/18.
-//  Copyright © 2018 bhavesh devnani. All rights reserved.
+
 //
 
 #import "PermissionViewController.h"

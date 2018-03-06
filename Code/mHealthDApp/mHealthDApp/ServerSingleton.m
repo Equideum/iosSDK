@@ -2,8 +2,6 @@
 //  ServerSingleton.m
 //  mHealthDApp
 //
-//  Created by bhavesh devnani on 08/01/18.
-//  Copyright © 2018 Sonam Agarwal. All rights reserved.
 //
 
 #import "ServerSingleton.h"

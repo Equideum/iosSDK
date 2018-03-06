@@ -2,8 +2,7 @@
 //  LogViewController.m
 //  FHIRBlocks
 //
-//  Created by bhavesh devnani on 27/11/17.
-//  Copyright © 2017 bhavesh devnani. All rights reserved.
+
 //
 
 #import "LogViewController.h"

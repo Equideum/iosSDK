@@ -2,8 +2,6 @@
 //  APIhandler.h
 //  NSURLSessionDemo
 //
-//  Created by Sonam Agarwal on 9/21/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

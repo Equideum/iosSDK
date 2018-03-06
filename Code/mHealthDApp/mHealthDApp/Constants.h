@@ -2,8 +2,6 @@
 //  Constants.h
 //  AAII_Project
 //
-//  Created by Sonam Agarwal on 11/1/17.
-//  Copyright © 2017 Sonam Agarwal. All rights reserved.
 //
 
 #ifndef Constants_h

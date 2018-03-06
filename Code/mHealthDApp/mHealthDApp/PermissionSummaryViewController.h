@@ -2,8 +2,6 @@
 //  PermissionSummaryViewController.h
 //  mHealthDAP
 //
-//  Created by bhavesh devnani on 16/11/17.
-//  Copyright © 2017 bhavesh devnani. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

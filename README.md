@@ -365,4 +365,13 @@ NSString *payload=[NSString stringWithFormat:@“%@%@%@%@%@" ,@"|",currentDate,@
 [https://github.com/fhirblocks](https://github.com/fhirblocks) - FHIRBlocks GitHub Account   
 [http://smoac.fhirblocks.io/](http://smoac.fhirblocks.io/) - SMOAC Swagger API Reference  
 
+## Copyright
+
+Copyright 2018 The FHIRBlocks Project
+
+Information contained herein is provided under the Apache 2.0 License
+
+FHIR® is a trademark owned by Health Level Seven International and registered with the US Patent & Trademark Office;
+and, “The FHIRBlocks Project” title is being used under HL7 Intl permission and, therefore, it is not to be extended
+to other uses without HL7’s express written permission.
 

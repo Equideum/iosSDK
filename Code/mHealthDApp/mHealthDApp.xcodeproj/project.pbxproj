@@ -54,6 +54,15 @@
 		27AEFEDD1FBEF034002D3179 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFEDC1FBEF034002D3179 /* HeaderView.xib */; };
 		27AEFEDF1FBEF1D9002D3179 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27AEFEDE1FBEF1D9002D3179 /* FooterView.xib */; };
 		27AEFEE21FBEF4DA002D3179 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AEFEE11FBEF4DA002D3179 /* HeaderView.m */; };
+		A438DBB8204E8A70009A6D8D /* TestCollectionViewCell_Ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A438DBB3204E8A6E009A6D8D /* TestCollectionViewCell_Ipad.xib */; };
+		A438DBB9204E8A70009A6D8D /* TestCollectionViewCell_Ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBB5204E8A6F009A6D8D /* TestCollectionViewCell_Ipad.m */; };
+		A438DBBA204E8A70009A6D8D /* TestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A438DBB6204E8A70009A6D8D /* TestCollectionViewCell.xib */; };
+		A438DBBB204E8A70009A6D8D /* TestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBB7204E8A70009A6D8D /* TestCollectionViewCell.m */; };
+		A438DBC2204E937F009A6D8D /* DocCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A438DBBD204E937C009A6D8D /* DocCollectionViewCell.xib */; };
+		A438DBC3204E937F009A6D8D /* DocCollectionViewCell_Ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A438DBBE204E937D009A6D8D /* DocCollectionViewCell_Ipad.xib */; };
+		A438DBC4204E937F009A6D8D /* DocCollectionViewCell_Ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBC0204E937E009A6D8D /* DocCollectionViewCell_Ipad.m */; };
+		A438DBC5204E937F009A6D8D /* DocCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBC1204E937E009A6D8D /* DocCollectionViewCell.m */; };
+		A4AD0FE1204FD8D400FB2B0F /* UtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AD0FE0204FD8D400FB2B0F /* UtilsViewController.m */; };
 		A4EDF2A7202AD973000E6D9D /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EDF2A6202AD973000E6D9D /* DejalActivityView.m */; };
 		E76F458320233E3700F703C5 /* PermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76F458220233E3600F703C5 /* PermissionViewController.m */; };
 		E78822D32024614200821DF6 /* DateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E78822CD2024614100821DF6 /* DateCollectionViewCell.xib */; };
@@ -154,6 +163,20 @@
 		27AEFEDE1FBEF1D9002D3179 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		27AEFEE01FBEF4DA002D3179 /* HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		27AEFEE11FBEF4DA002D3179 /* HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		A438DBB2204E8A6D009A6D8D /* TestCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewCell.h; sourceTree = "<group>"; };
+		A438DBB3204E8A6E009A6D8D /* TestCollectionViewCell_Ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCollectionViewCell_Ipad.xib; sourceTree = "<group>"; };
+		A438DBB4204E8A6E009A6D8D /* TestCollectionViewCell_Ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCollectionViewCell_Ipad.h; sourceTree = "<group>"; };
+		A438DBB5204E8A6F009A6D8D /* TestCollectionViewCell_Ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewCell_Ipad.m; sourceTree = "<group>"; };
+		A438DBB6204E8A70009A6D8D /* TestCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCollectionViewCell.xib; sourceTree = "<group>"; };
+		A438DBB7204E8A70009A6D8D /* TestCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCollectionViewCell.m; sourceTree = "<group>"; };
+		A438DBBC204E937B009A6D8D /* DocCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocCollectionViewCell.h; sourceTree = "<group>"; };
+		A438DBBD204E937C009A6D8D /* DocCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocCollectionViewCell.xib; sourceTree = "<group>"; };
+		A438DBBE204E937D009A6D8D /* DocCollectionViewCell_Ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocCollectionViewCell_Ipad.xib; sourceTree = "<group>"; };
+		A438DBBF204E937D009A6D8D /* DocCollectionViewCell_Ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocCollectionViewCell_Ipad.h; sourceTree = "<group>"; };
+		A438DBC0204E937E009A6D8D /* DocCollectionViewCell_Ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocCollectionViewCell_Ipad.m; sourceTree = "<group>"; };
+		A438DBC1204E937E009A6D8D /* DocCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocCollectionViewCell.m; sourceTree = "<group>"; };
+		A4AD0FDF204FD8D400FB2B0F /* UtilsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsViewController.h; sourceTree = "<group>"; };
+		A4AD0FE0204FD8D400FB2B0F /* UtilsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsViewController.m; sourceTree = "<group>"; };
 		A4EDF2A5202AD972000E6D9D /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		A4EDF2A6202AD973000E6D9D /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		E76F458120233E3600F703C5 /* PermissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionViewController.h; sourceTree = "<group>"; };
@@ -219,6 +242,8 @@
 				14F841B81FDE764900D5C309 /* mHealthDApp.entitlements */,
 				14BF92D41FD5111500B11D53 /* LogViewController.h */,
 				14BF92D31FD5111500B11D53 /* LogViewController.m */,
+				A4AD0FDF204FD8D400FB2B0F /* UtilsViewController.h */,
+				A4AD0FE0204FD8D400FB2B0F /* UtilsViewController.m */,
 				273023901FD517FF009CC4F0 /* QRCodeGenerationController.h */,
 				273023911FD517FF009CC4F0 /* QRCodeGenerationController.m */,
 				141F887D1FCEA15A00A7D95A /* CryptoExportImportManager.swift */,
@@ -302,6 +327,18 @@
 				143CCC0F2008EBF10039BB11 /* LogHeaderView.xib */,
 				143CCC112008ED170039BB11 /* LogHeaderView.h */,
 				143CCC122008ED170039BB11 /* LogHeaderView.m */,
+				A438DBB4204E8A6E009A6D8D /* TestCollectionViewCell_Ipad.h */,
+				A438DBB5204E8A6F009A6D8D /* TestCollectionViewCell_Ipad.m */,
+				A438DBB3204E8A6E009A6D8D /* TestCollectionViewCell_Ipad.xib */,
+				A438DBB2204E8A6D009A6D8D /* TestCollectionViewCell.h */,
+				A438DBB7204E8A70009A6D8D /* TestCollectionViewCell.m */,
+				A438DBB6204E8A70009A6D8D /* TestCollectionViewCell.xib */,
+				A438DBBF204E937D009A6D8D /* DocCollectionViewCell_Ipad.h */,
+				A438DBC0204E937E009A6D8D /* DocCollectionViewCell_Ipad.m */,
+				A438DBBE204E937D009A6D8D /* DocCollectionViewCell_Ipad.xib */,
+				A438DBBC204E937B009A6D8D /* DocCollectionViewCell.h */,
+				A438DBC1204E937E009A6D8D /* DocCollectionViewCell.m */,
+				A438DBBD204E937C009A6D8D /* DocCollectionViewCell.xib */,
 			);
 			path = mHealthDApp;
 			sourceTree = "<group>";
@@ -375,13 +412,17 @@
 			files = (
 				E78822D32024614200821DF6 /* DateCollectionViewCell.xib in Resources */,
 				143CCC102008EBF10039BB11 /* LogHeaderView.xib in Resources */,
+				A438DBB8204E8A70009A6D8D /* TestCollectionViewCell_Ipad.xib in Resources */,
 				272DD3801FBEAA7600D5082B /* LaunchScreen.storyboard in Resources */,
 				27AEFEDF1FBEF1D9002D3179 /* FooterView.xib in Resources */,
 				E78822D52024614200821DF6 /* DateCollectionViewCell_Ipad.xib in Resources */,
 				27AEFEDD1FBEF034002D3179 /* HeaderView.xib in Resources */,
 				272DD37D1FBEAA7600D5082B /* Assets.xcassets in Resources */,
 				272DD37B1FBEAA7600D5082B /* Main.storyboard in Resources */,
+				A438DBC3204E937F009A6D8D /* DocCollectionViewCell_Ipad.xib in Resources */,
 				272DD3BA1FBEC27000D5082B /* CollectionCell.xib in Resources */,
+				A438DBBA204E8A70009A6D8D /* TestCollectionViewCell.xib in Resources */,
+				A438DBC2204E937F009A6D8D /* DocCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,8 +443,11 @@
 				14A1B7761FF24D3C007DF9FA /* AddCSIViewController.m in Sources */,
 				272DD3A01FBEB8EE00D5082B /* ViewController.m in Sources */,
 				272DD3AC1FBEB93000D5082B /* CustomCell.m in Sources */,
+				A438DBBB204E8A70009A6D8D /* TestCollectionViewCell.m in Sources */,
 				272DD3831FBEAA7600D5082B /* main.m in Sources */,
 				272DD3751FBEAA7600D5082B /* AppDelegate.m in Sources */,
+				A438DBC5204E937F009A6D8D /* DocCollectionViewCell.m in Sources */,
+				A438DBC4204E937F009A6D8D /* DocCollectionViewCell_Ipad.m in Sources */,
 				E78822DC202461C000821DF6 /* PermissionResourcesDetailsViewController.m in Sources */,
 				146B8B4C2003B65C00AB58E6 /* ServerSingleton.m in Sources */,
 				E78822D42024614200821DF6 /* DateCollectionViewCell_Ipad.m in Sources */,
@@ -411,10 +455,12 @@
 				149612562008C2AB00D4A814 /* ResponseTableViewCell.m in Sources */,
 				149612502004E3E200D4A814 /* LogsTableViewController.m in Sources */,
 				E78822D62024614200821DF6 /* DateCollectionViewCell.m in Sources */,
+				A4AD0FE1204FD8D400FB2B0F /* UtilsViewController.m in Sources */,
 				272DD3B51FBEC16000D5082B /* TimelineViewController.m in Sources */,
 				141F88801FCEA15B00A7D95A /* Data+HexDescription.swift in Sources */,
 				149612532008BBC400D4A814 /* RequestTableViewCell.m in Sources */,
 				14BF92D51FD5111500B11D53 /* LogViewController.m in Sources */,
+				A438DBB9204E8A70009A6D8D /* TestCollectionViewCell_Ipad.m in Sources */,
 				272DD3B81FBEC16000D5082B /* TimeLineHeader.m in Sources */,
 				1485A7E61FEBDCBF00359FC4 /* LogsExtendedViewController.m in Sources */,
 				14F841BB1FDE772100D5C309 /* UICKeyChainStore.m in Sources */,

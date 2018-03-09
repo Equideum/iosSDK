@@ -2,7 +2,12 @@
 //  SelectMemberViewController.m
 //  mHealthDApp
 //
-//
+/*
+ * Copyright 2018 BBM Health, LLC - All rights reserved
+ * Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission
+ * FHIR is registered trademark of HL7 Intl
+ *
+ */
 
 #import "SelectMemberViewController.h"
 #import "SelectMemberTableViewCell.h"
@@ -13,6 +18,8 @@
 #import "APIhandler.h"
 #import "ServerSingleton.h"
 #import "DejalActivityView.h"
+#import "DocCollectionViewCell.h"
+#import "DocCollectionViewCell_Ipad.h"
 
 
 @interface SelectMemberViewController ()<HeaderViewDelegate>
@@ -34,6 +41,7 @@
     NSMutableArray *caregiverPermissionDataArray;
     BOOL isCaregiverBool;
     
+    int collectionTwoIndex;
 }
 @property (strong, nonatomic) IBOutlet UIView *viewForBtn;
 @property (strong, nonatomic) IBOutlet UIView *backgroundVw;
@@ -50,6 +58,10 @@
 @implementation SelectMemberViewController
 @synthesize permissionDataTableView;
 @synthesize backgroundVw;
+@synthesize userCollectionView;
+@synthesize lblFromText,lblFromDate,lblToText,lblToDate;
+@synthesize viewAppIcon;
+@synthesize leadingToViewAppIcon;
 - (IBAction)copyLink:(id)sender {
     DebugLog(@"");
     [UIPasteboard generalPasteboard].string =@"hello";
@@ -58,7 +70,7 @@
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
-    
+    collectionTwoIndex=0;
     existingCaregiverDataArray=[[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:FINALFAMILYDATAARRAY]];
     publicClaims = [[NSUserDefaults standardUserDefaults]valueForKey:@"PublicClaims"];
     caregiverPermissionDataArray=[[NSMutableArray alloc] init];
@@ -132,6 +144,100 @@
     {
         [self fetchPermission];
     }
+    else
+    {
+        if(caregiverPermissionDataArray.count == 0)
+        {
+            [self showNoDataPopup];
+            self.viewFromToDate.hidden=YES;
+        }
+    }
+    
+     [self.userCollectionView registerNib:[UINib nibWithNibName:@"DocCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Doc"];
+    
+   /*CATransform3D perspectiveTransform = CATransform3DIdentity;
+    perspectiveTransform.m34 = 1.0 / -300;
+    self.userCollectionView.layer.transform =
+    CATransform3DRotate(perspectiveTransform, (1.2 * M_PI / 180), 0.0f, -0.2f, 0.0f);*/
+    // 5.5 , -0.2
+    // Code for FromTo date view
+    
+    CATransform3D perspectiveTransform = CATransform3DIdentity;
+    perspectiveTransform.m34 = 1.0 / -100;
+    
+   
+    self.viewFromToDate.layer.transform = CATransform3DRotate(perspectiveTransform, (40 * M_PI / 180), 10.0f, 0.0f, 0.0f);
+    self.viewFromToDate.transform = CGAffineTransformMakeRotation(M_PI/22);
+    self.viewFromToDate.layer.cornerRadius = 5; // this value vary as per your desire
+    self.viewFromToDate.clipsToBounds = YES;
+    self.viewFromToDate.backgroundColor=[UIColor clearColor];
+    
+    self.viewAppIcon.layer.cornerRadius = 10;
+    self.viewAppIcon.clipsToBounds = YES;
+    
+    perspectiveTransform.m34 = 1.0 / -100;
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        perspectiveTransform.m34 = 1.0 / -600;
+    }
+    
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        self.viewAppIcon.layer.transform =  CATransform3DRotate(perspectiveTransform, (1 * M_PI / 180), 0.0f, 1.5f, 0.0f);
+    } else {
+        self.viewAppIcon.layer.transform =  CATransform3DRotate(perspectiveTransform, (7 * M_PI / 180), 0.0f, 1.5f, 0.0f);
+    }
+   
+    CGRect applicationFrame=[[UIScreen mainScreen] bounds];
+    if(applicationFrame.size.height <= 480)
+    {
+        self.leadingToViewAppIcon.constant = 3;
+    }
+    
+//    perspectiveTransform.m34 = 1.0 / 500;
+//    self.userCollectionView.layer.transform = CATransform3DRotate(perspectiveTransform, (4 * M_PI / 180), 0.0f, -0.1f, 100.0f);
+//    self.userCollectionView.layer.cornerRadius = 5; // this value vary as per your desire
+//    self.userCollectionView.clipsToBounds = YES;
+
+    perspectiveTransform.m34 = 1.0 / -300;
+
+    self.userCollectionView.layer.transform = CATransform3DRotate(perspectiveTransform, (20 * M_PI / 180), 0.0f, -0.2f, 0.0f);
+    //self.userCollectionView.transform = CGAffineTransformMakeRotation(M_PI/50);
+
+    
+    self.userCollectionView.backgroundColor=[UIColor clearColor];
+    [self.userCollectionView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.hidden=NO;
+    self.title=@"mHealthDApp";
+    
+    
+}
+-(void)showNoDataPopup
+{
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"No Data Found" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        // Cancel button tappped.
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    DebugLog(@"");
+    [super viewWillAppear:YES];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+-(IBAction)btnBackClicked:(id)sender
+{
+    DebugLog(@"");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)fetchPermission
 {
@@ -325,10 +431,15 @@
     NSLog(@"%@",caregiverPermissionDataArray);
     dispatch_async(dispatch_get_main_queue(), ^{
         [permissionDataTableView reloadData];
+        [userCollectionView reloadData];
         [self hideBusyActivityView];
        // backgroundVw.backgroundColor=[UIColor greenColor];
         backgroundVw.alpha=0.4;
-
+        if(caregiverPermissionDataArray.count == 0)
+        {
+            [self showNoDataPopup];
+            self.viewFromToDate.hidden=YES;
+        }
  });
     
     
@@ -383,6 +494,10 @@
     
 }
 
+#pragma mark -
+#pragma mark ==============================
+#pragma mark UItableview Delegates
+#pragma mark ==============================
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01f;
@@ -659,5 +774,200 @@
 {
     DebugLog(@"");
     [DejalBezelActivityView removeViewAnimated:YES];
+}
+#pragma mark -
+#pragma mark ==============================
+#pragma mark Collection View Delegates
+#pragma mark ==============================
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return caregiverPermissionDataArray.count;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if ([[UIScreen mainScreen] bounds].size.height == 568.0)
+    {
+        return UIEdgeInsetsMake(12,15,0,15);
+    }
+    else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        return UIEdgeInsetsMake(10, 60, 10, 60);
+    }
+    else{
+        return UIEdgeInsetsMake(-10, 60, 0, 60);
+    }
+}
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10.0;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        DocCollectionViewCell_Ipad *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Doc" forIndexPath:indexPath];
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.docName.textColor = [UIColor colorWithRed:78.0f/255 green:88.0f/255 blue:90.0f/255 alpha:1.0f];
+        cell.docType.textColor = [UIColor colorWithRed:121.0f/255 green:131.0f/255 blue:133.0f/255 alpha:1.0f];
+        cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
+        cell.docName.text =@"Worried wendy";
+        cell.docType.text =@"Cardio";
+        cell.docName.numberOfLines = 2;
+        cell.alpha=0.5;
+        
+        cell.backgroundColor=[UIColor clearColor];
+        cell.layer.shadowOpacity = 0;
+        cell.layer.shadowRadius = 0.0;
+        
+        if(indexPath.row==collectionTwoIndex)
+        {
+            cell.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+            cell.layer.shadowOffset = CGSizeMake(5,5);
+            cell.layer.shadowOpacity = 1;
+            cell.layer.shadowRadius = 5.0;
+            cell.clipsToBounds = false;
+            cell.layer.masksToBounds = false;
+        }
+        return cell;
+    }
+    else
+    {
+        
+        NSString *strData = caregiverPermissionDataArray[indexPath.row];
+        NSArray *arrData = [strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+
+        
+        DocCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Doc" forIndexPath:indexPath];
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.docName.textColor = [UIColor colorWithRed:78.0f/255 green:88.0f/255 blue:90.0f/255 alpha:1.0f];
+        cell.docType.textColor = [UIColor colorWithRed:121.0f/255 green:131.0f/255 blue:133.0f/255 alpha:1.0f];
+        //cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
+        cell.docName.text =[NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
+        
+        if(![arrData[4] isEqualToString:@"NA"])
+        {
+            cell.docImg.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",arrData[4]]];
+        }
+        else
+        {
+            NSString *gender = arrData[2];
+            if([gender.lowercaseString isEqualToString:@"male"])
+            {
+                cell.docImg.image=[UIImage imageNamed:@"maledefault.png"];
+            }
+            else if([gender.lowercaseString isEqualToString:@"female"])
+            {
+                cell.docImg.image=[UIImage imageNamed:@"femaledefault.png"];
+            }
+        }
+        
+        
+        cell.alpha=0.5;
+        
+        cell.backgroundColor=[UIColor clearColor];
+        cell.layer.shadowOpacity = 0;
+        cell.layer.shadowRadius = 0.0;
+        
+        if(indexPath.row==collectionTwoIndex)
+        {
+            cell.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+            cell.layer.shadowOffset = CGSizeMake(5,5);
+            cell.layer.shadowOpacity = 1;
+            cell.layer.shadowRadius = 5.0;
+            cell.clipsToBounds = false;
+            cell.layer.masksToBounds = false;
+        }
+        return cell;
+    }
+    return nil;
+}
+-(void)selectCenterCell{
+    DebugLog(@"");
+    NSIndexPath *indexPath;
+    if([[self.userCollectionView visibleCells] count] == 0)
+    {
+        return;
+    }
+    UICollectionViewCell *closestCell = [self.userCollectionView visibleCells][0];
+    for (UICollectionViewCell *cell in [self.userCollectionView visibleCells]) {
+        
+        int closestCellDelta = fabs(closestCell.center.x - self.userCollectionView.bounds.size.width/2.0 - self.userCollectionView.contentOffset.x);
+        int cellDelta = fabs(cell.center.x - self.userCollectionView.bounds.size.width/2.0 - self.userCollectionView.contentOffset.x);
+        if (cellDelta < closestCellDelta){
+            closestCell = cell;
+        }
+        
+        indexPath = [self.userCollectionView indexPathForCell:closestCell];
+        NSLog(@"%@",indexPath);
+    }
+    collectionTwoIndex=(int)indexPath.row;
+   
+    
+    NSString *strData = caregiverPermissionDataArray[collectionTwoIndex];
+    NSArray *arrData = [strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+    
+    NSString *startTime=arrData[5];
+    NSString *endTime=arrData[6];
+    
+    NSDateFormatter *dateformatter1 = [[NSDateFormatter alloc] init];
+    [dateformatter1 setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    dateformatter1.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    NSDate *startDateInDate = [dateformatter1 dateFromString:startTime];
+    NSDate *endDateInDate = [dateformatter1 dateFromString:endTime];
+    
+    [dateformatter1 setDateFormat:@"dd/MM/yy"];
+    [dateformatter1 setTimeZone:[NSTimeZone localTimeZone]];
+    NSString *formattedStartTime = [dateformatter1 stringFromDate:startDateInDate];
+    NSString *formattedEndTime = [dateformatter1 stringFromDate:endDateInDate];
+    
+    //NSString *myString = [NSString stringWithFormat:@"From:%@ \nTo:%@",formattedStartTime,formattedEndTime];
+    
+    lblFromDate.text=formattedStartTime;
+    lblToDate.text=formattedEndTime;
+    //Create mutable string from original one
+   
+   /* NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:myString];
+    
+    //Fing range of the string you want to change colour
+    //If you need to change colour in more that one place just repeat it
+    NSRange range = [myString rangeOfString:fromDateArray[indexPath.row]];
+    [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:133.0/255.0 green:133.0/255.0 blue:133.0/255.0 alpha:1] range:range];
+    [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AvenirNext-Medium" size:14.0f] range:range];
+    NSRange range1 = [myString rangeOfString:toDateArray[indexPath.row]];
+    [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:133.0/255.0 green:133.0/255.0 blue:133.0/255.0 alpha:1] range:range1];
+    [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AvenirNext-Medium" size:14.0f] range:range1];*/
+        
+    NSLog(@"caregiver permission array %@",caregiverPermissionDataArray[collectionTwoIndex]);
+    
+    
+    
+    // [self.collectionOne reloadData];
+    [self.userCollectionView reloadData];
+    [self.userCollectionView layoutIfNeeded]; // imp line
+    // [self.collectionOne scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    [self.userCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    //Center Align and Auto Select Center Cell in Doctor Collection View
+    DebugLog(@"");
+            [self selectCenterCell];
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate{
+            DebugLog(@"");
+          //  [self selectCenterCell];
+    
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DebugLog(@"");
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        return CGSizeMake(270, 461);
+    }
+    else
+    {
+        return CGSizeMake(180, 300);
+    }
 }
 @end

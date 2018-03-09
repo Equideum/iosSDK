@@ -2,7 +2,12 @@
 //  AddCSIViewController.m
 //  mHealthDApp
 //
-//
+/*
+ * Copyright 2018 BBM Health, LLC - All rights reserved
+ * Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission
+ * FHIR is registered trademark of HL7 Intl
+ *
+ */
 
 #import "AddCSIViewController.h"
 #import "Constants.h"
@@ -38,9 +43,24 @@
     //[self addPickerOnContainerView];
     // Do any additional setup after loading the view.
     txtGender.inputView=pickerContainerView;
-    if([strFromScreen isEqualToString:@"CaregiverFlow"])
+    
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
     {
-        btnback.hidden=NO;
+        if([strFromScreen isEqualToString:@"CaregiverFlow"])
+        {
+            btnback.hidden=NO;
+        }
+    }
+    else
+    {
+        if([strFromScreen isEqualToString:@"CaregiverFlow"])
+        {
+            btnback.hidden=NO;
+        }
+        else
+        {
+            btnback.hidden=YES;
+        }
     }
     
     UIPasteboard *thePasteboard = [UIPasteboard generalPasteboard];

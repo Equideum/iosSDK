@@ -2,7 +2,12 @@
 //  SelectFamilyMemberViewController.m
 //  mHealthDApp
 //
-//
+/*
+ * Copyright 2018 BBM Health, LLC - All rights reserved
+ * Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission
+ * FHIR is registered trademark of HL7 Intl
+ *
+ */
 
 #import "SelectFamilyMemberViewController.h"
 #import "SelectFamilyMemberTableViewCell.h"
@@ -11,6 +16,11 @@
 #import "Constants.h"
 #import "DejalActivityView.h"
 #import "AddCSIViewController.h"
+#import "TestCollectionViewCell.h"
+#import "TestCollectionViewCell_Ipad.h"
+#import "DocCollectionViewCell.h"
+#import "DocCollectionViewCell_Ipad.h"
+
 @interface SelectFamilyMemberViewController ()
 {
     NSArray *family;
@@ -22,8 +32,12 @@
     NSDictionary *request_dic;
     NSMutableArray * serverCsiArray;
     NSMutableString *stringPublicData;
+    
+    int collectionTwoIndex;
 }
+
 @property (strong, nonatomic) IBOutlet UITableView *selectFamilyMemberTableView;
+
 @property (strong,nonatomic) IBOutlet UIButton *btnBecomeFriend;
 @property(nonatomic) NSString *endpoint;
 @property(strong,nonatomic) NSDictionary *dic;
@@ -31,6 +45,8 @@
 @end
 
 @implementation SelectFamilyMemberViewController
+@synthesize userCollectionView;
+@synthesize collectionOne;
 
 - (void)viewDidLoad {
     DebugLog(@"");
@@ -43,6 +59,38 @@
     imgFamilyArray=[[NSArray alloc]initWithObjects:@"Mother",@"Father",@"Brother",@"Sister", nil];
     [self showBusyActivityView];
     [self fetchPermissions];
+   // [self.userCollectionView registerNib:[UINib nibWithNibName:@"TestCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"test"];
+    //[self.userCollectionView registerNib:[UINib nibWithNibName:@"TestCollectionViewCell_Ipad" bundle:nil] forCellWithReuseIdentifier:@"test_ipad"];
+    [self.userCollectionView registerNib:[UINib nibWithNibName:@"DocCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"Doc"];
+   // [self.userCollectionView registerNib:[UINib nibWithNibName:@"DocCollectionViewCell_Ipad" bundle:nil] forCellWithReuseIdentifier:@"Doc_ipad"];
+
+    //collectionTwoIndex = 0;
+    /*CATransform3D perspectiveTransform = CATransform3DIdentity;
+    perspectiveTransform.m34 = 1.0 / -300;
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        perspectiveTransform.m34 = 1.0 / -600;
+    }
+    self.collectionOne.layer.transform =
+    CATransform3DRotate(perspectiveTransform, (22.5 * M_PI / 180), 0.0f, 1.5f, 0.0f);
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        perspectiveTransform.m34 = 1.0 / -300;
+    }
+    
+    self.userCollectionView.layer.transform =
+    CATransform3DRotate(perspectiveTransform, (5.5 * M_PI / 180), 0.0f, -0.2f, 0.0f);
+    // 5.5 , -0.2
+    perspectiveTransform.m34 = 1.0 / -1500;
+
+    collectionTwoIndex = 0;*/
+    CATransform3D perspectiveTransform = CATransform3DIdentity;
+    perspectiveTransform.m34 = 1.0 / -100;
+    self.userCollectionView.layer.transform =
+    CATransform3DRotate(perspectiveTransform, (4 * M_PI / 180), 0.0f, -0.1f, 0.0f);
+    // 5.5 , -0.2
+    self.userCollectionView.backgroundColor=[UIColor clearColor];
+    [self.userCollectionView reloadData];
 }
 
 - (IBAction)becomeFriendTapped:(id)sender {
@@ -592,6 +640,117 @@
         addCSIViewController.strFromScreen=@"CaregiverFlow";
         
     }
+}
+#pragma mark -
+#pragma mark ==============================
+#pragma mark Collection View Delegates
+#pragma mark ==============================
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 8;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if ([[UIScreen mainScreen] bounds].size.height == 568.0)
+    {
+        return UIEdgeInsetsMake(12,15,0,15);
+    }
+    else if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        return UIEdgeInsetsMake(10, 60, 10, 60);
+    }
+    else{
+        return UIEdgeInsetsMake(-30, 60, 0, 60);
+    }
+}
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10.0;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        DocCollectionViewCell_Ipad *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Doc" forIndexPath:indexPath];
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.docName.textColor = [UIColor colorWithRed:78.0f/255 green:88.0f/255 blue:90.0f/255 alpha:1.0f];
+        cell.docType.textColor = [UIColor colorWithRed:121.0f/255 green:131.0f/255 blue:133.0f/255 alpha:1.0f];
+        cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
+        cell.docName.text =@"Worried wendy";
+        cell.docType.text =@"Cardio";
+        cell.docName.numberOfLines = 2;
+        cell.alpha=0.5;
+        
+        cell.backgroundColor=[UIColor redColor];
+        cell.layer.shadowOpacity = 0;
+        cell.layer.shadowRadius = 0.0;
+        
+        if(indexPath.row==collectionTwoIndex)
+        {
+            cell.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+            cell.layer.shadowOffset = CGSizeMake(5,5);
+            cell.layer.shadowOpacity = 1;
+            cell.layer.shadowRadius = 5.0;
+            cell.clipsToBounds = false;
+            cell.layer.masksToBounds = false;
+        }
+        return cell;
+    }
+    else
+    {
+        
+        DocCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Doc" forIndexPath:indexPath];
+        cell.backgroundColor=[UIColor whiteColor];
+        cell.docName.textColor = [UIColor colorWithRed:78.0f/255 green:88.0f/255 blue:90.0f/255 alpha:1.0f];
+        cell.docType.textColor = [UIColor colorWithRed:121.0f/255 green:131.0f/255 blue:133.0f/255 alpha:1.0f];
+        cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
+        cell.docName.text =@"Worried wendy";
+        cell.docType.text =@"Cardio";
+        cell.docName.numberOfLines = 2;
+        cell.alpha=0.5;
+        
+        cell.backgroundColor=[UIColor redColor];
+        cell.layer.shadowOpacity = 0;
+        cell.layer.shadowRadius = 0.0;
+        
+        if(indexPath.row==collectionTwoIndex)
+        {
+            cell.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+            cell.layer.shadowOffset = CGSizeMake(5,5);
+            cell.layer.shadowOpacity = 1;
+            cell.layer.shadowRadius = 5.0;
+            cell.clipsToBounds = false;
+            cell.layer.masksToBounds = false;
+        }
+        return cell;
+    }
+    return nil;
+}
+-(void)selectCenterCell{
+    DebugLog(@"");
+    NSIndexPath *indexPath;
+    if([[self.userCollectionView visibleCells] count] == 0)
+    {
+        return;
+    }
+    UICollectionViewCell *closestCell = [self.userCollectionView visibleCells][0];
+    for (UICollectionViewCell *cell in [self.userCollectionView visibleCells]) {
+        
+        int closestCellDelta = fabs(closestCell.center.x - self.userCollectionView.bounds.size.width/2.0 - self.userCollectionView.contentOffset.x);
+        int cellDelta = fabs(cell.center.x - self.userCollectionView.bounds.size.width/2.0 - self.userCollectionView.contentOffset.x);
+        if (cellDelta < closestCellDelta){
+            closestCell = cell;
+        }
+        
+        indexPath = [self.userCollectionView indexPathForCell:closestCell];
+        NSLog(@"%@",indexPath);
+    }
+    collectionTwoIndex=(int)indexPath.row;
+    // [self.collectionOne reloadData];
+    [self.userCollectionView reloadData];
+    [self.userCollectionView layoutIfNeeded]; // imp line
+    // [self.collectionOne scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    [self.userCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 #pragma mark -
 #pragma mark ==============================

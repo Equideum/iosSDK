@@ -2,7 +2,13 @@
 //  TimelineViewController.m
 //  MHealthApp
 //
-//
+/*
+ * Copyright 2018 BBM Health, LLC - All rights reserved
+ * Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission
+ * FHIR is registered trademark of HL7 Intl
+ *
+ */
+
 #import "GrayCell.h"
 #import "TimelineViewController.h"
 #import "TimeLineHeader.h"
@@ -46,7 +52,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UIButton *profileImage;
-@property (strong, nonatomic) IBOutlet UIButton *list;
+@property (strong, nonatomic) IBOutlet UIButton *listBtn;
 
 //added changes for fetch permission call
 @property (nonatomic) BOOL isFetchPermissions;
@@ -103,11 +109,7 @@
     publicClaims = [[NSUserDefaults standardUserDefaults]valueForKey:@"PublicClaims"];
 
     
-    if(isCaregiverBool)
-    {
-        [self.list setHidden:YES];
-      
-    }
+    
     int index = [number intValue];
    /* if(!isCaregiverBool)
     {
@@ -163,7 +165,87 @@
     [self setGenericImage];
     
 }
+-(IBAction)listBtnClicked:(id)sender
+{
+    DebugLog(@"");
+    if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+    {
+        {
+            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                
+                // Cancel button tappped.
+                NSLog(@"cancel select");
+                
+            }]];
+            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Utility" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                // OK button tapped.
+                
+                [self performSegueWithIdentifier:@"TimelineToUtils" sender:self];
+                
+                
+            }]];
+            if(isCaregiverBool)
+            {
+                //[self.listBtn setHidden:YES];
+                
+            }
+            else
+            {
+                [actionSheet addAction:[UIAlertAction actionWithTitle:@"Permission Summary" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    
+                    // Distructive button tapped.
+                    [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
+                    
+                }]];
+                
+            }
+            [self presentViewController:actionSheet animated:YES completion:nil];
+            
+        }
+    }
+    else
+    {
+        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped.
+            NSLog(@"cancel select");
+            
+        }]];
+        
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Utility" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // OK button tapped.
+            
+            [self performSegueWithIdentifier:@"TimelineToUtils" sender:self];
+            
+            
+        }]];
+        if(isCaregiverBool)
+        {
+            //[self.listBtn setHidden:YES];
+            
+        }
+        else
+        {
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Permission Summary" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                // Distructive button tapped.
+                [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
+                
+            }]];
+            
+        }
+        [self presentViewController:actionSheet animated:YES completion:nil];
 
+    }
+    
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     DebugLog(@"");
@@ -196,9 +278,12 @@
 }
 - (IBAction)profileBtnSelected:(id)sender {
     DebugLog(@"");
-    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+   
+    /*UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SelectMemberViewController *selectController=[storyboard instantiateViewControllerWithIdentifier:@"SelectMember"];
-    [self presentViewController:selectController animated:YES completion:nil];
+    [self presentViewController:selectController animated:YES completion:nil];*/
+    [self performSegueWithIdentifier:@"TimelineToSelectFamilyMember" sender:nil];
+
     
     
 }

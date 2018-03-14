@@ -14,7 +14,7 @@
 #import "PermissionData.h"
 #import "ViewController.h"
 #import "UICKeyChainStore.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "Constants.h"
 #import "mHealthDApp-Swift.h"
 #import "PermissionController.h"
@@ -30,7 +30,8 @@
     NSArray *titleFamilyArray;
     NSArray *csiArray;
     NSMutableArray *csiFamilyArray;
-    APIhandler *h;
+    //APIhandler *h;
+    mHealthApiHandler *apiHandler;
     SecKeyAlgorithm algorithm;
     NSString * derKeyString;
     SecKeyRef privateKey;
@@ -866,9 +867,11 @@
         _isSecondCall= YES;
     }
     
-    APIhandler *
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+   // APIhandler *h=[[APIhandler alloc]init];
+   // h.delegate = self;
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"writePermission";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -993,7 +996,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray1"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //    [debugView setHidden:true];
-    [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    //[h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+   
+    [apiHandler createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+
     _activityContainerView.hidden = false;
     
     [activityIndicator startAnimating];
@@ -1042,8 +1048,12 @@
     DebugLog(@"");
     _isSecondCall = YES;
     _isAccessCall = NO;
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+   // h=[[APIhandler alloc]init];
+   // h.delegate = self;
+    
+    apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"";
     
     double epochSeconds = [[NSDate date] timeIntervalSince1970];
@@ -1090,7 +1100,9 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray1"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //            [_debugView setHidden:true];
-    [h createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    //[h createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    [apiHandler createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+
     // [h createSessionforAuthEndPoint:_endpoint withModelDictionary:modelDictionary];
     
     _activityContainerView.hidden = false;
@@ -1125,8 +1137,12 @@
     DebugLog(@"");
     [self showBusyActivityView];
     _isAccessCall = YES;
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+    //h=[[APIhandler alloc]init];
+   // h.delegate = self;
+    
+    apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"";
     
     NSString * headerString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@",@"{\"kid\"",@":\"",[[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"],@"\",",@"\"alg\"",@":\"",@"ES256",@"\"}"];
@@ -1186,16 +1202,21 @@
     //    [activityIndicator startAnimating];
     //[_debugContainerView setHidden:true];
 #endif
-    [h createSessionforAccessEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    //[h createSessionforAccessEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    [apiHandler createSessionforAccessEndPoint:_endpoint withURLEncodedString:urlEncodedString];
 }
 
 -(void)fetchFHIRResourceConsumption:(NSString*)accessStr;
 {
     DebugLog(@"");
     [self showBusyActivityView];
-    NSString *strFetchFHIRResourceURL=@"http://smoac.fhirblocks.io:8080/baseDstu3/Patient/fbcFhirId/?_format=json?";
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+    //NSString *strFetchFHIRResourceURL=FHIR_CONSUMPTION_URL;
+   // APIhandler *h=[[APIhandler alloc]init];
+    //h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     //_endpoint=@"getGloballyUniqueIdentifier";
     isFhirResourceConsumption = YES;
     
@@ -1207,7 +1228,7 @@
    // [_debugContainerView setHidden:true];
     NSMutableArray * array = (NSMutableArray *)[[NSUserDefaults standardUserDefaults] valueForKey:@"LogArray"];
     NSMutableArray * array1 = [NSMutableArray arrayWithArray:array];
-    [array1 addObject:[NSString stringWithFormat:@"%@",strFetchFHIRResourceURL]];
+    [array1 addObject:[NSString stringWithFormat:@"%@",FHIR_CONSUMPTION_URL]];
     [[NSUserDefaults standardUserDefaults]setObject:array1 forKey:@"LogArray"];
     
 #else
@@ -1224,7 +1245,9 @@
     //[_debugContainerView setHidden:true];
 #endif
     
-    [h createFHIRResourceConsumptionRequest:strFetchFHIRResourceURL accessToken:accessStr];
+    //[h createFHIRResourceConsumptionRequest:strFetchFHIRResourceURL accessToken:accessStr];
+    [apiHandler createFHIRResourceConsumptionRequest:FHIR_CONSUMPTION_URL accessToken:accessStr];
+
 }
 
 -(void) showBusyActivityView

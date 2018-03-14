@@ -11,7 +11,7 @@
 
 #import "SelectFamilyMemberViewController.h"
 #import "SelectFamilyMemberTableViewCell.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "ServerSingleton.h"
 #import "Constants.h"
 #import "DejalActivityView.h"
@@ -108,9 +108,11 @@
 {
     DebugLog(@"");
     _isFetchPermissions = YES;
-    APIhandler *
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+//    APIhandler *
+//    h=[[APIhandler alloc]init];
+//    h.delegate = self;
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
     _endpoint=@"fetchPermissionsGivenToMe";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -165,7 +167,8 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"PermissionsLogArray"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //    [debugView setHidden:true];
-    [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    //[h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
     //    _activityContainerView.hidden = false;
     
     //    [activityIndicator startAnimating];
@@ -196,8 +199,10 @@
     DebugLog(@"");
 //    _isFetchPublicClaims = YES;
     _isFetchPermissions = NO;
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+//    APIhandler *h=[[APIhandler alloc]init];
+//    h.delegate = self;
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate = self;
     _endpoint=@"fetchPublicClaims";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -248,7 +253,8 @@
     NSMutableArray * array2 = [NSMutableArray arrayWithArray:array1];
     [array2 addObject:[NSString stringWithFormat:@"%@%@%@",CSI_Base_URL,_endpoint,request_dic]];
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray"];
-    [h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    //[h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
     
 #if ISDEBUG
     

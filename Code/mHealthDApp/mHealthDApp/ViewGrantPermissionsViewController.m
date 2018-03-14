@@ -13,7 +13,7 @@
 #import "CustomCell.h"
 #import "PermissionData.h"
 #import "PermissionResourcesTableViewCell.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "Constants.h"
 #import "ServerSingleton.h"
 #import "ViewGrantPermissionsViewController.h"
@@ -135,9 +135,12 @@
      DebugLog(@"");
     [self showBusyActivityView];
     _isFetchPermissions = YES;
-    APIhandler *
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+//    APIhandler *h=[[APIhandler alloc]init];
+//    h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"fetchPermissionsPreviouslyGrantedByMe";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -200,7 +203,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"PermissionsLogArray"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //    [debugView setHidden:true];
-    [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+   // [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    
+    [apiHandler createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+
 //    _activityContainerView.hidden = false;
     
 //    [activityIndicator startAnimating];
@@ -1475,9 +1481,12 @@
     }
     
     [self showBusyActivityView];
-    APIhandler *
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+//    APIhandler *h=[[APIhandler alloc]init];
+//    h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"deletePermission";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -1537,7 +1546,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"PermissionsLogArray"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //    [debugView setHidden:true];
-    [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+   // [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    
+    [apiHandler createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+
     //    _activityContainerView.hidden = false;
     _isFetchPermissions = NO;
     

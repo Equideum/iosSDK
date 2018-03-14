@@ -11,11 +11,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HeaderView.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "TestCollectionViewCell.h"
 #import "TestCollectionViewCell_Ipad.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface SelectFamilyMemberViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,HeaderViewDelegate,Delegation,TestCollectionViewCellDelegate,TestCollectionViewCellIpadDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+@interface SelectFamilyMemberViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,HeaderViewDelegate,apiDelegate,TestCollectionViewCellDelegate,TestCollectionViewCellIpadDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *userCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionOne;

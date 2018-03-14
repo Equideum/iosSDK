@@ -10,7 +10,7 @@
  */
 
 #import "PermissionViewController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "ServerSingleton.h"
 #import "UICKeyChainStore.h"
 #import "Constants.h"
@@ -20,7 +20,7 @@
 #import "CustomTableViewCell.h"
 #import "PermissionResourcesDetailsViewController.h"
 
-@interface PermissionViewController ()<Delegation, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>{
+@interface PermissionViewController ()<UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource>{
     NSString *endpoint;
     NSDictionary *request_dic;
     NSArray *dicData;
@@ -132,9 +132,13 @@
 -(void)writePermissions
 {
      DebugLog(@"");
-    APIhandler *
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+//    APIhandler *
+//    h=[[APIhandler alloc]init];
+//    h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     endpoint=@"writePermission";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -242,7 +246,11 @@
     [array2 addObject:[NSString stringWithFormat:@"%@%@%@",Permission_Base_URL,endpoint,request_dic]];
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray"];
     //    [debugView setHidden:true];
-    [h createSessionforPermissionEndPoint:endpoint withModelDictionary:request_dic];
+    //[h createSessionforPermissionEndPoint:endpoint withModelDictionary:request_dic];
+  
+    [apiHandler createSessionforPermissionEndPoint:endpoint withModelDictionary:request_dic];
+
+    
     activityContainerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height)];
    
     //Create and add the Activity Indicator to splashView

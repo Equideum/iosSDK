@@ -10,10 +10,11 @@
  */
 
 #import "ViewController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
 
-@interface TimelineViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,Delegation>
+@interface TimelineViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,apiDelegate>
 @property (strong, nonatomic) IBOutlet UICollectionView *collection;
 
 @end

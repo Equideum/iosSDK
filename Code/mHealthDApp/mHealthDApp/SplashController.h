@@ -10,8 +10,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface SplashController : UIViewController<Delegation>
+
+@interface SplashController : UIViewController<apiDelegate>
 @property(strong,nonatomic) NSDictionary *dic;
 @end

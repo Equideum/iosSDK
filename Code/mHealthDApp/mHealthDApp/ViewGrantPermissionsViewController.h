@@ -10,9 +10,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface ViewGrantPermissionsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,Delegation>
+
+@interface ViewGrantPermissionsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,apiDelegate>
 
 @property (nonatomic, strong) NSMutableArray *permissionsArray;
 @property (nonatomic, strong) NSMutableArray *permissionsFamilyArray;

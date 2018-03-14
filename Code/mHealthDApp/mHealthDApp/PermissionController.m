@@ -12,7 +12,7 @@
 #import "PermissionController.h"
 #import "CMPopTipView.h"
 #import "PermissionSummaryViewController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "Constants.h"
 #import "mHealthDApp-Swift.h"
 #import "UICKeyChainStore.h"
@@ -21,7 +21,8 @@
 {
     NSArray *titles;
     NSArray *subtitles;
-    APIhandler *h;
+    //APIhandler *h;
+    mHealthApiHandler *apiHandler;
     SecKeyAlgorithm algorithm;
     NSString * derKeyString;
     SecKeyRef privateKey;
@@ -517,7 +518,13 @@
 }
 - (IBAction)requestOkButtonPressed:(id)sender {
      DebugLog(@"");
-    [h createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate = self;
+    
+    //[h createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
+    
+    [apiHandler createSessionforAuthEndPoint:_endpoint withURLEncodedString:urlEncodedString];
     _activityContainerView.hidden = false;
     
     [activityIndicator startAnimating];

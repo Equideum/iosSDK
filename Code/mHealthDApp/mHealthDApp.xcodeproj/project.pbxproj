@@ -63,6 +63,7 @@
 		A438DBC4204E937F009A6D8D /* DocCollectionViewCell_Ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBC0204E937E009A6D8D /* DocCollectionViewCell_Ipad.m */; };
 		A438DBC5204E937F009A6D8D /* DocCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A438DBC1204E937E009A6D8D /* DocCollectionViewCell.m */; };
 		A4AD0FE1204FD8D400FB2B0F /* UtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AD0FE0204FD8D400FB2B0F /* UtilsViewController.m */; };
+		A4CB95FF205942D000FC9AA7 /* libmHealthApiHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CB95FE205942CF00FC9AA7 /* libmHealthApiHandler.a */; };
 		A4EDF2A7202AD973000E6D9D /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EDF2A6202AD973000E6D9D /* DejalActivityView.m */; };
 		E76F458320233E3700F703C5 /* PermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76F458220233E3600F703C5 /* PermissionViewController.m */; };
 		E78822D32024614200821DF6 /* DateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E78822CD2024614100821DF6 /* DateCollectionViewCell.xib */; };
@@ -177,6 +178,7 @@
 		A438DBC1204E937E009A6D8D /* DocCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocCollectionViewCell.m; sourceTree = "<group>"; };
 		A4AD0FDF204FD8D400FB2B0F /* UtilsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsViewController.h; sourceTree = "<group>"; };
 		A4AD0FE0204FD8D400FB2B0F /* UtilsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UtilsViewController.m; sourceTree = "<group>"; };
+		A4CB95FE205942CF00FC9AA7 /* libmHealthApiHandler.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmHealthApiHandler.a; sourceTree = SOURCE_ROOT; };
 		A4EDF2A5202AD972000E6D9D /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		A4EDF2A6202AD973000E6D9D /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		E76F458120233E3600F703C5 /* PermissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionViewController.h; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CB95FF205942D000FC9AA7 /* libmHealthApiHandler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +212,7 @@
 			children = (
 				272DD3721FBEAA7600D5082B /* mHealthDApp */,
 				272DD3711FBEAA7600D5082B /* Products */,
+				A47D24592056A0AC00A0A4A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,6 +229,7 @@
 			children = (
 				E78822DB202461BF00821DF6 /* PermissionResourcesDetailsViewController.h */,
 				A4EDF2A5202AD972000E6D9D /* DejalActivityView.h */,
+				A4CB95FE205942CF00FC9AA7 /* libmHealthApiHandler.a */,
 				A4EDF2A6202AD973000E6D9D /* DejalActivityView.m */,
 				E78822DA202461BF00821DF6 /* PermissionResourcesDetailsViewController.m */,
 				E78822D82024617700821DF6 /* WPSAlertController.h */,
@@ -341,6 +346,13 @@
 				A438DBBD204E937C009A6D8D /* DocCollectionViewCell.xib */,
 			);
 			path = mHealthDApp;
+			sourceTree = "<group>";
+		};
+		A47D24592056A0AC00A0A4A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -618,21 +630,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YLMKF69AJ8;
+				DEVELOPMENT_TEAM = SH2DC5WPUW;
+				ENABLE_BITCODE = NO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"ISDEBUG=1",
 					"ISENDSCREEN=1",
 				);
+				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
 				INFOPLIST_FILE = mHealthDApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FHIRBlocks.mHealthDApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02609928-8e3b-4ee0-8cc6-9dc94cf76f7a";
-				PROVISIONING_PROFILE_SPECIFIER = HS_Dev_2016;
+				PROVISIONING_PROFILE = "29bf6960-8bc5-4407-9975-7d72127eeee7";
+				PROVISIONING_PROFILE_SPECIFIER = mHealthDAppDistributionProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "mHealthDApp/mHealthDApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -645,21 +664,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = YLMKF69AJ8;
+				DEVELOPMENT_TEAM = SH2DC5WPUW;
+				ENABLE_BITCODE = NO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"ISDEBUG=1",
 					"ISENDSCREEN=1",
 				);
+				HEADER_SEARCH_PATHS = $SOURCE_ROOT/include;
 				INFOPLIST_FILE = mHealthDApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					$SOURCE_ROOT/include,
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FHIRBlocks.mHealthDApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02609928-8e3b-4ee0-8cc6-9dc94cf76f7a";
-				PROVISIONING_PROFILE_SPECIFIER = HS_Dev_2016;
+				PROVISIONING_PROFILE = "29bf6960-8bc5-4407-9975-7d72127eeee7";
+				PROVISIONING_PROFILE_SPECIFIER = mHealthDAppDistributionProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "mHealthDApp/mHealthDApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

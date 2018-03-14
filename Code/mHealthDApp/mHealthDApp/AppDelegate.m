@@ -17,12 +17,19 @@
 @end
 
 @implementation AppDelegate
+
 @synthesize finalFamilyDataArray;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     DebugLog(@"");
     if([[NSUserDefaults standardUserDefaults]valueForKey:FINALFAMILYDATAARRAY] == nil)
     {
+        
+        //mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+       // [apiHandler createSessionWithEndPoint:@"ping"];
+        //apiHandler.delegate=self;
+        
+
         finalFamilyDataArray=[[NSMutableArray alloc]init];
         NSArray *imgFamilyArray=[[NSArray alloc]initWithObjects:@"Mother",@"Father",@"Brother",@"Sister", nil];
         NSArray *titleFamilyArray=[[NSArray alloc]initWithObjects:@"Worried Wendy",@"Hefty Harvey",@"Tricky Troy",@"Sports Susan", nil];
@@ -106,6 +113,14 @@
         {
             [[NSUserDefaults standardUserDefaults]setObject:queryStringArray[1] forKey:@"dpermissionshared"];
         }
+        if([queryStringArray[0] isEqualToString:@"apppermissionshared"])
+        {
+            
+            [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"dpermissionshared"];
+            [[NSUserDefaults standardUserDefaults]setObject:queryStringArray[1] forKey:@"apppermissionshared"];
+            // show logout pop
+            [self showAppPermissionDeleteAlert];
+        }
     }
     
     if([url.query containsString:@"wcsi"])
@@ -117,6 +132,35 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:@"dpermissionsharedNotification" object:nil];
     }
     return true;
+}
+-(void)showAppPermissionDeleteAlert
+{
+    DebugLog(@"");
+    UIWindow* topWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    topWindow.rootViewController = [UIViewController new];
+    topWindow.windowLevel = UIWindowLevelAlert + 1;
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                   message:@"App has been deleted from CSA. Usage of this application will be disabled. Please click ok to logout"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *yesBtn = [UIAlertAction actionWithTitle:@"Ok"
+                                                     style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                             {
+                                 //NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+                                 //[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 // show urlscheme
+                                 topWindow.hidden = YES;
+                                 exit(0);
+
+                                 
+                             }];
+    
+    [alert addAction:yesBtn];
+    
+    [topWindow makeKeyAndVisible];
+    [topWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end

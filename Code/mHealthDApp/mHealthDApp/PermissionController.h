@@ -11,9 +11,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTableViewCell.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface PermissionController : UIViewController<UITableViewDelegate,UITableViewDataSource,Delegation>
+
+@interface PermissionController : UIViewController<UITableViewDelegate,UITableViewDataSource,apiDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *backBtn;
 @property (strong, nonatomic) IBOutlet UIButton *acceptBtn;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

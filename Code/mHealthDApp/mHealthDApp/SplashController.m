@@ -12,7 +12,6 @@
 
 #import<LocalAuthentication/LocalAuthentication.h>
 #import "SplashController.h"
-#import "APIhandler.h"
 #import "Constants.h"
 #import "UICKeyChainStore.h"
 #import "ServerSingleton.h"
@@ -190,422 +189,435 @@
         else
         {
             
-            if([[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"] == nil)
+            if ([[NSUserDefaults standardUserDefaults]valueForKey:@"apppermissionshared"] != nil)
             {
-#if ISDEBUG
-#if ISENDSCREEN
-                [self performSelector:@selector(firstCall) withObject:nil afterDelay:5];
-#else
-                [self performSelector:@selector(firstCall) withObject:nil afterDelay:25];
-#endif
-# else
-                [self performSelector:@selector(firstCall) withObject:nil afterDelay:0];
-#endif
-                
-            }
-            else
-            {
-                if([(NSString *)[[NSUserDefaults standardUserDefaults]valueForKey:@"Flow"] isEqualToString:@"Patient"])
-                {
-                    imgThumb.hidden=NO;
-                    lblAuthenticateText.hidden=YES;
-                    LAContext *myContext = [[LAContext alloc] init];
-                    NSError *authError = nil;
-                    NSString *myLocalizedReasonString = @"Place your finger to authenticate";
-                    
-                    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-                        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                                  localizedReason:myLocalizedReasonString
-                                            reply:^(BOOL success, NSError *error) {
-                                                if (success) {
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                        imgThumb.image=[UIImage imageNamed:@"thumb_green.png"];
-                                                        [self performSelector:@selector(showDashBoard) withObject:nil afterDelay:1.0];
-                                                    });
-                                                } else
-                                                {
-                                                    switch (error.code) {
-                                                        case LAErrorAuthenticationFailed:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You reached maximum attempts"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                                
-                                                            });
-                                                            break;
-                                                        }
-                                                        case LAErrorUserCancel:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You pressed Cancel Button"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                                
-                                                            });
-                                                            break;
-                                                        }
-                                                        case LAErrorUserFallback:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You can auntheticate using only touchid"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                            });
-                                                            break;
-                                                        }
-                                                        default: {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:error.localizedDescription
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                            });
-                                                            break;
-                                                        }
-                                                    }
-                                                }//else
-                                            }];
-                    }
-                    else {
-                        
-                       
-                        
-                        //        dispatch_async(dispatch_get_main_queue(), ^{
-                        //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                        //                                                                           message:@"Touch Id is disabled on your device.Please enable it to authenticate"
-                        //                                                                    preferredStyle:UIAlertControllerStyleAlert];
-                        //            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                        //                                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        //                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
-                        //
-                        //
-                        //                                                                  }];
-                        //
-                        //            [alert addAction:firstAction];
-                        //
-                        //            [self presentViewController:alert animated:YES completion:nil];
-                        //
-                        //            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                        //        });
-                        switch (authError.code) {
-                                
-                            case kLAErrorTouchIDNotAvailable:
-                            {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    imgThumb.hidden=NO;
-                                    lblAuthenticateText.hidden=YES;
-                                    
-                                });
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                                                   message:@"Touch Id is not available for your device.Press OK to continue"
-                                                                                            preferredStyle:UIAlertControllerStyleAlert];
-                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                              
-                                                                                              //[self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
-                                                                                              imgThumb.image=[UIImage imageNamed:@"thumb_green.png"];
-                                                                                              [self performSelector:@selector(showDashBoard) withObject:nil afterDelay:1.0];
-                                                                                          }];
-                                    
-                                    [alert addAction:firstAction];
-                                    
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    
-                                    // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                                });
-                                
-                                break;
-                            }
-                            case kLAErrorTouchIDNotEnrolled:{
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                   message:@"Touch Id is not enabled on your device.Please enable it and then continue running this app."
-                                                                                            preferredStyle:UIAlertControllerStyleAlert];
-                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                              
-                                                                                              
-                                                                                          }];
-                                    
-                                    [alert addAction:firstAction];
-                                    
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    
-                                    // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                                });
-                                
-                                break;
-                            }
-                                
-                                
-                            default:
-                                break;
-                        }
-                    }
-                }
-                else if([(NSString *)[[NSUserDefaults standardUserDefaults]valueForKey:@"Flow"] isEqualToString:@"Caregiver"])
-                {
-                    LAContext *myContext = [[LAContext alloc] init];
-                    NSError *authError = nil;
-                    NSString *myLocalizedReasonString = @"Place your finger to authenticate";
-                    
-                    if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-                        [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
-                                  localizedReason:myLocalizedReasonString
-                                            reply:^(BOOL success, NSError *error) {
-                                                if (success) {
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                        [self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
-                                                    });
-                                                } else
-                                                {
-                                                    switch (error.code) {
-                                                        case LAErrorAuthenticationFailed:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You reached maximum attempts"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                                
-                                                            });
-                                                            break;
-                                                        }
-                                                        case LAErrorUserCancel:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You pressed Cancel Button"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                                
-                                                            });
-                                                            break;
-                                                        }
-                                                        case LAErrorUserFallback:
-                                                        {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:@"You can auntheticate using only touchid"
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                                                                                         message:@"Your app will now be terminated."
-                                                                                                                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                                                                                                                          UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                                                                                style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                                                                                    [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                                                                                    exit(0);
-                                                                                                                                                                                    
-                                                                                                                                                                                }];
-                                                                                                                          [alert addAction:firstAction];
-                                                                                                                          [self presentViewController:alert animated:YES completion:nil];
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                            });
-                                                            break;
-                                                        }
-                                                        default: {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                                               message:error.localizedDescription
-                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                                                      style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                                                          [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                                                          
-                                                                                                                      }];
-                                                                [alert addAction:firstAction];
-                                                                [self presentViewController:alert animated:YES completion:nil];
-                                                            });
-                                                            break;
-                                                        }
-                                                    }
-                                                }//else
-                                            }];
-                    }
-                    else {
-                        
-                        
-                        //        dispatch_async(dispatch_get_main_queue(), ^{
-                        //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                        //                                                                           message:@"Touch Id is disabled on your device.Please enable it to authenticate"
-                        //                                                                    preferredStyle:UIAlertControllerStyleAlert];
-                        //            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                        //                                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        //                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
-                        //
-                        //
-                        //                                                                  }];
-                        //
-                        //            [alert addAction:firstAction];
-                        //
-                        //            [self presentViewController:alert animated:YES completion:nil];
-                        //
-                        //            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                        //        });
-                        switch (authError.code) {
-                            case kLAErrorTouchIDNotAvailable:
-                            {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
-                                                                                                   message:@"Touch Id is not available for your device.Press OK to continue"
-                                                                                            preferredStyle:UIAlertControllerStyleAlert];
-                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                              
-                                                                                              [self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
-                                                                                          }];
-                                    
-                                    [alert addAction:firstAction];
-                                    
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    
-                                    // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                                });
-                                
-                                break;
-                            }
-                            case kLAErrorTouchIDNotEnrolled:{
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                                   message:@"Touch Id is not enabled on your device.Please enable it and then continue running this app."
-                                                                                            preferredStyle:UIAlertControllerStyleAlert];
-                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
-                                                                                              
-                                                                                              
-                                                                                          }];
-                                    
-                                    [alert addAction:firstAction];
-                                    
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    
-                                    // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
-                                });
-                                
-                                break;
-                            }
-                                
-                                
-                            default:
-                                break;
-                        }
-                    }
-                }
-                else
+                NSString *strPermission = [[NSUserDefaults standardUserDefaults]valueForKey:@"apppermissionshared"];
+                if([strPermission isEqualToString:@"delete"])
                 {
                     [self performSelector:@selector(showWelcomeScreenWithDelay) withObject:nil];
                 }
             }
+            else
+            {
+                
+                if([[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"] == nil)
+                {
+#if ISDEBUG
+#if ISENDSCREEN
+                    [self performSelector:@selector(firstCall) withObject:nil afterDelay:5];
+#else
+                    [self performSelector:@selector(firstCall) withObject:nil afterDelay:25];
+#endif
+# else
+                    [self performSelector:@selector(firstCall) withObject:nil afterDelay:0];
+#endif
+                    
+                }
+                else
+                {
+                    if([(NSString *)[[NSUserDefaults standardUserDefaults]valueForKey:@"Flow"] isEqualToString:@"Patient"])
+                    {
+                        imgThumb.hidden=NO;
+                        lblAuthenticateText.hidden=YES;
+                        LAContext *myContext = [[LAContext alloc] init];
+                        NSError *authError = nil;
+                        NSString *myLocalizedReasonString = @"Place your finger to authenticate";
+                        
+                        if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+                            [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                                      localizedReason:myLocalizedReasonString
+                                                reply:^(BOOL success, NSError *error) {
+                                                    if (success) {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            imgThumb.image=[UIImage imageNamed:@"thumb_green.png"];
+                                                            [self performSelector:@selector(showDashBoard) withObject:nil afterDelay:1.0];
+                                                        });
+                                                    } else
+                                                    {
+                                                        switch (error.code) {
+                                                            case LAErrorAuthenticationFailed:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You reached maximum attempts"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                    
+                                                                });
+                                                                break;
+                                                            }
+                                                            case LAErrorUserCancel:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You pressed Cancel Button"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                    
+                                                                });
+                                                                break;
+                                                            }
+                                                            case LAErrorUserFallback:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You can auntheticate using only touchid"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                });
+                                                                break;
+                                                            }
+                                                            default: {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:error.localizedDescription
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                });
+                                                                break;
+                                                            }
+                                                        }
+                                                    }//else
+                                                }];
+                        }
+                        else {
+                            
+                            
+                            
+                            //        dispatch_async(dispatch_get_main_queue(), ^{
+                            //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                            //                                                                           message:@"Touch Id is disabled on your device.Please enable it to authenticate"
+                            //                                                                    preferredStyle:UIAlertControllerStyleAlert];
+                            //            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                            //                                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                            //                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                            //
+                            //
+                            //                                                                  }];
+                            //
+                            //            [alert addAction:firstAction];
+                            //
+                            //            [self presentViewController:alert animated:YES completion:nil];
+                            //
+                            //            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                            //        });
+                            switch (authError.code) {
+                                    
+                                case kLAErrorTouchIDNotAvailable:
+                                {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        imgThumb.hidden=NO;
+                                        lblAuthenticateText.hidden=YES;
+                                        
+                                    });
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                                                       message:@"Touch Id is not available for your device.Press OK to continue"
+                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                  
+                                                                                                  //[self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
+                                                                                                  imgThumb.image=[UIImage imageNamed:@"thumb_green.png"];
+                                                                                                  [self performSelector:@selector(showDashBoard) withObject:nil afterDelay:1.0];
+                                                                                              }];
+                                        
+                                        [alert addAction:firstAction];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
+                                        
+                                        // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                                    });
+                                    
+                                    break;
+                                }
+                                case kLAErrorTouchIDNotEnrolled:{
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                       message:@"Touch Id is not enabled on your device.Please enable it and then continue running this app."
+                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                  
+                                                                                                  
+                                                                                              }];
+                                        
+                                        [alert addAction:firstAction];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
+                                        
+                                        // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                                    });
+                                    
+                                    break;
+                                }
+                                    
+                                    
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    else if([(NSString *)[[NSUserDefaults standardUserDefaults]valueForKey:@"Flow"] isEqualToString:@"Caregiver"])
+                    {
+                        LAContext *myContext = [[LAContext alloc] init];
+                        NSError *authError = nil;
+                        NSString *myLocalizedReasonString = @"Place your finger to authenticate";
+                        
+                        if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+                            [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                                      localizedReason:myLocalizedReasonString
+                                                reply:^(BOOL success, NSError *error) {
+                                                    if (success) {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            [self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
+                                                        });
+                                                    } else
+                                                    {
+                                                        switch (error.code) {
+                                                            case LAErrorAuthenticationFailed:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You reached maximum attempts"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                    
+                                                                });
+                                                                break;
+                                                            }
+                                                            case LAErrorUserCancel:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You pressed Cancel Button"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                    
+                                                                });
+                                                                break;
+                                                            }
+                                                            case LAErrorUserFallback:
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:@"You can auntheticate using only touchid"
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                                                                             message:@"Your app will now be terminated."
+                                                                                                                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                                                                              UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                                                                                    style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                                                                                        [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                                                                                        exit(0);
+                                                                                                                                                                                        
+                                                                                                                                                                                    }];
+                                                                                                                              [alert addAction:firstAction];
+                                                                                                                              [self presentViewController:alert animated:YES completion:nil];
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                });
+                                                                break;
+                                                            }
+                                                            default: {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                                                   message:error.localizedDescription
+                                                                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                                              
+                                                                                                                          }];
+                                                                    [alert addAction:firstAction];
+                                                                    [self presentViewController:alert animated:YES completion:nil];
+                                                                });
+                                                                break;
+                                                            }
+                                                        }
+                                                    }//else
+                                                }];
+                        }
+                        else {
+                            
+                            
+                            //        dispatch_async(dispatch_get_main_queue(), ^{
+                            //            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                            //                                                                           message:@"Touch Id is disabled on your device.Please enable it to authenticate"
+                            //                                                                    preferredStyle:UIAlertControllerStyleAlert];
+                            //            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                            //                                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                            //                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                            //
+                            //
+                            //                                                                  }];
+                            //
+                            //            [alert addAction:firstAction];
+                            //
+                            //            [self presentViewController:alert animated:YES completion:nil];
+                            //
+                            //            // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                            //        });
+                            switch (authError.code) {
+                                case kLAErrorTouchIDNotAvailable:
+                                {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                                                       message:@"Touch Id is not available for your device.Press OK to continue"
+                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                  
+                                                                                                  [self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
+                                                                                              }];
+                                        
+                                        [alert addAction:firstAction];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
+                                        
+                                        // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                                    });
+                                    
+                                    break;
+                                }
+                                case kLAErrorTouchIDNotEnrolled:{
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                                       message:@"Touch Id is not enabled on your device.Please enable it and then continue running this app."
+                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                                              style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                                                  
+                                                                                                  
+                                                                                              }];
+                                        
+                                        [alert addAction:firstAction];
+                                        
+                                        [self presentViewController:alert animated:YES completion:nil];
+                                        
+                                        // Rather than show a UIAlert here, use the error to determine if you should push to a keypad for PIN entry.
+                                    });
+                                    
+                                    break;
+                                }
+                                    
+                                    
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        [self performSelector:@selector(showWelcomeScreenWithDelay) withObject:nil];
+                    }
+                }
+            }
+
         
         }
     }
@@ -662,11 +674,15 @@
 {
     DebugLog(@"");
 
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate =  self;
+    
+    //APIhandler *h=[[APIhandler alloc]init];
+    //h.delegate = self;
     
     _endpoint=@"ping";
-    [h createSessionWithEndPoint:_endpoint];
+   // [h createSessionWithEndPoint:_endpoint];
+    [apiHandler createSessionWithEndPoint:_endpoint];
 #if ISDEBUG
     
     
@@ -699,8 +715,12 @@
     DebugLog(@"");
 
     _isSecondCall=YES;
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+   // APIhandler *h=[[APIhandler alloc]init];
+   // h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate =  self;
+    
     _endpoint=@"getTime";
 #if ISDEBUG
     
@@ -718,7 +738,8 @@
     
 #endif
     
-    [h createSessionWithEndPoint:_endpoint];
+    //[h createSessionWithEndPoint:_endpoint];
+    [apiHandler createSessionWithEndPoint:_endpoint];
 }
 
 -(void)handleData :(NSData*)data errr:(NSError*)error

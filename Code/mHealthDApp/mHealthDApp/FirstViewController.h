@@ -10,9 +10,10 @@
  */
 
 #import "PermissionController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface FirstViewController : UIViewController<Delegation>
+@interface FirstViewController : UIViewController<apiDelegate>
 
 typedef NS_ENUM(int,Usertype)
 {

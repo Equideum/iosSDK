@@ -11,7 +11,7 @@
 
 #import "FirstViewController.h"
 #import "PermissionController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "Constants.h"
 #import "mHealthDApp-Swift.h"
 #import "ViewController.h"
@@ -30,8 +30,8 @@
     SecKeyAlgorithm algorithm;
     NSString * derKeyString;
     SecKeyRef privateKey;
-    APIhandler *h;
     NSDictionary *request_dic;
+    mHealthApiHandler *apiHandler;
 }
 @property(strong,nonatomic) NSDictionary *guidDictionary;
 @property (weak, nonatomic) IBOutlet UIView *debugContainerView;
@@ -81,7 +81,13 @@
 //        [self performSelector:@selector(secondCall) withObject:nil afterDelay:0];
 //    #endif
 //    # else
+    if ([[NSUserDefaults standardUserDefaults]valueForKey:@"apppermissionshared"] == nil)
+    {
         [self performSelector:@selector(secondCall) withObject:nil afterDelay:0];
+
+    }
+    
+    
 //    #endif
 }
 
@@ -120,8 +126,12 @@
     
 //    _isSecondCall=YES;
     [self showBusyActivityView];
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+    //APIhandler *h=[[APIhandler alloc]init];
+    //h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"getGloballyUniqueIdentifier";
 #if ISDEBUG
     
@@ -148,7 +158,8 @@
     [_debugContainerView setHidden:true];
 #endif
     
-    [h createSessionWithEndPoint:_endpoint];
+   // [h createSessionWithEndPoint:_endpoint];
+    [apiHandler createSessionWithEndPoint:_endpoint];
 }
 
 
@@ -177,6 +188,8 @@
 - (IBAction)patientButtonClicked:(UIButton *)sender {
     DebugLog(@"");
   type=UsertypePatient;
+  [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"apppermissionshared"];
+
    
     for (UIButton* button in arrayOfButtons)
     {
@@ -223,6 +236,8 @@
 - (IBAction)caregiverButtonClicked:(UIButton *)sender {
     DebugLog(@"");
     type=UsertypeCareGiver;
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"apppermissionshared"];
+
     for (UIButton* button in arrayOfButtons)
     {
           sender.selected = true;
@@ -490,8 +505,10 @@
     DebugLog(@"");
     [self showBusyActivityView];
     _isThirdCall = YES;
-    h=[[APIhandler alloc]init];
-    h.delegate = self;
+   
+     apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"requestCsiRegistration";
     NSMutableArray *array=[[NSMutableArray alloc]init];
 //    NSDictionary *arraydata1=[[NSDictionary alloc]initWithObjectsAndKeys:@"DateofBirth",@"key",@"11/29/1990",@"value" ,nil];
@@ -550,7 +567,8 @@
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray"];
     [_debugView setHidden:true];
     [_debugView1 setHidden:true];
-    [h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    //[h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
     _activityContainerView.hidden = false;
     
     [_activityIndicator startAnimating];
@@ -571,7 +589,7 @@
     NSLog(@"not in debug mode");
     [_debugView setHidden:true];
     [_debugView1 setHidden:true];
-    [h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
     _activityContainerView.hidden = false;
     
     [_activityIndicator startAnimating];
@@ -689,7 +707,7 @@
 - (IBAction)requestOKButtonPressed:(id)sender
 {
     DebugLog(@"");
-    [h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
     _activityContainerView.hidden = false;
     
     [_activityIndicator startAnimating];
@@ -722,8 +740,10 @@
     DebugLog(@"");
     [self showBusyActivityView];
     _isFetchPublicClaims = YES;
-    APIhandler *h=[[APIhandler alloc]init];
-    h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
+    apiHandler.delegate = self;
+    
     _endpoint=@"fetchPublicClaims";
     
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -758,7 +778,7 @@
     NSMutableArray * array2 = [NSMutableArray arrayWithArray:array1];
     [array2 addObject:[NSString stringWithFormat:@"%@%@%@",CSI_Base_URL,_endpoint,request_dic]];
     [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"LogArray"];
-    [h createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforCSIEndPoint:_endpoint withModelDictionary:request_dic];
     
 #if ISDEBUG
     

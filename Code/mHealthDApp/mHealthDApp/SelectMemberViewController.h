@@ -10,9 +10,10 @@
  */
 
 #import "ViewController.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface SelectMemberViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,Delegation,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface SelectMemberViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,apiDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *userCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *viewFromToDate;

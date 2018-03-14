@@ -17,7 +17,7 @@
 #import<QuartzCore/QuartzCore.h>
 #import "SelectMemberViewController.h"
 #import "Constants.h"
-#import "APIhandler.h"
+//#import "APIhandler.h"
 #import "ServerSingleton.h"
 
 
@@ -397,9 +397,12 @@
 {
         DebugLog(@"");
         _isFetchPermissions = YES;
-        APIhandler *
-        h=[[APIhandler alloc]init];
-        h.delegate = self;
+        //APIhandler *h=[[APIhandler alloc]init];
+        //h.delegate = self;
+    
+    mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
+    apiHandler.delegate = self;
+    
         _endpoint=@"fetchPermissionsGivenToMe";
         
         NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -453,8 +456,9 @@
         [[NSUserDefaults standardUserDefaults]setObject:array2 forKey:@"PermissionsLogArray"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         //    [debugView setHidden:true];
-        [h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
-    
+        //[h createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+    [apiHandler createSessionforPermissionEndPoint:_endpoint withModelDictionary:request_dic];
+
 }
 -(void)handleData :(NSData*)data errr:(NSError*)error
 {

@@ -10,8 +10,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "mHealthApiHandler/mHealthApiHandler.h"
 
-@interface PermissionViewController : UIViewController
+@interface PermissionViewController : UIViewController <apiDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblMessage;
 @property (weak, nonatomic) IBOutlet UIView *viewDoctorImage;

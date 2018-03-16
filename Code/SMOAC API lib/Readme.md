@@ -106,15 +106,19 @@ Where requestDic following parameters
 Developer need to call this method whenever he wants to send data in encoded string. This call has ‘POST’ method.
 
 #### Method:
+```obj-c
 -(void)createSessionforAuthEndPoint:(NSString*)endPoint withURLEncodedString:(NSString *)urlEncodedString;
+```
 
 #### How to use:
+```obj-c
 mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];
 apiHandler.delegate = self;
-
+```
 1.AuthCall
+```obj-c
 [apiHandler createSessionforAccessEndPoint:_endpoint withURLEncodedString:urlEncodedString];
-
+```
 This URL encode call have following has JWT with following parameters
 JWT Header
 {

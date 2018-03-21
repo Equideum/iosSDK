@@ -22,14 +22,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     DebugLog(@"");
+    [self addFamilyStaticData];
+    // Override point for customization after application launch.
+    return YES;
+}
+-(void)addFamilyStaticData
+{
+    DebugLog(@"");
     if([[NSUserDefaults standardUserDefaults]valueForKey:FINALFAMILYDATAARRAY] == nil)
     {
         
         //mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc] init];
-       // [apiHandler createSessionWithEndPoint:@"ping"];
+        // [apiHandler createSessionWithEndPoint:@"ping"];
         //apiHandler.delegate=self;
         
-
+        
         finalFamilyDataArray=[[NSMutableArray alloc]init];
         NSArray *imgFamilyArray=[[NSArray alloc]initWithObjects:@"Mother",@"Father",@"Brother",@"Sister", nil];
         NSArray *titleFamilyArray=[[NSArray alloc]initWithObjects:@"Worried Wendy",@"Hefty Harvey",@"Tricky Troy",@"Sports Susan", nil];
@@ -49,12 +56,10 @@
     else
     {
         finalFamilyDataArray = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:FINALFAMILYDATAARRAY]];
-
+        
     }
     
     
-    // Override point for customization after application launch.
-    return YES;
 }
 
 

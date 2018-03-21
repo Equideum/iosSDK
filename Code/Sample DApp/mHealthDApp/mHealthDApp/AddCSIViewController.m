@@ -27,8 +27,8 @@
 @end
 
 @implementation AddCSIViewController
-@synthesize txtCSI,txtFirstName,txtLastName,txtGender;
-@synthesize btnback;
+@synthesize txtCSI,txtFirstName,txtLastName,txtGender,txtFriendData;
+@synthesize btnback,btnCopy,btnSave;
 @synthesize strFromScreen;
 - (void)viewDidLoad {
     DebugLog(@"");
@@ -62,19 +62,9 @@
             btnback.hidden=YES;
         }
     }
+    btnCopy.enabled = NO;
+    btnSave.enabled = NO;
     
-    UIPasteboard *thePasteboard = [UIPasteboard generalPasteboard];
-    NSString *pasteboardString = thePasteboard.string;
-    NSLog(@"%@", pasteboardString);
-    NSArray *arrData =[pasteboardString componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
-    if(arrData.count == 4)
-    {
-        txtFirstName.text=[NSString stringWithFormat:@"%@",[arrData[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-        txtLastName.text=[NSString stringWithFormat:@"%@",[arrData[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-        txtGender.text=[NSString stringWithFormat:@"%@",[arrData[2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-        txtCSI.text=[NSString stringWithFormat:@"%@",[arrData[3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
-      
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,6 +99,36 @@
     DebugLog(@"");
     [self dismissViewControllerAnimated:YES completion:nil];
 
+}
+- (IBAction)copyButtonTapped:(id)sender
+{
+    DebugLog(@"");
+    //UIPasteboard *thePasteboard = [UIPasteboard generalPasteboard];
+    //NSString *pasteboardString = thePasteboard.string;
+   // NSLog(@"%@", pasteboardString);
+    
+    if (txtFriendData.text.length == 0)
+    {
+        [self showAlertWithMessage:@"Please paste friends data."];
+        return;
+    }
+    
+    NSArray *arrData =[txtFriendData.text componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+    
+    if(arrData.count == 5)
+    {
+        txtFirstName.text=[NSString stringWithFormat:@"%@",[arrData[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        txtLastName.text=[NSString stringWithFormat:@"%@",[arrData[2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        txtGender.text=[NSString stringWithFormat:@"%@",[arrData[3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        txtCSI.text=[NSString stringWithFormat:@"%@",[arrData[4] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        btnSave.enabled = YES;
+        btnCopy.enabled = NO;
+        [txtFriendData resignFirstResponder];
+    }
+    else
+    {
+        [self showAlertWithMessage:@"Please enter valid string."];
+    }
 }
 
 - (IBAction)doneButtonTapped:(id)sender {
@@ -228,6 +248,15 @@
         
     }
     
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if(textField == txtFriendData)
+    {
+        btnCopy.enabled = YES;
+    }
+   
+    return true;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     // Implement your Date Time Picker initial Code here

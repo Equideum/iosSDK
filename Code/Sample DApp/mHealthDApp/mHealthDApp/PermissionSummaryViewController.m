@@ -264,13 +264,13 @@
     }
     if (csiArray == nil)
     {
-        csiArray=[[NSArray alloc]initWithObjects:@"1e54e260-e1d7-4267-a53c-f3cd11b87194",
-                  @"8baa80d3-3900-46cb-89f7-3c383aff2d66",
-                  @"be983ee6-ad1e-40bf-aeed-f2ddfa6f4bf7",
-                  @"0f5e502a-8b34-435f-8e1a-300ce2a0ae49",
-                  @"f8100b03-cd7f-4265-a39f-23d90cf07cd3",
-                  @"dbd8e39f-0596-47ab-8a2a-0191db042672",
-                  @"d2727ba8-062b-4092-b618-37d77abda6ab", nil];
+        csiArray=[[NSArray alloc]initWithObjects:@"2cf13cf4-3780-4f2a-9310-23abd3d1596a",
+                  @"590730dc-7741-40f0-a6e7-e5f556547fee",
+                  @"e78c858f-338a-4ccc-8168-31cd238a6792",
+                  @"2cb79c54-7739-426a-bb3b-521badf46f4d",
+                  @"28b02abe-80bc-4372-8ae3-728bf047c0e1",
+                  @"4ac4023a-841c-49d7-a6a6-159d153ebf94",
+                  @"73c41876-4f53-4968-9d14-eb56af4cc515", nil];
     }
     if (csiFamilyArray == nil)
     {
@@ -918,6 +918,7 @@
             NSArray * elements = [(NSString *)arrayOfDoctorsString [i] componentsSeparatedByString:@","];
             [permissionCsiGuids addObject:elements[3]];
         }
+    NSString *strPermissionId= permissionCsiGuids[0];
     
     //Commeneted as we need to send indiviudal calls - Akshay
         /*for (int i=1; i< [arrayOfFamilyString count]; i++) {
@@ -948,7 +949,9 @@
     [array addObject:@"SOC"];
     NSDictionary * heartScope = [[NSDictionary alloc]initWithObjectsAndKeys:@"write",@"accessType",@"V",@"confidentialityScope",@"patient",@"permissionType",@"Patient",@"resourceScope",array,@"sensitivityScope", nil];
     
-    NSDictionary * permission = [[NSDictionary alloc]initWithObjectsAndKeys:endDateInRequiredFormat,@"endTime",heartScope,@"heartScope",permissionCsiGuids,@"permissionedCsiGuids",startDateInRequiredFormat,@"startTime",currentDate,@"timeStamp", nil];
+   // NSDictionary * permission = [[NSDictionary alloc]initWithObjectsAndKeys:endDateInRequiredFormat,@"endTime",heartScope,@"heartScope",permissionCsiGuids,@"permissionedCsiGuids",startDateInRequiredFormat,@"startTime",currentDate,@"timeStamp", nil];
+    
+    NSDictionary * permission = [[NSDictionary alloc]initWithObjectsAndKeys:endDateInRequiredFormat,@"endTime",heartScope,@"heartScope",strPermissionId,@"permissionedCsiGuid",startDateInRequiredFormat,@"startTime",currentDate,@"timeStamp", nil];
     
     NSString *payload=[NSString stringWithFormat:@"%@%@%@%@%@"
                       // %@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@"

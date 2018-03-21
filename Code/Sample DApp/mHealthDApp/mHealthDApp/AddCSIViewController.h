@@ -17,7 +17,12 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtFirstName;
 @property (strong, nonatomic) IBOutlet UITextField *txtLastName;
 @property (strong, nonatomic) IBOutlet UITextField *txtGender;
+@property (strong, nonatomic) IBOutlet UITextField *txtFriendData;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnback;
+@property (strong, nonatomic) IBOutlet UIButton *btnSave;
+@property (strong, nonatomic) IBOutlet UIButton *btnCopy;
+
 @property (strong, readwrite) NSString *strFromScreen;
 
 @end

@@ -173,13 +173,13 @@
             //        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
             //        PermissionController *controller=[storyboard instantiateViewControllerWithIdentifier:@"PermissionController"];
             [[NSUserDefaults standardUserDefaults]setObject:@"Patient" forKey:@"Flow"];
-            [self performSegueWithIdentifier:@"PermissionSegue" sender:nil];
+            [self performSegueWithIdentifier:@"PermissionSegue" sender:self];
         }
         else
         {
             [[NSUserDefaults standardUserDefaults]setObject:@"Caregiver" forKey:@"Flow"];
             //[self performSegueWithIdentifier:@"SelectFamilySegue" sender:nil];
-            [self performSegueWithIdentifier:@"FirstViewToTimeLineView" sender:nil];
+            [self performSegueWithIdentifier:@"FirstViewToTimeLineView" sender:self];
         }
     }
     

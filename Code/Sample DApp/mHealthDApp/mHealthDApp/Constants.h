@@ -41,7 +41,7 @@
 //#define Auth_Base_URL @"https://poc-node-1.fhirblocks.io:8080/vaca/auth"
 //#define Access_Base_URL @"https://poc-node-1.fhirblocks.io:8080/vaca/access"
 //#define Permission_Base_URL @"https://poc-node-1.fhirblocks.io:8080/permission/"
-
+//#define FHIR_CONSUMPTION_URL @"https://poc-node-1.fhirblocks.io:8080/baseDstu3/Patient/fbcFhirId/?_format=json?"
 //
 //#define Base_URL @"http://10.0.0.202:9001/util/"
 //#define CSI_Base_URL @"http://10.0.0.202:9001/csi/"

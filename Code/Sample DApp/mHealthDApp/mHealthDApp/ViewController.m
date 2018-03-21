@@ -43,6 +43,8 @@
     NSMutableArray *finalFamilyPermissionDataArray;
 }
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *doctorAndFamilyTableView;
@@ -2177,10 +2179,17 @@
     DebugLog(@"");
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    PermissionSummaryViewController * summaryController = [segue destinationViewController];
-    summaryController.permissionsArray = permissionsArray;
-    summaryController.permissionsFamilyArray = permissionsFamilyArray;
-    summaryController.finalFamilyPermissionDataArray = finalFamilyPermissionDataArray;
+    if([segue.identifier isEqualToString:@"ViewControllerToTimeLine"])
+    {
+        
+    }
+    else
+    {
+        PermissionSummaryViewController * summaryController = [segue destinationViewController];
+        summaryController.permissionsArray = permissionsArray;
+        summaryController.permissionsFamilyArray = permissionsFamilyArray;
+        summaryController.finalFamilyPermissionDataArray = finalFamilyPermissionDataArray;
+    }
 }
 - (IBAction)checkButtonTapped:(id)sender {
     DebugLog(@"");
@@ -2269,6 +2278,10 @@
 - (IBAction)backButtonPressed:(id)sender {
     DebugLog(@"");
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)skipButtonPressed:(id)sender {
+    DebugLog(@"");
+    //[self performSegueWithIdentifier:@"ViewControllerToTimeLine" sender:self];
 }
 @end
 

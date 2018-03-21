@@ -37,8 +37,8 @@
    
     publicClaims = [[NSUserDefaults standardUserDefaults]valueForKey:@"PublicClaims"];
 
-    strBecomeFriendData = [[NSMutableString alloc] initWithString:@""];
-    [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@",[[publicClaims objectAtIndex:1] objectForKey:@"value"]]];
+    strBecomeFriendData = [[NSMutableString alloc] initWithString:@"mHealthDApp"];
+    [strBecomeFriendData appendString:[NSString stringWithFormat:@"#%@",[[publicClaims objectAtIndex:1] objectForKey:@"value"]]];
     [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[publicClaims objectAtIndex:3] objectForKey:@"value"]]];
     [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[publicClaims objectAtIndex:4] objectForKey:@"value"]]];
     [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"]]];

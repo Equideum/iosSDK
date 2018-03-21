@@ -569,12 +569,12 @@
                         <outlet property="responseView" destination="Dud-iA-Nw6" id="Y4j-Mn-hDN"/>
                         <segue destination="zEc-Jn-9bB" kind="presentation" identifier="SelectFamilySegue" id="2nk-TG-RrH"/>
                         <segue destination="db3-76-PNV" kind="show" identifier="PermissionSegue" id="mRN-fC-k6f"/>
-                        <segue destination="DsC-yU-5KD" kind="show" identifier="FirstViewToTimeLineView" id="JbV-zZ-Fbr"/>
+                        <segue destination="DsC-yU-5KD" kind="show" identifier="FirstViewToTimeLineView" id="m1Y-z7-cvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lp0-wl-1D2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3050.4000000000001" y="-246.02698650674665"/>
+            <point key="canvasLocation" x="-3017" y="-2643"/>
         </scene>
         <!--Permission Resources-->
         <scene sceneID="qkw-cu-fiN">
@@ -1136,11 +1136,12 @@
                                             <constraint firstAttribute="height" constant="40" id="LmV-nh-U1b"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                        <state key="normal" title="BACK">
+                                        <state key="normal" title="Skip">
                                             <color key="titleColor" red="0.23529411759999999" green="0.72549019609999998" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="QEt-eG-uNJ" eventType="touchUpInside" id="gKe-9L-X8U"/>
+                                            <action selector="skipButtonPressed:" destination="QEt-eG-uNJ" eventType="touchUpInside" id="aaO-Fe-DQ9"/>
+                                            <segue destination="DsC-yU-5KD" kind="show" identifier="ViewControllerToTimeLine" id="uS8-Ar-py6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="192" placeholderIntrinsicHeight="55" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sg-ts-u4b">
@@ -1210,13 +1211,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="acceptButton" destination="7Sg-ts-u4b" id="iOk-oh-PUO"/>
-                        <outlet property="backButton" destination="6Zp-jQ-diI" id="Nb1-OH-EBG"/>
                         <outlet property="bottomContainerView" destination="nEL-1l-Ca9" id="H7q-wp-kuQ"/>
                         <outlet property="doctorAndFamilyTableView" destination="Lgy-DA-6IR" id="NFh-Am-cEd"/>
                         <outlet property="label" destination="8uO-DI-Xph" id="bS5-7n-Qg9"/>
                         <outlet property="searchBar" destination="4bs-jC-JxZ" id="SxT-Pv-1zB"/>
                         <outlet property="searchDisplayController" destination="5XP-Gu-ewx" id="Xsf-JW-4Wf"/>
                         <outlet property="segmentedControl" destination="vpl-ST-1Tf" id="wxX-dS-CFL"/>
+                        <outlet property="skipButton" destination="6Zp-jQ-diI" id="l2c-Om-48E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mPp-Yg-y0d" sceneMemberID="firstResponder"/>
@@ -1229,7 +1230,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-2181" y="899"/>
+            <point key="canvasLocation" x="-3203" y="685"/>
         </scene>
         <!--Permission Summary-->
         <scene sceneID="eEi-S5-0cA">
@@ -1802,7 +1803,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jfe-bZ-DXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1758" y="-804"/>
+            <point key="canvasLocation" x="-2677" y="685"/>
         </scene>
         <!--mHealthDApp-->
         <scene sceneID="ujC-Lw-nFH">
@@ -2586,7 +2587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJx-vU-oT4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504" y="-1993"/>
+            <point key="canvasLocation" x="-507" y="-2693"/>
         </scene>
         <!--View Granted Permissions-->
         <scene sceneID="WNC-Z3-gLY">
@@ -2869,33 +2870,55 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DP-ev-RVf">
-                                <rect key="frame" x="190" y="326.66666666666669" width="34" height="30"/>
+                                <rect key="frame" x="190" y="361.66666666666669" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="doneButtonTapped:" destination="TOz-XG-4zx" eventType="touchUpInside" id="Le9-42-sAj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap on 'Save' button for saving the Data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vm2-88-Ray">
-                                <rect key="frame" x="20" y="284" width="374" height="21"/>
+                                <rect key="frame" x="20" y="319" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK1-lf-LZh">
-                                <rect key="frame" x="348" y="326" width="46" height="30"/>
+                                <rect key="frame" x="348" y="361" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="gmE-lf-1Zw"/>
                                     <constraint firstAttribute="width" constant="46" id="mR7-OG-4Mr"/>
                                 </constraints>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="dbtnBackTapped:" destination="TOz-XG-4zx" eventType="touchUpInside" id="w4Z-a1-odL"/>
+                                    <action selector="dbtnBackTapped:" destination="TOz-XG-4zx" eventType="touchUpInside" id="qHd-Vq-hpP"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste Friend data here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y20-IT-kUX">
+                                <rect key="frame" x="20" y="277" width="310" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TOz-XG-4zx" id="aQh-tW-ySt"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Y6-fy-ZTp">
+                                <rect key="frame" x="348" y="276" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="odc-aF-Irz"/>
+                                    <constraint firstAttribute="height" constant="30" id="rLB-Bi-c1b"/>
+                                </constraints>
+                                <state key="normal" title="Copy"/>
+                                <connections>
+                                    <action selector="copyButtonTapped:" destination="TOz-XG-4zx" eventType="touchUpInside" id="5GP-4k-BDE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Y20-IT-kUX" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="0Ia-NN-O5n"/>
                             <constraint firstItem="7DP-ev-RVf" firstAttribute="centerX" secondItem="6pt-QT-T6l" secondAttribute="centerX" id="2CO-kp-bSv"/>
+                            <constraint firstItem="Y20-IT-kUX" firstAttribute="top" secondItem="eaH-we-nhs" secondAttribute="top" constant="257" id="330-Xq-1qz"/>
                             <constraint firstItem="eaH-we-nhs" firstAttribute="top" secondItem="EL7-0V-O3d" secondAttribute="bottom" constant="-47" id="4OP-uB-Khq"/>
                             <constraint firstItem="Fcc-Ke-rEV" firstAttribute="top" secondItem="zXN-61-PEr" secondAttribute="bottom" constant="30" id="Aag-Zs-dw4"/>
                             <constraint firstItem="EL7-0V-O3d" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="BV9-1T-TBD"/>
@@ -2904,30 +2927,36 @@
                             <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="Fcc-Ke-rEV" secondAttribute="trailing" constant="20" id="JTT-OI-IOv"/>
                             <constraint firstItem="Fcc-Ke-rEV" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="Lhj-Rp-OEQ"/>
                             <constraint firstItem="zli-2M-B09" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="UkY-sm-gTa"/>
-                            <constraint firstItem="vm2-88-Ray" firstAttribute="top" secondItem="zli-2M-B09" secondAttribute="bottom" constant="35" id="Vf8-5I-Ic4"/>
                             <constraint firstItem="7DP-ev-RVf" firstAttribute="top" secondItem="vm2-88-Ray" secondAttribute="bottom" constant="22" id="Yyj-1P-dyy"/>
                             <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="EL7-0V-O3d" secondAttribute="trailing" constant="20" id="b0u-yo-TMC"/>
+                            <constraint firstItem="7Y6-fy-ZTp" firstAttribute="leading" secondItem="Y20-IT-kUX" secondAttribute="trailing" constant="18" id="b6x-Oe-JUE"/>
                             <constraint firstItem="zXN-61-PEr" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="csd-fB-xlf"/>
                             <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="sK1-lf-LZh" secondAttribute="trailing" constant="20" id="dBN-dh-HL8"/>
                             <constraint firstItem="zli-2M-B09" firstAttribute="top" secondItem="Fcc-Ke-rEV" secondAttribute="bottom" constant="32" id="dRv-Du-2wu"/>
                             <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="vm2-88-Ray" secondAttribute="trailing" constant="20" id="ebN-bU-efV"/>
+                            <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="7Y6-fy-ZTp" secondAttribute="trailing" constant="20" id="fTi-3W-1Sr"/>
+                            <constraint firstItem="7Y6-fy-ZTp" firstAttribute="top" secondItem="zli-2M-B09" secondAttribute="bottom" constant="27" id="l3i-qv-xkp"/>
                             <constraint firstItem="eaH-we-nhs" firstAttribute="trailing" secondItem="zli-2M-B09" secondAttribute="trailing" constant="20" id="o1t-vn-jrL"/>
                             <constraint firstItem="vm2-88-Ray" firstAttribute="leading" secondItem="eaH-we-nhs" secondAttribute="leading" constant="20" id="pce-K2-WI7"/>
                             <constraint firstItem="zXN-61-PEr" firstAttribute="top" secondItem="EL7-0V-O3d" secondAttribute="bottom" constant="30" id="tKq-m4-Cl1"/>
+                            <constraint firstItem="vm2-88-Ray" firstAttribute="top" secondItem="Y20-IT-kUX" secondAttribute="bottom" constant="12" id="uBT-Fi-PJ4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eaH-we-nhs"/>
                     </view>
                     <connections>
+                        <outlet property="btnCopy" destination="7Y6-fy-ZTp" id="gsE-Y5-h0D"/>
+                        <outlet property="btnSave" destination="7DP-ev-RVf" id="BPe-3E-myW"/>
                         <outlet property="btnback" destination="sK1-lf-LZh" id="RJg-NH-sCM"/>
                         <outlet property="txtCSI" destination="zli-2M-B09" id="MDG-xj-bH5"/>
                         <outlet property="txtFirstName" destination="EL7-0V-O3d" id="Dry-qt-QUb"/>
+                        <outlet property="txtFriendData" destination="Y20-IT-kUX" id="DIT-nT-aZt"/>
                         <outlet property="txtGender" destination="Fcc-Ke-rEV" id="pFq-dx-v0F"/>
                         <outlet property="txtLastName" destination="zXN-61-PEr" id="vUQ-08-b4g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIK-95-Y95" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3604" y="-1811"/>
+            <point key="canvasLocation" x="3602.898550724638" y="-1811.413043478261"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RW7-fc-ln3">
@@ -4079,12 +4108,12 @@ Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed 
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="La8-uP-sAK"/>
-        <segue reference="k8L-I6-Tng"/>
+        <segue reference="BJH-4i-UOg"/>
         <segue reference="Sgi-vi-bfH"/>
         <segue reference="egE-MI-0DP"/>
         <segue reference="2nk-TG-RrH"/>
-        <segue reference="JbV-zZ-Fbr"/>
+        <segue reference="m1Y-z7-cvQ"/>
         <segue reference="A8i-yc-lI0"/>
-        <segue reference="L0l-Cc-IoB"/>
+        <segue reference="D7Y-Ec-khh"/>
     </inferredMetricsTieBreakers>
 </document>

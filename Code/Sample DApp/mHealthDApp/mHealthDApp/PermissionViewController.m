@@ -55,7 +55,7 @@
     self.viewBottom.layer.masksToBounds=NO;
     
     
-    dicData = @[@{@"title": @"Condition", @"subtitle": @"This resource represents your condition of an illness i.e. if the illness is in active or deactive state."}, @{@"title": @"Device", @"subtitle": @"This resource will have information about tests done from various medical devices/instruments."}, @{@"title": @"Observations", @"subtitle": @"This resource will have detail information and observation about various test results"}, @{@"title": @"Optional Resource", @"subtitle": @"Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor."}];
+    dicData = @[@{@"title": @"Condition", @"subtitle": @"This resource represents your condition of an illness i.e. if the illness is in active or deactive state."}, @{@"title": @"Device", @"subtitle": @"This resource will have information about tests done from various medical devices/instruments."}, @{@"title": @"Observations", @"subtitle": @"This resource will have detail information and observation about various test results"}, @{@"title": @"Optional Resource", @"subtitle": @"This is optional resource."}];
     // Do any additional setup after loading the view.
     
     self.btnAccept.layer.cornerRadius = 5; // this value vary as per your desire

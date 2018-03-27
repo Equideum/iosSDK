@@ -17,6 +17,8 @@
 #import "ServerSingleton.h"
 #import "Constants.h"
 
+#define FBLOCKSCSASCHEME @"FBlocksCSA://?scheme=mHealthDApp"
+
 @interface SplashController ()
 @property (weak, nonatomic) IBOutlet UIView *debugContainerView;
 @property (weak, nonatomic) IBOutlet UIView *debugView;
@@ -24,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *responseLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *imgThumb;
 @property (strong, nonatomic) IBOutlet UILabel *lblAuthenticateText;
+@property (strong, nonatomic) IBOutlet UIButton *btnAction;
+
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *topConstraintImgThumb;
 
 
@@ -35,7 +39,7 @@
 
 @synthesize imgThumb,lblAuthenticateText;
 @synthesize topConstraintImgThumb;
-
+@synthesize btnAction;
 
 - (void)viewDidLoad {
     DebugLog(@"");
@@ -48,6 +52,8 @@
     {
         topConstraintImgThumb.constant = topConstraintImgThumb.constant - 100;
     }
+    btnAction.layer.cornerRadius=5;
+
 }
 
 - (IBAction)cleanUpAtLogout:(id)sender {
@@ -66,9 +72,11 @@
     DebugLog(@"");
 
     NSLog(@"will enter foreground notification");
-    NSString *fBlocksCSA=@"FBlocksCSA://?scheme=mHealthDApp";
+    NSString *fBlocksCSA=FBLOCKSCSASCHEME;
     BOOL canOpenURL=[[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:fBlocksCSA]];
     if (!canOpenURL) {
+        
+        /*
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
                                                                        message:@"Please install CSA!"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -78,36 +86,37 @@
                                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fhirblocks.org/"] options:@{} completionHandler:nil];
                                                               }];
         [alert addAction:firstAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];*/
+        lblAuthenticateText.hidden = NO;
+        lblAuthenticateText.text = @"Please install CSA!";
+        btnAction.tag = 1;
+         [btnAction setTitle:@"Download" forState:UIControlStateNormal];
+        [btnAction addTarget:self action:@selector(btnAlertAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
         if([[NSUserDefaults standardUserDefaults]valueForKey:@"UniqueIdentifier"] == nil
            ||[[NSUserDefaults standardUserDefaults]valueForKey:@"wcsi"] == nil)
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+           /* UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
                                                                            message:@"Please do registration in CSA."
                                                                     preferredStyle:UIAlertControllerStyleAlert];
-            //            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Download"
-            //                                                                  style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
-            //                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fhirblocks.org/"] options:@{} completionHandler:nil];
-            //                                                                  UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
-            //                                                                                                                                 message:@"Your app will now be terminated."
-            //                                                                                                                          preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
                                                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                                       [alert dismissViewControllerAnimated:YES completion:nil];
                                                                       [[UIApplication sharedApplication]openURL:[NSURL URLWithString:fBlocksCSA] options:@{} completionHandler:nil];
                                                                       
                                                                   }];
-            //                                                                  [alert addAction:firstAction];
-            //                                                                  [self presentViewController:alert animated:YES completion:nil];
             
             
             //                                                                  }];
             [alert addAction:firstAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:nil];*/
+            lblAuthenticateText.hidden = NO;
+            lblAuthenticateText.text = @"Please do registration in CSA.";
+            btnAction.tag = 2;
+             [btnAction setTitle:@"Ok" forState:UIControlStateNormal];
+            [btnAction addTarget:self action:@selector(btnAlertAction:) forControlEvents:UIControlEventTouchUpInside];
             
         }
         else
@@ -143,6 +152,21 @@
         }
     }
 }
+-(IBAction)btnAlertAction:(id)sender
+{
+    DebugLog(@"");
+    lblAuthenticateText.hidden = YES;
+    btnAction.hidden = YES;
+    
+    NSString *fBlocksCSA=FBLOCKSCSASCHEME;
+
+    UIButton *btn = (UIButton*)sender;
+    if(btn.tag == 1)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fhirblocks.org/"] options:@{} completionHandler:nil];
+    else
+      [[UIApplication sharedApplication]openURL:[NSURL URLWithString:fBlocksCSA] options:@{} completionHandler:nil];
+    
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     DebugLog(@"");
@@ -151,7 +175,8 @@
     NSString *fBlocksCSA=@"FBlocksCSA://?scheme=mHealthDApp";
     BOOL canOpenURL=[[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:fBlocksCSA]];
     if (!canOpenURL) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
+       
+        /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert"
                                                                        message:@"Please install CSA!"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"Download"
@@ -160,14 +185,20 @@
                                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fhirblocks.org/"] options:@{} completionHandler:nil];
                                                               }];
         [alert addAction:firstAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];*/
+       
+        lblAuthenticateText.hidden = NO;
+        lblAuthenticateText.text = @"Please install CSA!";
+        btnAction.tag = 1;
+        [btnAction setTitle:@"Download" forState:UIControlStateNormal];
+        [btnAction addTarget:self action:@selector(btnAlertAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     else
     {
         if([[NSUserDefaults standardUserDefaults]valueForKey:@"UniqueIdentifier"] == nil
             ||[[NSUserDefaults standardUserDefaults]valueForKey:@"wcsi"] == nil)
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message"
+            /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message"
                                                                            message:@"Please do registration in CSA."
                                                                     preferredStyle:UIAlertControllerStyleAlert];
 
@@ -183,8 +214,12 @@
                                                                       
 //                                                                  }];
             [alert addAction:firstAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
+            [self presentViewController:alert animated:YES completion:nil];*/
+            lblAuthenticateText.hidden = NO;
+            lblAuthenticateText.text = @"Please do registration in CSA.";
+            btnAction.tag = 2;
+            [btnAction setTitle:@"Ok" forState:UIControlStateNormal];
+            [btnAction addTarget:self action:@selector(btnAlertAction:) forControlEvents:UIControlEventTouchUpInside];
         }
         else
         {
@@ -219,6 +254,7 @@
                     {
                         imgThumb.hidden=NO;
                         lblAuthenticateText.hidden=YES;
+                        btnAction.hidden = YES;
                         LAContext *myContext = [[LAContext alloc] init];
                         NSError *authError = nil;
                         NSString *myLocalizedReasonString = @"Place your finger to authenticate";
@@ -367,6 +403,7 @@
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         imgThumb.hidden=NO;
                                         lblAuthenticateText.hidden=YES;
+                                        btnAction.hidden = YES;
                                         
                                     });
                                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -563,6 +600,12 @@
                             switch (authError.code) {
                                 case kLAErrorTouchIDNotAvailable:
                                 {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        
+                                        lblAuthenticateText.hidden=YES;
+                                        btnAction.hidden = YES;
+                                        
+                                    });
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
                                                                                                        message:@"Touch Id is not available for your device.Press OK to continue"

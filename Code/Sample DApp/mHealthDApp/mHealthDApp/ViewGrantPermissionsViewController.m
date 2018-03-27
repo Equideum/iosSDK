@@ -59,6 +59,8 @@
 - (void)viewDidLoad {
      DebugLog(@"");
     [super viewDidLoad];
+    
+    
     isPanelOpen = NO;
     optionalResource=[[NSUserDefaults standardUserDefaults]boolForKey:@"checkBtn"];
     UIFont *font = [UIFont fontWithName:@"Avenir Next" size:19.0f];
@@ -369,12 +371,14 @@
 #endif
     if(_isFetchPermissions)
     {
-    NSArray *permissions = [_dic valueForKey:@"permissions"];
+        NSMutableArray *csiDataArray = [self fetchPermissionDataParsing:data];
+   // NSArray *permissions = [_dic valueForKey:@"permissions"];
     NSMutableArray * serverCsiArray = [[NSMutableArray alloc]init];
-    for (NSDictionary *dict in permissions) {
+    /*for (NSDictionary *dict in permissions) {
         NSArray * permissionCsiArray = [dict objectForKey:@"permissionedCsiGuids"];
         [serverCsiArray addObjectsFromArray:permissionCsiArray];
-    }
+    }*/
+        [serverCsiArray addObjectsFromArray:csiDataArray];
     
 //    serverCsiArray = [permissionsDictionary objectForKey:@"permissionedCsiGuids"];
 //    if([serverCsiArray count] != [_permissionsArray count] + [_permissionsFamilyArray count])
@@ -485,7 +489,86 @@
     
     
 }
-
+-(NSMutableArray*)fetchPermissionDataParsing:(NSData*)responseData
+{
+    DebugLog(@"");
+    NSMutableArray *CSIdataArray = [[NSMutableArray alloc] init];
+    NSString *responseStr = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+    DebugLog(@"response string==> %@",responseStr);
+    NSError *jsonError;
+    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&jsonError];
+    
+    if ([dict objectForKey:@"permissionNodes"] != [NSNull null])
+    {
+        NSArray *arrData = [dict objectForKey:@"permissionNodes"];
+        if(arrData.count>0)
+        {
+            dict = arrData[0];
+            //arrData = [dict objectForKey:@"permissionNodes"];
+            
+            for (NSDictionary *dictCSI in arrData) {
+                NSLog(@"dictDoctor %@",dictCSI);
+                NSDictionary *permissionDictData = [dictCSI objectForKey:@"permission"];
+                NSString *strPermissionedCsiGuid = [permissionDictData objectForKey:@"permissionedCsiGuid"];
+                [CSIdataArray addObject:strPermissionedCsiGuid];
+            }
+            NSLog(@"final csi Array %@",CSIdataArray);
+            
+        }
+        else
+        {
+            DebugLog(@"no data array found");
+        }
+        
+    }
+    else
+    {
+        DebugLog(@"no permission nodes present");
+    }
+    
+    /*NSMutableArray *staticDoctorData = [[NSUserDefaults standardUserDefaults] valueForKey:FINALDOCTORDATAARRAY];
+    NSMutableArray *staticCaregiverData = [[NSUserDefaults standardUserDefaults] valueForKey:FINALFAMILYDATAARRAY];
+    
+    for (NSString *strCsi in CSIdataArray) {
+        
+        BOOL isDoctor = NO;
+        for (int iCount = 0; iCount<staticDoctorData.count; iCount++)
+        {
+            if (isDoctor) {
+                break;
+            }
+            if([staticDoctorData[iCount] containsString:strCsi])
+            {
+                //data found for csi
+                // add data to final display data array
+                NSLog(@"Doctor %@",staticDoctorData[iCount]);
+                [finalAppDataArray addObject:[NSString stringWithFormat:@"%@%@doctor",staticDoctorData[iCount],COMPONENTS_SEPERATED_STRING]];
+                isDoctor = YES;
+                
+            }
+            
+            
+        }
+        if(!isDoctor)
+        {
+            for (int iCount = 0; iCount<staticCaregiverData.count; iCount++)
+            {
+                if([staticCaregiverData[iCount] containsString:strCsi])
+                {
+                    NSLog(@"Caregiver %@",staticCaregiverData[iCount]);
+                    [finalAppDataArray addObject:[NSString stringWithFormat:@"%@%@caregiver",staticCaregiverData[iCount],COMPONENTS_SEPERATED_STRING]];
+                    break;
+                }
+            }
+        }
+        
+        
+        
+    }
+    NSLog(@"final data array %@",finalAppDataArray);
+    [self.collectionTwo reloadData];*/
+    return CSIdataArray;
+}
 #pragma mark -
 #pragma mark ==============================
 #pragma mark TableView Delegates
@@ -539,23 +622,31 @@
                 cell.title.text = titleArray[permData.index];
                 if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                 {
-                    cell.subtitle.text = @"Cardiologist, (MBBS)";
+                    cell.subtitle.text = @"Cardiologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                 {
-                    cell.subtitle.text = @"PCP, (MBBS)";
+                    cell.subtitle.text = @"PCP, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                 {
-                    cell.subtitle.text = @"Dermatologist, (MBBS)";
+                    cell.subtitle.text = @"Dermatologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                 {
-                    cell.subtitle.text = @"Anesthetic, (MBBS)";
+                    cell.subtitle.text = @"Radiologist, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                {
+                    cell.subtitle.text = @"Orthopedician, MD";
+                }//
+                else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                {
+                    cell.subtitle.text = @"Pediatrician, MD";
                 }
                 else
                 {
-                    cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                    cell.subtitle.text = @"Endocrinologist, MD";
                 }
                 NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
                 //Create mutable string from original one
@@ -581,23 +672,31 @@
                 cell.title.text=_filteredDoctorArray[indexPath.row];
                 if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                 {
-                    cell.subtitle.text = @"Cardiologist, (MBBS)";
+                    cell.subtitle.text = @"Cardiologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                 {
-                    cell.subtitle.text = @"PCP, (MBBS)";
+                    cell.subtitle.text = @"PCP, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                 {
-                    cell.subtitle.text = @"Dermatologist, (MBBS)";
+                    cell.subtitle.text = @"Dermatologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                 {
-                    cell.subtitle.text = @"Anesthetic, (MBBS)";
+                    cell.subtitle.text = @"Radiologist, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                {
+                    cell.subtitle.text = @"Orthopedician, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                {
+                    cell.subtitle.text = @"Pediatrician, MD";
                 }
                 else
                 {
-                    cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                    cell.subtitle.text = @"Endocrinologist, MD";
                 }
                 cell.image.image=[UIImage imageNamed:_filteredDoctorImgArray[indexPath.row]];
                 NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
@@ -755,23 +854,31 @@
                     cell.title.text = titleArray[permData.index];
                     if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                     {
-                        cell.subtitle.text = @"Cardiologist, (MBBS)";
+                        cell.subtitle.text = @"Cardiologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                     {
-                        cell.subtitle.text = @"PCP, (MBBS)";
+                        cell.subtitle.text = @"PCP, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                     {
-                        cell.subtitle.text = @"Dermatologist, (MBBS)";
+                        cell.subtitle.text = @"Dermatologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                     {
-                        cell.subtitle.text = @"Anesthetic, (MBBS)";
+                        cell.subtitle.text = @"Radiologist, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                    {
+                        cell.subtitle.text = @"Orthopedician, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                    {
+                        cell.subtitle.text = @"Pediatrician, MD";
                     }
                     else
                     {
-                        cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                        cell.subtitle.text = @"Endocrinologist, MD";
                     }
                     NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
                     //Create mutable string from original one
@@ -796,23 +903,31 @@
                     cell.title.text=_filteredDoctorArray[indexPath.row];
                     if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                     {
-                        cell.subtitle.text = @"Cardiologist, (MBBS)";
+                        cell.subtitle.text = @"Cardiologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                     {
-                        cell.subtitle.text = @"PCP, (MBBS)";
+                        cell.subtitle.text = @"PCP, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                     {
-                        cell.subtitle.text = @"Dermatologist, (MBBS)";
+                        cell.subtitle.text = @"Dermatologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                     {
-                        cell.subtitle.text = @"Anesthetic, (MBBS)";
+                        cell.subtitle.text = @"Radiologist, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                    {
+                        cell.subtitle.text = @"Orthopedician, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                    {
+                        cell.subtitle.text = @"Pediatrician, MD";
                     }
                     else
                     {
-                        cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                        cell.subtitle.text = @"Endocrinologist, MD";
                     }
                     cell.image.image=[UIImage imageNamed:_filteredDoctorImgArray[indexPath.row]];
                     NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
@@ -982,23 +1097,31 @@
                     cell.title.text = titleArray[permData.index];
                     if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                     {
-                        cell.subtitle.text = @"Cardiologist, (MBBS)";
+                        cell.subtitle.text = @"Cardiologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                     {
-                        cell.subtitle.text = @"PCP, (MBBS)";
+                        cell.subtitle.text = @"PCP, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                     {
-                        cell.subtitle.text = @"Dermatologist, (MBBS)";
+                        cell.subtitle.text = @"Dermatologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                     {
-                        cell.subtitle.text = @"Anesthetic, (MBBS)";
+                        cell.subtitle.text = @"Radiologist, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                    {
+                        cell.subtitle.text = @"Orthopedician, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                    {
+                        cell.subtitle.text = @"Pediatrician, MD";
                     }
                     else
                     {
-                        cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                        cell.subtitle.text = @"Endocrinologist, MD";
                     }
                     NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
                     //Create mutable string from original one
@@ -1023,23 +1146,31 @@
                     cell.title.text=_filteredDoctorArray[indexPath.row - 1];
                     if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                     {
-                        cell.subtitle.text = @"Cardiologist, (MBBS)";
+                        cell.subtitle.text = @"Cardiologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                     {
-                        cell.subtitle.text = @"PCP, (MBBS)";
+                        cell.subtitle.text = @"PCP, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                     {
-                        cell.subtitle.text = @"Dermatologist, (MBBS)";
+                        cell.subtitle.text = @"Dermatologist, MD";
                     }
                     else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                     {
-                        cell.subtitle.text = @"Anesthetic, (MBBS)";
+                        cell.subtitle.text = @"Radiologist, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                    {
+                        cell.subtitle.text = @"Orthopedician, MD";
+                    }
+                    else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                    {
+                        cell.subtitle.text = @"Pediatrician, MD";
                     }
                     else
                     {
-                        cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                        cell.subtitle.text = @"Endocrinologist, MD";
                     }
                     cell.image.image=[UIImage imageNamed:_filteredDoctorImgArray[indexPath.row - 1]];
                     NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];

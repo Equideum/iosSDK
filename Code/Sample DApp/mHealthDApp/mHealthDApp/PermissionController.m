@@ -52,7 +52,7 @@
     popTipView.borderColor=[UIColor clearColor];
     popTipView.borderWidth=0.0;
     popTipView.hasGradientBackground=NO;
-    popTipView.textFont=[UIFont fontWithName:@"Avenir Next" size:12.0];
+    popTipView.textFont=[UIFont fontWithName:@"Avenir Next" size:15.0];
     popTipView.textAlignment = NSTextAlignmentLeft;
     popTipView.has3DStyle=NO;
     popTipView.cornerRadius=0.0;
@@ -100,7 +100,7 @@
     _acceptBtn.layer.cornerRadius=5.0;
     titles=[NSArray arrayWithObjects:@"Condition",@"Device",@"Observations",@"Optional Resource", nil];
     subtitles=[NSArray arrayWithObjects:@"This resource represents your condition of an illness i.e. if the illness is in active or deactive state.",@"This resource will have information about tests done from various medical devices/instruments.",@"This resource will have detail information and observation about various test results",
-               @"Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor.",nil];
+               @"This is optional resource.",nil];
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.0/255.0 green:85.0/255.0 blue:128.0/255.0 alpha:1];
     _viewForButtons.layer.shadowColor=[UIColor lightGrayColor].CGColor;
     _viewForButtons.layer.shadowOffset=CGSizeMake(0.0f, 0.0f);

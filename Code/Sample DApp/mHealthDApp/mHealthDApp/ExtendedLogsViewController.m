@@ -34,16 +34,36 @@
     [super viewDidLoad];
     
    NSArray *array = [[NSUserDefaults standardUserDefaults]valueForKey:@"LogArray1"];
-   
+   //@"http://smoac.fhirblocks.io:8080/permission/writePermission"
     NSMutableString *witePermissionDataString = [[NSMutableString alloc] initWithString:@""];
-    for (NSString *strData in array) {
-        if ([strData rangeOfString:@"http://smoac.fhirblocks.io:8080/permission/writePermission"].location != NSNotFound) {
+    NSMutableString *writePermissionResponseString = [[NSMutableString alloc] initWithString:@""];
+    //for (NSString *strData in array)
+    for (int iCount=0; iCount<array.count; iCount++)
+    {
+        NSString *strData = array[iCount];
+        if ([strData rangeOfString:[NSString stringWithFormat:@"%@writePermission",Permission_Base_URL]].location != NSNotFound)
+        {
             [witePermissionDataString appendString:[NSString stringWithFormat:@"\n%@",strData]];
+            [writePermissionResponseString appendString:[NSString stringWithFormat:@"\n%@",array[iCount+1]]];
 
         }
     }
-    DebugLog(@"===>%@",witePermissionDataString);
-
+    DebugLog(@"===>%@ \nresponse string ===>%@",witePermissionDataString,writePermissionResponseString);
+    
+    NSMutableString *fetchPublicClaimDataString = [[NSMutableString alloc] initWithString:@""];
+    NSMutableString *fetchPublicClaimResponseString = [[NSMutableString alloc] initWithString:@""];
+    //for (NSString *strData in array)
+    for (int iCount=0; iCount<array.count; iCount++)
+    {
+        NSString *strData = array[iCount];
+        if ([strData rangeOfString:[NSString stringWithFormat:@"%@fetchPublicClaims",CSI_Base_URL]].location != NSNotFound)
+        {
+            [fetchPublicClaimDataString appendString:[NSString stringWithFormat:@"\n%@",strData]];
+            [fetchPublicClaimResponseString appendString:[NSString stringWithFormat:@"\n%@",array[iCount+1]]];
+            
+        }
+    }
+    DebugLog(@"===>%@ \nresponse string ===>%@",fetchPublicClaimDataString,fetchPublicClaimResponseString);
     
     
     NSString * s5=witePermissionDataString;//[array objectAtIndex:12];
@@ -73,13 +93,13 @@
     _scrollView.contentSize = CGSizeMake(self.view.frame.size.width - 8, self.label1.frame.size.height * 3);
 //    _scrollView.contentSize = CGSizeMake(self.view.frame.size.width - 8, self.label5.frame.size.height * 2);*/
     NSString * s3=[array objectAtIndex:8];
-    _label3.text=s3;
+    _label3.text=fetchPublicClaimDataString;
     
     NSString *s6=[array objectAtIndex:7];
-    _label2.text=s6;
+    _label2.text=writePermissionResponseString;
     
     NSString * s4=[array objectAtIndex:9];
-    _label4.text=@"";//s4;
+    _label4.text=fetchPublicClaimResponseString;//s4;
     self.navigationController.navigationBar.topItem.title = @"";
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.0/255.0 green:85.0/255.0 blue:128.0/255.0 alpha:1];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];

@@ -405,8 +405,9 @@
     //    indexArray = [[NSMutableArray alloc]init];
     //    indexFamilyArray = [[NSMutableArray alloc]init];
     NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+    NSMutableArray *Array = [self fetchPermissionDataParsing:data];
     
-    NSArray *arrData =[dict objectForKey:@"permissions"];
+    /*NSArray *arrData =[dict objectForKey:@"permissions"];
     for (int iCount=0; iCount<[arrData count]; iCount++)
     {
         NSDictionary *dictData=arrData[iCount];
@@ -422,7 +423,7 @@
             
             
             NSArray *arrPermission =[strPermission componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
-            //if([strGrantingGUID isEqualToString:arrPermission[3]])//4d2e3274-ee88-4d75-9a1c-899bfe693cc7
+          
             if([strGrantingGUID isEqualToString:arrPermission[3]])
             {
                 [caregiverPermissionDataArray addObject:strPermission];
@@ -446,8 +447,83 @@
             self.viewFromToDate.hidden=YES;
         }
  });
+    */
     
+}
+-(NSMutableArray*)fetchPermissionDataParsing:(NSData*)responseData
+{
+    DebugLog(@"");
+    NSMutableArray *CSIdataArray = [[NSMutableArray alloc] init];
+    NSString *responseStr = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+    DebugLog(@"response string==> %@",responseStr);
+    NSError *jsonError;
+    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&jsonError];
     
+    if ([dict objectForKey:@"permissionNodess"] != [NSNull null])
+    {
+        NSArray *arrData = [dict objectForKey:@"permissionNodess"];
+        dict = arrData[0];
+        arrData = [dict objectForKey:@"permissionNodes"];
+        
+        if(arrData.count>0)
+        {
+            dict = arrData[0];
+            //arrData = [dict objectForKey:@"permissionNodes"];
+            
+            for (NSDictionary *dictCSI in arrData) {
+                NSLog(@"dictDoctor %@",dictCSI);
+                NSDictionary *permissionDictData = [dictCSI objectForKey:@"permission"];
+                NSString *strPermissionedCsiGuid = [permissionDictData objectForKey:@"permissionedCsiGuid"];
+                NSString *startTime=[permissionDictData objectForKey:@"startTime"];
+                NSString *endTime=[permissionDictData objectForKey:@"endTime"];
+                
+                for (int jCount=0; jCount<[existingCaregiverDataArray count]; jCount++)
+                {
+                    NSMutableString *strPermission =[[NSMutableString alloc] initWithString:existingCaregiverDataArray[jCount]];
+                    [strPermission appendString:[NSString stringWithFormat:@"#%@",startTime]];
+                    [strPermission appendString:[NSString stringWithFormat:@"#%@",endTime]];
+                    
+                    
+                    NSArray *arrPermission =[strPermission componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+                    
+                    if([strPermissionedCsiGuid isEqualToString:arrPermission[3]])
+                    {
+                        [caregiverPermissionDataArray addObject:strPermission];
+                        break;
+                    }
+                    
+                }
+                
+                [CSIdataArray addObject:strPermissionedCsiGuid];
+            }
+            NSLog(@"final csi Array %@",CSIdataArray);
+            NSLog(@"%@",caregiverPermissionDataArray);
+
+        }
+        else
+        {
+            DebugLog(@"no data array found");
+        }
+        
+    }
+    else
+    {
+        DebugLog(@"no permission nodes present");
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [permissionDataTableView reloadData];
+        [userCollectionView reloadData];
+        [self hideBusyActivityView];
+        // backgroundVw.backgroundColor=[UIColor greenColor];
+        backgroundVw.alpha=0.4;
+        if(caregiverPermissionDataArray.count == 0)
+        {
+            [self showNoDataPopup];
+            self.viewFromToDate.hidden=YES;
+        }
+    });
+    
+    return CSIdataArray;
 }
 -(void)closeButtonTapped
 {
@@ -810,14 +886,35 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
     {
+        NSString *strData = caregiverPermissionDataArray[indexPath.row];
+        NSArray *arrData = [strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+        
         DocCollectionViewCell_Ipad *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Doc" forIndexPath:indexPath];
         cell.backgroundColor=[UIColor whiteColor];
         cell.docName.textColor = [UIColor colorWithRed:78.0f/255 green:88.0f/255 blue:90.0f/255 alpha:1.0f];
         cell.docType.textColor = [UIColor colorWithRed:121.0f/255 green:131.0f/255 blue:133.0f/255 alpha:1.0f];
-        cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
-        cell.docName.text =@"Worried wendy";
-        cell.docType.text =@"Cardio";
+       // cell.docImg.image=[UIImage imageNamed:@"Doc1.png"];
+        cell.docName.text =[NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
+        //cell.docType.text =@"Cardio";
         cell.docName.numberOfLines = 2;
+        
+        if(![arrData[4] isEqualToString:@"NA"])
+        {
+            cell.docImg.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",arrData[4]]];
+        }
+        else
+        {
+            NSString *gender = arrData[2];
+            if([gender.lowercaseString isEqualToString:@"male"])
+            {
+                cell.docImg.image=[UIImage imageNamed:@"maledefault.png"];
+            }
+            else if([gender.lowercaseString isEqualToString:@"female"])
+            {
+                cell.docImg.image=[UIImage imageNamed:@"femaledefault.png"];
+            }
+        }
+        
         cell.alpha=0.5;
         
         cell.backgroundColor=[UIColor clearColor];

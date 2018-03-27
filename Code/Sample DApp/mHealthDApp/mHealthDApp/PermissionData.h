@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSString *userType;
 @property(nonatomic,strong)NSString *firstName;
 @property(nonatomic,strong)NSString *LastName;
+@property(nonatomic,strong)NSString *isWritePermissionDone;
 
 -(id)init;
 @end

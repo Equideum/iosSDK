@@ -12,7 +12,7 @@
 #import "PermissionData.h"
 
 @implementation PermissionData
-@synthesize startDate,endDate,checked,index,userType,firstName,LastName;
+@synthesize startDate,endDate,checked,index,userType,firstName,LastName,isWritePermissionDone;
 
 -(void)encodeWithCoder:(NSCoder *)encoder{
     [encoder encodeObject:startDate forKey:@"startDate"];
@@ -22,7 +22,7 @@
     [encoder encodeObject:userType forKey:@"userType"];
     [encoder encodeObject:firstName forKey:@"firstName"];
     [encoder encodeObject:LastName forKey:@"lastName"];
-
+    [encoder encodeObject:isWritePermissionDone forKey:@"isWritePermissionDone"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -34,6 +34,8 @@
         userType = [decoder decodeObjectForKey:@"userType"];
         firstName = [decoder decodeObjectForKey:@"firstName"];
         LastName = [decoder decodeObjectForKey:@"lastName"];
+        isWritePermissionDone = [decoder decodeObjectForKey:@"isWritePermissionDone"];
+
 
     }
     return self;
@@ -47,7 +49,7 @@
     userType=@"";
     firstName=@"";
     LastName=@"";
-    
+    isWritePermissionDone=@"no";
     
     return self;
 }

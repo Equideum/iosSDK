@@ -114,6 +114,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"dpermissionshared"];
     [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"wcsi"];
     [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"Flow"];
+    
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /*

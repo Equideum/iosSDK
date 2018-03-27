@@ -40,11 +40,11 @@
     //[requestLabel setText:[NSString stringWithFormat:@"%@%@",Base_URL,endpoint]];
     NSURLSessionConfiguration *config=[NSURLSessionConfiguration defaultSessionConfiguration];
     self.session=[NSURLSession sessionWithConfiguration:config];
-    NSString *bearerToken=[NSString stringWithFormat:@"Bearer%@",accessToken];
+    NSString *bearerToken=[NSString stringWithFormat:@"Bearer %@",accessToken];
     
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@",endPoint]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request addValue:bearerToken forHTTPHeaderField:@"Authorization"];
+    [request addValue:bearerToken forHTTPHeaderField:@"authorization"];
     self.session=[NSURLSession sessionWithConfiguration:config];
 
     NSURLSessionDataTask *task=[self.session dataTaskWithRequest:request

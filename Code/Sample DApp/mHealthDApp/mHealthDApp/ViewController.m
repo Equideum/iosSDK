@@ -138,6 +138,9 @@
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];    // show short-style date format
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    [self.dateFormatter setDateFormat:@"MM/dd/yy"];
+    
     [[_backButton layer] setBorderWidth:1.0f];
     [[_backButton layer] setBorderColor:[UIColor colorWithRed:60.0/255.0 green:185.0/255.0 blue:200.0/255.0 alpha:1].CGColor];
     self.navigationController.navigationBar.topItem.title = @"";
@@ -183,7 +186,7 @@
     popTipView.borderColor=[UIColor clearColor];
     popTipView.borderWidth=0.0;
     popTipView.hasGradientBackground=NO;
-    popTipView.textFont=[UIFont fontWithName:@"Avenir Next" size:12.0];
+    popTipView.textFont=[UIFont fontWithName:@"Avenir Next" size:15.0];
     popTipView.textAlignment = NSTextAlignmentLeft;
     popTipView.has3DStyle=NO;
     popTipView.cornerRadius=0.0;
@@ -338,9 +341,15 @@
                         //Add it to the label - notice its not text property but it's attributeText
                         cell.fromAndToLabel.attributedText = attString;
                         cell.checkButton.tag = indexPath.row;
-                        [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                        }
+                        else
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        }
                         cell.checkButton.userInteractionEnabled = YES;
-                        //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                         break;
                     }
                 }
@@ -378,9 +387,16 @@
                         //Add it to the label - notice its not text property but it's attributeText
                         cell.fromAndToLabel.attributedText = attString;
                         cell.checkButton.tag = indexPath.row;
-                        [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        
+                        if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                        }
+                        else
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        }
                         cell.checkButton.userInteractionEnabled = YES;
-                        //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                         break;
                     }
                 }
@@ -396,23 +412,31 @@
             }
             if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
             {
-                cell.subtitle.text = @"Cardiologist, (MBBS)";
+                cell.subtitle.text = @"Cardiologist, MD";
             }
             else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
             {
-                cell.subtitle.text = @"PCP, (MBBS)";
+                cell.subtitle.text = @"PCP, MD";
             }
             else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
             {
-                cell.subtitle.text = @"Dermatologist, (MBBS)";
+                cell.subtitle.text = @"Dermatologist, MD)";
             }
             else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
             {
-                cell.subtitle.text = @"Anesthetic, (MBBS)";
+                cell.subtitle.text = @"Radiologist, MD";
+            }
+            else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+            {
+                cell.subtitle.text = @"Orthopedician, MD";
+            }
+            else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+            {
+                cell.subtitle.text = @"Pediatrician, MD";
             }
             else
             {
-                cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                cell.subtitle.text = @"Endocrinologist, MD";
             }
             
             
@@ -444,9 +468,15 @@
                         //Add it to the label - notice its not text property but it's attributeText
                         cell.fromAndToLabel.attributedText = attString;
                         cell.checkButton.tag = indexPath.row;
-                        [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                        }
+                        else
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        }
                         cell.checkButton.userInteractionEnabled = YES;
-                        //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                         break;
                     }
                 }
@@ -506,9 +536,15 @@
                         //Add it to the label - notice its not text property but it's attributeText
                         cell.fromAndToLabel.attributedText = attString;
                         cell.checkButton.tag = indexPath.row;
-                        [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                        }
+                        else
+                        {
+                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                        }
                         cell.checkButton.userInteractionEnabled = YES;
-                        //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                         break;
                     }
                 }
@@ -570,9 +606,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = indexPath.row;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -611,9 +653,16 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = indexPath.row;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -629,23 +678,31 @@
                 }
                 if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                 {
-                    cell.subtitle.text = @"Cardiologist, (MBBS)";
+                    cell.subtitle.text = @"Cardiologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                 {
-                    cell.subtitle.text = @"PCP, (MBBS)";
+                    cell.subtitle.text = @"PCP, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                 {
-                    cell.subtitle.text = @"Dermatologist, (MBBS)";
+                    cell.subtitle.text = @"Dermatologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                 {
-                    cell.subtitle.text = @"Anesthetic, (MBBS)";
+                    cell.subtitle.text = @"Radiologist, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                {
+                    cell.subtitle.text = @"Orthopedician, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                {
+                    cell.subtitle.text = @"Pediatrician, MD";
                 }
                 else
                 {
-                    cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                    cell.subtitle.text = @"Endocrinologist, MD";
                 }
                 
             }
@@ -676,9 +733,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = indexPath.row;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -737,9 +800,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = indexPath.row;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -1238,23 +1307,31 @@
                 }
                 if([cell.title.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                 {
-                    cell.subtitle.text = @"Cardiologist, (MBBS)";
+                    cell.subtitle.text = @"Cardiologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Primary F. Paul"])
                 {
-                    cell.subtitle.text = @"PCP, (MBBS)";
+                    cell.subtitle.text = @"PCP, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. George D. Beller"])
                 {
-                    cell.subtitle.text = @"Dermatologist, (MBBS)";
+                    cell.subtitle.text = @"Dermatologist, MD";
                 }
                 else if ([cell.title.text isEqualToString:@"Dr. Radio S. Rachel"])
                 {
-                    cell.subtitle.text = @"Anesthetic, (MBBS)";
+                    cell.subtitle.text = @"Radiologist, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Ortho B. Otto"])
+                {
+                    cell.subtitle.text = @"Orthopedician, MD";
+                }
+                else if ([cell.title.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                {
+                    cell.subtitle.text = @"Pediatrician, MD";
                 }
                 else
                 {
-                    cell.subtitle.text = @"Endocrinologist, (MBBS)";
+                    cell.subtitle.text = @"Endocrinologist, MD";
                 }
                 BOOL isPresent = NO;
                 int compareValue;
@@ -1288,9 +1365,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = compareValue;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -1333,9 +1416,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = compareValue;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -1411,9 +1500,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = compareValue;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            //cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -1455,9 +1550,15 @@
                             //Add it to the label - notice its not text property but it's attributeText
                             cell.fromAndToLabel.attributedText = attString;
                             cell.checkButton.tag = compareValue;
-                            [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            if([permData.isWritePermissionDone isEqualToString:@"yes"])
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+                            }
+                            else
+                            {
+                                [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+                            }
                             cell.checkButton.userInteractionEnabled = YES;
-                            // cell.checkImage.image = [UIImage imageNamed:@"Check"];
                             break;
                         }
                     }
@@ -1986,7 +2087,7 @@
         NSMutableArray *permissionCopyArray = [permissionsArray mutableCopy];
         for (PermissionData* permData in permissionCopyArray) {
             if (permData.index == permissionData.index) {
-                NSLog(@"%@",[finalFamilyPermissionDataArray objectAtIndex:permissionData.index]);
+                //NSLog(@"%@",[finalFamilyPermissionDataArray objectAtIndex:permissionData.index]);
                 isPresent = YES;
                 permissionData.userType=PROVIDER;
                 [permissionsArray removeObject:permData];
@@ -2080,8 +2181,14 @@
     NSIndexPath *selectedCellIndexPath = nil;
     selectedCellIndexPath = [NSIndexPath indexPathForRow:selectedIndex inSection:0];
     CustomCell *cell = [self.doctorAndFamilyTableView cellForRowAtIndexPath:selectedCellIndexPath];
-    // cell.checkImage.image = [UIImage imageNamed:@"Check"];
-    [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+    if([permData.isWritePermissionDone isEqualToString:@"yes"])
+    {
+        [cell.checkButton setImage:[UIImage imageNamed:@"greencheck"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [cell.checkButton setImage:[UIImage imageNamed:@"Check"] forState:UIControlStateNormal];
+    }
     cell.checkButton.userInteractionEnabled = YES;
     NSString *myString = [NSString stringWithFormat:@"From: %@  To: %@",permData.startDate,permData.endDate];
     //Create mutable string from original one

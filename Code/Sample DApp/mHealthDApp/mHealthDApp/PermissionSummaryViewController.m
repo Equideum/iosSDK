@@ -14,7 +14,7 @@
 #import "PermissionData.h"
 #import "ViewController.h"
 #import "UICKeyChainStore.h"
-//#import "APIhandler.h"
+#import "APIhandler.h"
 #import "Constants.h"
 #import "mHealthDApp-Swift.h"
 #import "PermissionController.h"
@@ -46,6 +46,9 @@
     int intPermissionsArray;
     NSArray *dicData;
     NSMutableArray *combinedPermissionArray;
+    NSMutableArray *permissionDataArray;
+    NSMutableArray *permissionFamilyArray;
+
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *doctorFamilyTableView;
@@ -109,39 +112,47 @@
     if(intPermissionsArray < combinedPermissionArray.count)
     {
         permData = combinedPermissionArray[intPermissionsArray];
-        NSString *strData = [finalFamilyPermissionDataArray objectAtIndex:permData.index];
-        NSArray *arrData =[strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
-        if ([[arrData objectAtIndex:4] isEqualToString:@"NA"])
+        if(![permData.isWritePermissionDone isEqualToString:@"yes"])
         {
-            if([[arrData objectAtIndex:2] isEqualToString:@"Female"])
+            NSString *strData = [finalFamilyPermissionDataArray objectAtIndex:permData.index];
+            NSArray *arrData =[strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+            if ([[arrData objectAtIndex:4] isEqualToString:@"NA"])
             {
-                imgDoc.image=[UIImage imageNamed:@"femaledefault.png"];
+                if([[arrData objectAtIndex:2] isEqualToString:@"Female"])
+                {
+                    imgDoc.image=[UIImage imageNamed:@"femaledefault.png"];
+                    
+                }
+                else
+                {
+                    imgDoc.image=[UIImage imageNamed:@"maledefault.png"];
+                }
                 
             }
             else
             {
-                imgDoc.image=[UIImage imageNamed:@"maledefault.png"];
+                imgDoc.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",[arrData objectAtIndex:4]]];
             }
             
+            //imgDoc.image = [UIImage imageNamed:imgArray[permData.index]];
+            //lblDocName.text= titleArray[permData.index];
+            lblDocName.text= [NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
+            lblFromDate.text= permData.startDate;
+            lblToDate.text= permData.endDate;
         }
         else
         {
-            imgDoc.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",[arrData objectAtIndex:4]]];
+            [self btnRejectClicked:nil];
         }
-        
-        //imgDoc.image = [UIImage imageNamed:imgArray[permData.index]];
-        //lblDocName.text= titleArray[permData.index];
-        lblDocName.text= [NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
-        lblFromDate.text= permData.startDate;
-        lblToDate.text= permData.endDate;
     }
     if (intPermissionsArray == combinedPermissionArray.count)
     {
         _isSecondCall = NO;
         //[self loadDashboard];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self CreatePrivateKey];
-           [self performSelector:@selector(authCall) withObject:nil];
+            //[self CreatePrivateKey];
+          // [self performSelector:@selector(authCall) withObject:nil];
+            [self loadDashboard];
         });
 
     }
@@ -169,40 +180,82 @@
     if(intPermissionsArray < combinedPermissionArray.count)
     {
         permData = combinedPermissionArray[intPermissionsArray];
-        if([permData.userType isEqualToString:PROVIDER])
+        
+        if(![permData.isWritePermissionDone isEqualToString:@"yes"])
         {
-            imgDoc.image = [UIImage imageNamed:imgArray[permData.index]];
-            lblDocName.text= titleArray[permData.index];
-                     lblFromDate.text= permData.startDate;
-            lblToDate.text= permData.endDate;
-        }
-        else
-        {
-            NSString *strData = [finalFamilyPermissionDataArray objectAtIndex:permData.index];
-            NSArray *arrData =[strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
-            if ([[arrData objectAtIndex:4] isEqualToString:@"NA"])
+            if([permData.userType isEqualToString:PROVIDER])
             {
-                if([[arrData objectAtIndex:2] isEqualToString:@"Female"])
+                imgDoc.image = [UIImage imageNamed:imgArray[permData.index]];
+                lblDocName.text= titleArray[permData.index];
+                
+                if([lblDocName.text isEqualToString:@"Dr. Cardiac H. Cathy"])
                 {
-                    imgDoc.image=[UIImage imageNamed:@"femaledefault.png"];
+                    lblDocSpeciality.text = @"Cardiologist, MD";
+                }
+                else if ([lblDocName.text isEqualToString:@"Dr. Primary F. Paul"])
+                {
+                    lblDocSpeciality.text = @"PCP, MD";
+                }
+                else if ([lblDocName.text isEqualToString:@"Dr. George D. Beller"])
+                {
+                    lblDocSpeciality.text = @"Dermatologist, MD";
+                }
+                else if ([lblDocName.text isEqualToString:@"Dr. Radio S. Rachel"])
+                {
+                    lblDocSpeciality.text = @"Radiologist, MD";
+                }
+                else if ([lblDocName.text isEqualToString:@"Dr. Ortho B. Otto"])
+                {
+                    lblDocSpeciality.text = @"Orthopedician, MD";
+                }//
+                else if ([lblDocName.text isEqualToString:@"Dr. Abdiel A. Jacobs"])
+                {
+                    lblDocSpeciality.text = @"Pediatrician, MD";
+                }
+                else
+                {
+                    lblDocSpeciality.text = @"Endocrinologist, MD";
+                }
+                
+                lblFromDate.text= permData.startDate;
+                
+                lblToDate.text= permData.endDate;
+            }
+            else
+            {
+                NSString *strData = [finalFamilyPermissionDataArray objectAtIndex:permData.index];
+                NSArray *arrData =[strData componentsSeparatedByString:COMPONENTS_SEPERATED_STRING];
+                if ([[arrData objectAtIndex:4] isEqualToString:@"NA"])
+                {
+                    if([[arrData objectAtIndex:2] isEqualToString:@"Female"])
+                    {
+                        imgDoc.image=[UIImage imageNamed:@"femaledefault.png"];
+                        
+                    }
+                    else
+                    {
+                        imgDoc.image=[UIImage imageNamed:@"maledefault.png"];
+                    }
                     
                 }
                 else
                 {
-                    imgDoc.image=[UIImage imageNamed:@"maledefault.png"];
-                }
-
-            }
-            else
-            {
                     imgDoc.image=[UIImage imageNamed:[NSString stringWithFormat:@"%@",[arrData objectAtIndex:4]]];
+                }
+                
+                //imgDoc.image = [UIImage imageNamed:imgFamilyArray[permData.index]];
+                lblDocName.text= [NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
+                //lblDocName.text = [NSString stringWithFormat:@"%@ %@",finalFamilyPermissionDataArray[0],finalFamilyPermissionDataArray[1]];
+                lblFromDate.text= permData.startDate;
+                lblToDate.text= permData.endDate;
+                lblDocSpeciality.text=@"";
             }
-            
-            //imgDoc.image = [UIImage imageNamed:imgFamilyArray[permData.index]];
-            lblDocName.text= [NSString stringWithFormat:@"%@ %@",arrData[0],arrData[1]];
-            //lblDocName.text = [NSString stringWithFormat:@"%@ %@",finalFamilyPermissionDataArray[0],finalFamilyPermissionDataArray[1]];
-            lblFromDate.text= permData.startDate;
-            lblToDate.text= permData.endDate;
+        }
+        else
+        {
+            intPermissionsArray++;
+            [self assignDataOnUI];
+            //[self loadDashboard];
         }
         //intPermissionsArray++;
     }
@@ -229,7 +282,7 @@
     _isAccessCall = YES;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
-    dicData = @[@{@"title": @"Condition", @"subtitle": @"This resource represents your condition of an illness i.e. if the illness is in active or deactive state."}, @{@"title": @"Device", @"subtitle": @"This resource will have information about tests done from various medical devices/instruments."}, @{@"title": @"Observations", @"subtitle": @"This resource will have detail information and observation about various test results"}, @{@"title": @"Optional Resource", @"subtitle": @"Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor."}];
+    dicData = @[@{@"title": @"Condition", @"subtitle": @"This resource represents your condition of an illness i.e. if the illness is in active or deactive state."}, @{@"title": @"Device", @"subtitle": @"This resource will have information about tests done from various medical devices/instruments."}, @{@"title": @"Observations", @"subtitle": @"This resource will have detail information and observation about various test results"}, @{@"title": @"Optional Resource", @"subtitle": @"This is optional resource."}];
 
     
     _acceptButton.layer.cornerRadius=5.0;
@@ -367,6 +420,19 @@
         lblToText.font=[UIFont systemFontOfSize:15.0];
     }
     
+    permissionDataArray = [[NSMutableArray alloc] init];
+    
+    if([NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"PermissionArray"]] != nil)
+    {
+        permissionDataArray = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"PermissionArray"]];
+    }
+    
+    permissionFamilyArray = [[NSMutableArray alloc] init];
+    
+    if([NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"PermissionFamilyArray"]] != nil)
+    {
+        permissionFamilyArray = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"PermissionFamilyArray"]];
+    }
     [self assignDataOnUI];
 }
 
@@ -725,7 +791,7 @@
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    NSLog(@"%@",_dic);
+                    NSLog(@"FHIR resource consumption==>%@",_dic);
                     [self hideBusyActivityView];
                     [self loadDashboard];
                 });
@@ -735,7 +801,79 @@
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //        [_debugView setHidden:true];
+                    DebugLog(@"write permission response:=> %@",_dic);
                     [activityIndicator stopAnimating];
+                    
+                   /* for (int iCount= 0; iCount<combinedPermissionArray.count; iCount++)
+                    {
+                        PermissionData *oldPermData = combinedPermissionArray[iCount];
+                        if([oldPermData.userType isEqualToString:PROVIDER])
+                        {
+                            for(int jCount= 0; jCount<permissionDataArray.count; jCount++)
+                            {
+                                PermissionData *newPermData = permissionDataArray[jCount];
+                                if(oldPermData.index == newPermData.index)
+                                {
+                                    newPermData.isWritePermissionDone =@"yes";
+                                    [permissionDataArray replaceObjectAtIndex:iCount withObject:newPermData];
+                                    [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionDataArray]forKey:@"PermissionArray"];
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for(int jCount= 0; jCount<permissionFamilyArray.count; jCount++)
+                            {
+                                PermissionData *newPermData = permissionFamilyArray[jCount];
+                                if(oldPermData.index == newPermData.index)
+                                {
+                                    newPermData.isWritePermissionDone =@"yes";
+                                    [permissionFamilyArray replaceObjectAtIndex:iCount withObject:newPermData];
+                                    [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionFamilyArray]forKey:@"PermissionFamilyArray"];
+                                    break;
+                                }
+                            }
+                        }
+                        
+                    }*/
+                    
+                    
+                    PermissionData *oldPermData = combinedPermissionArray[intPermissionsArray];
+
+                    if([oldPermData.userType isEqualToString:PROVIDER])
+                    {
+                        for (int iCount=0; iCount<permissionDataArray.count; iCount++) {
+                            
+                            PermissionData *newPermData =permissionDataArray[iCount];
+                            if(newPermData.index == oldPermData.index)
+                            {
+                                NSLog(@"data matched for write permission");
+                                newPermData.isWritePermissionDone =@"yes";
+                                [permissionDataArray replaceObjectAtIndex:iCount withObject:newPermData];
+                                [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionDataArray]forKey:@"PermissionArray"];
+                                break;
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        for (int iCount=0; iCount<permissionFamilyArray.count; iCount++) {
+                            
+                            PermissionData *newPermData =permissionFamilyArray[iCount];
+                            if(newPermData.index == oldPermData.index)
+                            {
+                                NSLog(@"data matched for write permission");
+                                newPermData.isWritePermissionDone =@"yes";
+                                [permissionFamilyArray replaceObjectAtIndex:iCount withObject:newPermData];
+                                [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionFamilyArray]forKey:@"PermissionFamilyArray"];
+                                break;
+                            }
+                            
+                        }
+                    }
+                    
                     //[self performSelector:@selector(loadDashboard) withObject:nil];
                     [self hideBusyActivityView];
                     intPermissionsArray++;
@@ -745,7 +883,10 @@
                         [self fetchFHIRResourceConsumption:accessTokenString];
                     }
                     else
+                    {
+                        
                         [self performSelector:@selector(assignDataOnUI) withObject:nil afterDelay:0.01];
+                    }
                     //[_debugContainerView setHidden:true];
                 });
             }
@@ -785,6 +926,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_debugView setHidden:true];
         [activityIndicator stopAnimating];
+        [self hideBusyActivityView];
         [self performSelector:@selector(loadDashboard) withObject:nil];
         //[_debugContainerView setHidden:true];
     });
@@ -933,7 +1075,7 @@
     NSLog(@"%@", nonce);
     NSDateFormatter *dateformatter1 = [[NSDateFormatter alloc] init];
     [dateformatter1 setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    dateformatter1.dateFormat = @"dd/MM/yy";
+    dateformatter1.dateFormat = @"MM/dd/yy";
     NSDate *startDateInDate = [dateformatter1 dateFromString:startDate];
     NSDate *endDateInDate = [dateformatter1 dateFromString:endDate];
     
@@ -1214,7 +1356,7 @@
     DebugLog(@"");
     [self showBusyActivityView];
     //NSString *strFetchFHIRResourceURL=FHIR_CONSUMPTION_URL;
-   // APIhandler *h=[[APIhandler alloc]init];
+    //APIhandler *h=[[APIhandler alloc]init];
     //h.delegate = self;
     
     mHealthApiHandler *apiHandler = [[mHealthApiHandler alloc]init];

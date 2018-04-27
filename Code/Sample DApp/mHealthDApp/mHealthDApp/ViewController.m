@@ -62,6 +62,8 @@
 - (void)viewDidLoad {
     DebugLog(@"");
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden=NO;
+
     self.searchBar.layer.borderWidth = 0.0;
     self.searchBar.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.searchBar.layer.cornerRadius = 0.0;
@@ -170,6 +172,7 @@
 //
 //    [self.view addGestureRecognizer:tap];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 //-(void)dismissKeyboard
 //{

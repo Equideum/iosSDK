@@ -36,7 +36,7 @@
     arrGender=[[NSArray alloc]initWithObjects:@"Male",@"Female",@"Other", nil];
 
     self.navigationController.navigationBar.topItem.title = @"";
-    self.title = @"Add CSI";
+    self.title = @"Paste Credentials";
     screenRect = [[UIScreen mainScreen] bounds];
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
@@ -62,9 +62,10 @@
             btnback.hidden=YES;
         }
     }
+    btnback.hidden=YES;
     btnCopy.enabled = NO;
     btnSave.enabled = NO;
-    
+    self.navigationController.navigationBar.hidden=NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,16 +196,32 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:FINALFAMILYDATAARRAY];
 
-    if([strFromScreen isEqualToString:@"CaregiverFlow"])
-    {
-        [self dbtnBackTapped:nil];
-    }
-    else if([strFromScreen isEqualToString:@"PatientFlow"])
-    {
-        [self dbtnBackTapped:nil];
-    }
-    else
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *strMsg = [NSString stringWithFormat:@"%@ %@ credentials saved successfully on this device",txtFirstName.text,txtLastName.text];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"mHealthDApp"
+                                                                   message:strMsg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                              if([strFromScreen isEqualToString:@"CaregiverFlow"])
+                                                              {
+                                                                  [self dbtnBackTapped:nil];
+                                                              }
+                                                              else if([strFromScreen isEqualToString:@"PatientFlow"])
+                                                              {
+                                                                  [self dbtnBackTapped:nil];
+                                                              }
+                                                              else
+                                                                  [self.navigationController popViewControllerAnimated:YES];
+                                                          }];
+    
+    [alert addAction:firstAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    
     
     //if array contains CSI then update it
     

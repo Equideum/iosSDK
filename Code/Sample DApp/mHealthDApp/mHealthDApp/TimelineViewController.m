@@ -19,7 +19,7 @@
 #import "Constants.h"
 //#import "APIhandler.h"
 #import "ServerSingleton.h"
-
+#import "UICKeyChainStore.h"
 
 
 @interface TimelineViewController ()
@@ -46,7 +46,7 @@
     SecKeyAlgorithm algorithm;
     NSDictionary *request_dic;
 
-
+    NSMutableString *strBecomeFriendData;
 
 }
 
@@ -110,6 +110,7 @@
 
     
     
+    
     int index = [number intValue];
    /* if(!isCaregiverBool)
     {
@@ -168,82 +169,107 @@
 -(IBAction)listBtnClicked:(id)sender
 {
     DebugLog(@"");
+    UIAlertController *actionSheet;
     if (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
     {
-        {
-            UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                
-                // Cancel button tappped.
-                NSLog(@"cancel select");
-                
-            }]];
-            
-            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Utility" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                
-                // OK button tapped.
-                
-                [self performSegueWithIdentifier:@"TimelineToUtils" sender:self];
-                
-                
-            }]];
-            if(isCaregiverBool)
-            {
-                //[self.listBtn setHidden:YES];
-                
-            }
-            else
-            {
-                [actionSheet addAction:[UIAlertAction actionWithTitle:@"Permission Summary" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                    
-                    // Distructive button tapped.
-                    [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
-                    
-                }]];
-                
-            }
-            [self presentViewController:actionSheet animated:YES completion:nil];
-            
-        }
+      actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     }
     else
     {
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+       actionSheet = [UIAlertController alertControllerWithTitle:@"mHealthDApp" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    }
+    
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             
             // Cancel button tappped.
             NSLog(@"cancel select");
             
         }]];
-        
-        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Utility" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-            // OK button tapped.
-            
-            [self performSegueWithIdentifier:@"TimelineToUtils" sender:self];
-            
-            
-        }]];
         if(isCaregiverBool)
         {
-            //[self.listBtn setHidden:YES];
             
         }
         else
         {
-            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Permission Summary" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Grant Permission" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 
-                // Distructive button tapped.
-                [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
+                // Cancel button tappped.
+                NSLog(@"Grant Permission select");
+                [self performSegueWithIdentifier:@"TimelineToDuaration" sender:self];
+
                 
             }]];
-            
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"Delete Permission" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                // Cancel button tappped.
+                NSLog(@"Delete Permission select");
+                [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
+                
+                
+            }]];
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"View Permission" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                // Cancel button tappped.
+                NSLog(@"View Permission select");
+                [self performSegueWithIdentifier:@"TimelineToGrantPermission" sender:self];
+                
+                
+            }]];
         }
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Logs" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped.
+            NSLog(@"Logs select");
+            [self performSegueWithIdentifier:@"TimelineToLogs" sender:self];
+            
+        }]];
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Copy Credentials" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped.
+            strBecomeFriendData = [[NSMutableString alloc] initWithString:@"mHealthDApp"];
+            [strBecomeFriendData appendString:[NSString stringWithFormat:@"#%@",[[publicClaims objectAtIndex:1] objectForKey:@"value"]]];
+            [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[publicClaims objectAtIndex:3] objectForKey:@"value"]]];
+            [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[publicClaims objectAtIndex:4] objectForKey:@"value"]]];
+            [strBecomeFriendData appendString:[NSString stringWithFormat:@"%@%@",COMPONENTS_SEPERATED_STRING,[[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"]]];
+            
+            [UIPasteboard generalPasteboard].string = strBecomeFriendData;
+            NSMutableString *msgStr = [[NSMutableString alloc] initWithString:@""];
+            [msgStr appendString:[NSString stringWithFormat:@"Name:%@ %@",[[publicClaims objectAtIndex:1] objectForKey:@"value"],[[publicClaims objectAtIndex:3] objectForKey:@"value"]]];
+            [msgStr appendString:[NSString stringWithFormat:@"\nGender:%@",[[publicClaims objectAtIndex:4] objectForKey:@"value"]]];
+            [msgStr appendString:[NSString stringWithFormat:@"\nCSI:%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"dcsi"]]];
+
+            [self showAlertWithHeader:@"Following data copied to Clipboard" message:msgStr];
+            NSLog(@"Copy Credentials select");
+            
+        }]];
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Paste Credentials" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped.
+            NSLog(@"paste Credentials select");
+            
+            [self performSegueWithIdentifier:@"TimelineToAddCSI" sender:self];
+            
+        }]];
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            [self resetCall];
+
+            // Cancel button tappped.
+            NSLog(@"Reset select");
+            
+        }]];
+        [actionSheet addAction:[UIAlertAction actionWithTitle:@"Logout" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            // Cancel button tappped.
+            NSLog(@"logout select");
+            exit(0);
+            
+        }]];
+        
         [self presentViewController:actionSheet animated:YES completion:nil];
 
-    }
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -567,6 +593,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)resetCall
+{
+    DebugLog(@"");
+    [UICKeyChainStore setString:nil forKey:@"dcsi" service:@"MyService"];
+    [UICKeyChainStore setString:nil forKey:@"dSharedPermissions" service:@"MyService"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"UniqueIdentifier"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"dcsi"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"dpermissionshared"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"wcsi"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"Flow"];
+    
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+#pragma mark -
+#pragma mark ==============================
+#pragma mark UICollection View Delegates
+#pragma mark ==============================
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
@@ -685,5 +730,22 @@
     return reusableview;
 }
 
-
+#pragma mark -
+#pragma mark ==============================
+#pragma mark Alert methods
+#pragma mark ==============================
+-(void)showAlertWithHeader:(NSString *)headerStr message:(NSString*)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:headerStr
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                              [alert dismissViewControllerAnimated:YES completion:nil];
+                                                          }];
+    
+    [alert addAction:firstAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end

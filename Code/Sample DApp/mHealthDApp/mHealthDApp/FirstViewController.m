@@ -179,7 +179,7 @@
         {
             [[NSUserDefaults standardUserDefaults]setObject:@"Caregiver" forKey:@"Flow"];
             //[self performSegueWithIdentifier:@"SelectFamilySegue" sender:nil];
-            [self performSegueWithIdentifier:@"FirstViewToTimeLineView" sender:self];
+            [self performSegueWithIdentifier:@"FirstViewtoNavigation" sender:self];
         }
     }
     

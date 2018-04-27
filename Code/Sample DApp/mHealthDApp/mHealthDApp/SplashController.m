@@ -458,6 +458,10 @@
                     }
                     else if([(NSString *)[[NSUserDefaults standardUserDefaults]valueForKey:@"Flow"] isEqualToString:@"Caregiver"])
                     {
+                        //imgThumb.hidden=NO;
+                        lblAuthenticateText.hidden=YES;
+                        btnAction.hidden = YES;
+                        
                         LAContext *myContext = [[LAContext alloc] init];
                         NSError *authError = nil;
                         NSString *myLocalizedReasonString = @"Place your finger to authenticate";
@@ -468,6 +472,8 @@
                                                 reply:^(BOOL success, NSError *error) {
                                                     if (success) {
                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                            imgThumb.image=[UIImage imageNamed:@"thumb_green.png"];
+                                                            sleep(1);
                                                             [self performSegueWithIdentifier:@"LoggedinDashboardSegue" sender:nil];
                                                         });
                                                     } else
@@ -943,7 +949,7 @@
 -(void)showWelcomeScreenWithDelay
 {
     DebugLog(@"");
-    [self performSegueWithIdentifier:@"WelcomeSegue" sender:self];
+    [self performSegueWithIdentifier:@"WelcomeSegueNew" sender:self];
 }
 /*
 #pragma mark - Navigation

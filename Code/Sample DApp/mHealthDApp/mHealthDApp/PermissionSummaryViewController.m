@@ -441,6 +441,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark -
+#pragma mark ==============================
+#pragma mark TableView delegates
+#pragma mark ==============================
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -794,6 +798,8 @@
                     NSLog(@"FHIR resource consumption==>%@",_dic);
                     [self hideBusyActivityView];
                     [self loadDashboard];
+                    
+                    
                 });
                 
             }
@@ -803,41 +809,6 @@
                     //        [_debugView setHidden:true];
                     DebugLog(@"write permission response:=> %@",_dic);
                     [activityIndicator stopAnimating];
-                    
-                   /* for (int iCount= 0; iCount<combinedPermissionArray.count; iCount++)
-                    {
-                        PermissionData *oldPermData = combinedPermissionArray[iCount];
-                        if([oldPermData.userType isEqualToString:PROVIDER])
-                        {
-                            for(int jCount= 0; jCount<permissionDataArray.count; jCount++)
-                            {
-                                PermissionData *newPermData = permissionDataArray[jCount];
-                                if(oldPermData.index == newPermData.index)
-                                {
-                                    newPermData.isWritePermissionDone =@"yes";
-                                    [permissionDataArray replaceObjectAtIndex:iCount withObject:newPermData];
-                                    [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionDataArray]forKey:@"PermissionArray"];
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for(int jCount= 0; jCount<permissionFamilyArray.count; jCount++)
-                            {
-                                PermissionData *newPermData = permissionFamilyArray[jCount];
-                                if(oldPermData.index == newPermData.index)
-                                {
-                                    newPermData.isWritePermissionDone =@"yes";
-                                    [permissionFamilyArray replaceObjectAtIndex:iCount withObject:newPermData];
-                                    [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:permissionFamilyArray]forKey:@"PermissionFamilyArray"];
-                                    break;
-                                }
-                            }
-                        }
-                        
-                    }*/
-                    
                     
                     PermissionData *oldPermData = combinedPermissionArray[intPermissionsArray];
 
@@ -876,17 +847,30 @@
                     
                     //[self performSelector:@selector(loadDashboard) withObject:nil];
                     [self hideBusyActivityView];
-                    intPermissionsArray++;
-                    if (intPermissionsArray == combinedPermissionArray.count)
-                    {
-                        //[self loadDashboard];
-                        [self fetchFHIRResourceConsumption:accessTokenString];
-                    }
-                    else
-                    {
-                        
-                        [self performSelector:@selector(assignDataOnUI) withObject:nil afterDelay:0.01];
-                    }
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"mHealthDApp"
+                                                                                   message:@"Write permission call completed successfully."
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                          style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                                              intPermissionsArray++;
+                                                                              if (intPermissionsArray == combinedPermissionArray.count)
+                                                                              {
+                                                                                  //[self loadDashboard];
+                                                                                  [self fetchFHIRResourceConsumption:accessTokenString];
+                                                                              }
+                                                                              else
+                                                                              {
+                                                                                  
+                                                                                  [self performSelector:@selector(assignDataOnUI) withObject:nil afterDelay:0.01];
+                                                                              }
+                                                                              
+                                                                          }];
+                     
+                     [alert addAction:firstAction];
+                     [self presentViewController:alert animated:YES completion:nil];
+                    
+                    
                     //[_debugContainerView setHidden:true];
                 });
             }

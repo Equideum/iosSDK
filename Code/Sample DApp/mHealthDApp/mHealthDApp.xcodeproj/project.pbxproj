@@ -630,10 +630,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = SH2DC5WPUW;
+				DEVELOPMENT_TEAM = YLMKF69AJ8;
 				ENABLE_BITCODE = NO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"ISDEBUG=1",
@@ -650,8 +650,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FHIRBlocks.mHealthDApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29bf6960-8bc5-4407-9975-7d72127eeee7";
-				PROVISIONING_PROFILE_SPECIFIER = mHealthDAppDistributionProfile;
+				PROVISIONING_PROFILE = "02609928-8e3b-4ee0-8cc6-9dc94cf76f7a";
+				PROVISIONING_PROFILE_SPECIFIER = HS_Dev_2016;
 				SWIFT_OBJC_BRIDGING_HEADER = "mHealthDApp/mHealthDApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -664,10 +664,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Doug Bulleit (SH2DC5WPUW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sayali Gujarathi (97C83ESXBT)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = SH2DC5WPUW;
+				DEVELOPMENT_TEAM = YLMKF69AJ8;
 				ENABLE_BITCODE = NO;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					"ISDEBUG=1",
@@ -685,8 +685,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.FHIRBlocks.mHealthDApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29bf6960-8bc5-4407-9975-7d72127eeee7";
-				PROVISIONING_PROFILE_SPECIFIER = mHealthDAppDistributionProfile;
+				PROVISIONING_PROFILE = "02609928-8e3b-4ee0-8cc6-9dc94cf76f7a";
+				PROVISIONING_PROFILE_SPECIFIER = HS_Dev_2016;
 				SWIFT_OBJC_BRIDGING_HEADER = "mHealthDApp/mHealthDApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

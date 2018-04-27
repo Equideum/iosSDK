@@ -2,8 +2,7 @@
 //  mHealthApiHandler.h
 //  mHealthApiHandler
 //
-//  Created by Akshay Aher on 3/12/18.
-//  Copyright © 2018 Akshay Aher. All rights reserved.
+//  Copyright © 2018 FHIRBlocks Project. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

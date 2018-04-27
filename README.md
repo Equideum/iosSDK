@@ -329,10 +329,10 @@ urlEncodedString = [NSString stringWithFormat:@"%@%@%@%@",@"grant_type=authoriza
 
 URL Encoded String is posted to the server with @"application/x-www-form-urlencoded" for @"Content-Type" header field in the POST request
 
-#### Step 10.  fetchPermissionsPreviouslyGrantedByMe Implementation  
+#### Step 10.  fetchPermissionsGivenByMe Implementation  
 
 ```sh
-GET http://smoac.fhirblocks.io:8080/permission/fetchPermissionsPreviouslyGrantedByMe
+GET http://smoac.fhirblocks.io:8080/permission/fetchPermissionsGivenByMe
 ```
 Check swagger implementation for the request parameters.  Make the payload as follows
 
@@ -345,7 +345,7 @@ NSString *payload=[NSString stringWithFormat:@“%@%@%@%@%@%@%@",@"|",guid,@"|",
 > _nonce_        	- Random 32 digit string  
 
 
-#### Step 11. Fetch Permissions Given To Me  
+#### Step 11. fetchPermissionsGivenToMe Implementation 
 
 ```sh
 GET http://smoac.fhirblocks.io:8080/permission/fetchPermissionsGivenToMe

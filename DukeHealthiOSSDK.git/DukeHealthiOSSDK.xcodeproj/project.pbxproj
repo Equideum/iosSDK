@@ -1,0 +1,971 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		397429B82148FA5D00075D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429B72148FA5D00075D34 /* AppDelegate.swift */; };
+		397429BD2148FA5D00075D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397429BB2148FA5D00075D34 /* Main.storyboard */; };
+		397429C02148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 397429BE2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld */; };
+		397429C22148FA5E00075D34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 397429C12148FA5E00075D34 /* Assets.xcassets */; };
+		397429C52148FA5E00075D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397429C32148FA5E00075D34 /* LaunchScreen.storyboard */; };
+		397429D02148FA5E00075D34 /* DukeHealthiOSSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429CF2148FA5E00075D34 /* DukeHealthiOSSDKTests.swift */; };
+		397429DB2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429DA2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift */; };
+		397429F321490CD500075D34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F221490CD500075D34 /* Config.swift */; };
+		397429F621490E9D00075D34 /* APIListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F521490E9D00075D34 /* APIListViewController.swift */; };
+		397429F8214919C900075D34 /* ApiItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F7214919C900075D34 /* ApiItemTableViewCell.swift */; };
+		397429FD21491CA500075D34 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429FC21491CA500075D34 /* Helpers.swift */; };
+		39742A282149321200075D34 /* ActionButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */; };
+		39D3D6CD214B5518009C8C39 /* WebServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */; };
+		39D3D6CF214B62E3009C8C39 /* DukeHealthApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */; };
+		39D3D6E1214B9FF5009C8C39 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */; };
+		39EEAE7B214F6284002E081B /* CryptoExportImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */; };
+		39F872162154F34C009E2D67 /* DirectClientRegistrationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */; };
+		39F900FC214BDEAE00339E78 /* ShowLogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */; };
+		39F900FE214BE06A00339E78 /* LogItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */; };
+		39FBA0FB2158AF2300F03B3C /* HouseKeepingCallsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */; };
+		39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */; };
+		39FBA0FF2159019400F03B3C /* SpookApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */; };
+		39FBA1012159202200F03B3C /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA1002159202200F03B3C /* Package.swift */; };
+		3EB3F8F6D86C1E5B1EABCF26 /* Pods_DukeHealthiOSSDKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */; };
+		68F31665FA3DA3F03DB07BDF /* Pods_DukeHealthiOSSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */; };
+		AAF0B471D4F2D9FBD25A75D0 /* Pods_DukeHealthiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		397429CC2148FA5E00075D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 397429AC2148FA5D00075D34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 397429B32148FA5D00075D34;
+			remoteInfo = DukeHealthiOSSDK;
+		};
+		397429D72148FA5E00075D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 397429AC2148FA5D00075D34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 397429B32148FA5D00075D34;
+			remoteInfo = DukeHealthiOSSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07535FCA69E691C10A0C762D /* Pods-DukeHealthiOSSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B375DF7610FD0A0E7F5B60 /* Pods-DukeHealthiOSSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		390B293C2151314000AFAE73 /* libchilkatIos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchilkatIos.a; path = "../../../../../Downloads/chilkat-9.5.0-ios9/lib/x86_64/libchilkatIos.a"; sourceTree = "<group>"; };
+		390B293F2151340400AFAE73 /* libchilkatIos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchilkatIos.a; path = "../../../../../Downloads/chilkat-9.5-2.0-ios9/lib/libchilkatIos.a"; sourceTree = "<group>"; };
+		3939A6D6215122AB00AB7B19 /* libchilkatIos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchilkatIos.a; path = "../../../../../Downloads/chilkat-9.5.0-ios9/lib/libchilkatIos.a"; sourceTree = "<group>"; };
+		397429B42148FA5D00075D34 /* DukeHealthiOSSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeHealthiOSSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		397429B72148FA5D00075D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		397429BC2148FA5D00075D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		397429BF2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DukeHealthiOSSDK.xcdatamodel; sourceTree = "<group>"; };
+		397429C12148FA5E00075D34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		397429C42148FA5E00075D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		397429C62148FA5E00075D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		397429CB2148FA5E00075D34 /* DukeHealthiOSSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeHealthiOSSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		397429CF2148FA5E00075D34 /* DukeHealthiOSSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeHealthiOSSDKTests.swift; sourceTree = "<group>"; };
+		397429D12148FA5E00075D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		397429D62148FA5E00075D34 /* DukeHealthiOSSDKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeHealthiOSSDKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		397429DA2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeHealthiOSSDKUITests.swift; sourceTree = "<group>"; };
+		397429DC2148FA5E00075D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		397429F221490CD500075D34 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		397429F521490E9D00075D34 /* APIListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIListViewController.swift; sourceTree = "<group>"; };
+		397429F7214919C900075D34 /* ApiItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiItemTableViewCell.swift; sourceTree = "<group>"; };
+		397429FC21491CA500075D34 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHandler.swift; sourceTree = "<group>"; };
+		39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeHealthApiHandler.swift; sourceTree = "<group>"; };
+		39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoExportImportManager.swift; sourceTree = "<group>"; };
+		39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectClientRegistrationHandler.swift; sourceTree = "<group>"; };
+		39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogCollectionViewController.swift; sourceTree = "<group>"; };
+		39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogItemCollectionViewCell.swift; path = Code/LogItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseKeepingCallsHandler.swift; sourceTree = "<group>"; };
+		39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyUtils.swift; sourceTree = "<group>"; };
+		39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpookApiHandler.swift; sourceTree = "<group>"; };
+		39FBA1002159202200F03B3C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		47991C849293BE286DFF8077 /* Pods-DukeHealthiOSSDKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests.release.xcconfig"; sourceTree = "<group>"; };
+		65EA2DF0F88383702AFE6DAB /* Pods-DukeHealthiOSSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests.release.xcconfig"; sourceTree = "<group>"; };
+		773C4E1608D7B400A61A45C4 /* Pods-DukeHealthiOSSDKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E3C84CBCAA344D3EE90F4C0 /* Pods-DukeHealthiOSSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK.release.xcconfig"; sourceTree = "<group>"; };
+		B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		397429B12148FA5D00075D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAF0B471D4F2D9FBD25A75D0 /* Pods_DukeHealthiOSSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429C82148FA5E00075D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68F31665FA3DA3F03DB07BDF /* Pods_DukeHealthiOSSDKTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429D32148FA5E00075D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB3F8F6D86C1E5B1EABCF26 /* Pods_DukeHealthiOSSDKUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		011D3369E2D91AD45D90E45B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07535FCA69E691C10A0C762D /* Pods-DukeHealthiOSSDK.debug.xcconfig */,
+				8E3C84CBCAA344D3EE90F4C0 /* Pods-DukeHealthiOSSDK.release.xcconfig */,
+				28B375DF7610FD0A0E7F5B60 /* Pods-DukeHealthiOSSDKTests.debug.xcconfig */,
+				65EA2DF0F88383702AFE6DAB /* Pods-DukeHealthiOSSDKTests.release.xcconfig */,
+				773C4E1608D7B400A61A45C4 /* Pods-DukeHealthiOSSDKUITests.debug.xcconfig */,
+				47991C849293BE286DFF8077 /* Pods-DukeHealthiOSSDKUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		397429AB2148FA5D00075D34 = {
+			isa = PBXGroup;
+			children = (
+				397429B62148FA5D00075D34 /* DukeHealthiOSSDK */,
+				397429CE2148FA5E00075D34 /* DukeHealthiOSSDKTests */,
+				397429D92148FA5E00075D34 /* DukeHealthiOSSDKUITests */,
+				397429B52148FA5D00075D34 /* Products */,
+				011D3369E2D91AD45D90E45B /* Pods */,
+				9396750079A1FE6B0357F3BA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		397429B52148FA5D00075D34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				397429B42148FA5D00075D34 /* DukeHealthiOSSDK.app */,
+				397429CB2148FA5E00075D34 /* DukeHealthiOSSDKTests.xctest */,
+				397429D62148FA5E00075D34 /* DukeHealthiOSSDKUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		397429B62148FA5D00075D34 /* DukeHealthiOSSDK */ = {
+			isa = PBXGroup;
+			children = (
+				397429E821490CAE00075D34 /* Code */,
+				397429BB2148FA5D00075D34 /* Main.storyboard */,
+				39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */,
+				397429C12148FA5E00075D34 /* Assets.xcassets */,
+				397429C32148FA5E00075D34 /* LaunchScreen.storyboard */,
+				397429C62148FA5E00075D34 /* Info.plist */,
+				397429BE2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld */,
+				39FBA1002159202200F03B3C /* Package.swift */,
+			);
+			path = DukeHealthiOSSDK;
+			sourceTree = "<group>";
+		};
+		397429CE2148FA5E00075D34 /* DukeHealthiOSSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				397429CF2148FA5E00075D34 /* DukeHealthiOSSDKTests.swift */,
+				397429D12148FA5E00075D34 /* Info.plist */,
+			);
+			path = DukeHealthiOSSDKTests;
+			sourceTree = "<group>";
+		};
+		397429D92148FA5E00075D34 /* DukeHealthiOSSDKUITests */ = {
+			isa = PBXGroup;
+			children = (
+				397429DA2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift */,
+				397429DC2148FA5E00075D34 /* Info.plist */,
+			);
+			path = DukeHealthiOSSDKUITests;
+			sourceTree = "<group>";
+		};
+		397429E821490CAE00075D34 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				39F872022154B820009E2D67 /* apis */,
+				397429EE21490CAE00075D34 /* AppDelegate */,
+				397429E921490CAE00075D34 /* Config */,
+				397429EA21490CAE00075D34 /* ServiceHandler */,
+				397429F921491C5E00075D34 /* Utilities */,
+				397429F421490E5900075D34 /* ViewControllers */,
+				397429F7214919C900075D34 /* ApiItemTableViewCell.swift */,
+				39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		397429E921490CAE00075D34 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				397429F221490CD500075D34 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		397429EA21490CAE00075D34 /* ServiceHandler */ = {
+			isa = PBXGroup;
+			children = (
+				39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */,
+				39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */,
+				39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */,
+				39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */,
+				39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */,
+			);
+			path = ServiceHandler;
+			sourceTree = "<group>";
+		};
+		397429EE21490CAE00075D34 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				397429B72148FA5D00075D34 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		397429F421490E5900075D34 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				397429F521490E9D00075D34 /* APIListViewController.swift */,
+				39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */,
+				39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		397429F921491C5E00075D34 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */,
+				397429FC21491CA500075D34 /* Helpers.swift */,
+				39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		39F872022154B820009E2D67 /* apis */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = apis;
+			sourceTree = "<group>";
+		};
+		9396750079A1FE6B0357F3BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3939A6D6215122AB00AB7B19 /* libchilkatIos.a */,
+				390B293C2151314000AFAE73 /* libchilkatIos.a */,
+				390B293F2151340400AFAE73 /* libchilkatIos.a */,
+				0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */,
+				C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */,
+				B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		397429B32148FA5D00075D34 /* DukeHealthiOSSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 397429DF2148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDK" */;
+			buildPhases = (
+				BB4129A80047F9B16649D66A /* [CP] Check Pods Manifest.lock */,
+				397429B02148FA5D00075D34 /* Sources */,
+				397429B12148FA5D00075D34 /* Frameworks */,
+				397429B22148FA5D00075D34 /* Resources */,
+				8BA42452A526BC3438F2812D /* [CP] Embed Pods Frameworks */,
+				388D9E67CDEFC01103CDF34C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DukeHealthiOSSDK;
+			productName = DukeHealthiOSSDK;
+			productReference = 397429B42148FA5D00075D34 /* DukeHealthiOSSDK.app */;
+			productType = "com.apple.product-type.application";
+		};
+		397429CA2148FA5E00075D34 /* DukeHealthiOSSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 397429E22148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDKTests" */;
+			buildPhases = (
+				6CBFED73240F52CDCC0C95C8 /* [CP] Check Pods Manifest.lock */,
+				397429C72148FA5E00075D34 /* Sources */,
+				397429C82148FA5E00075D34 /* Frameworks */,
+				397429C92148FA5E00075D34 /* Resources */,
+				6224C79E8E6D53BC8BFB5B63 /* [CP] Embed Pods Frameworks */,
+				11220B2E4293505C529444D2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				397429CD2148FA5E00075D34 /* PBXTargetDependency */,
+			);
+			name = DukeHealthiOSSDKTests;
+			productName = DukeHealthiOSSDKTests;
+			productReference = 397429CB2148FA5E00075D34 /* DukeHealthiOSSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		397429D52148FA5E00075D34 /* DukeHealthiOSSDKUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 397429E52148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDKUITests" */;
+			buildPhases = (
+				96C9CF8F86719899CA4EB221 /* [CP] Check Pods Manifest.lock */,
+				397429D22148FA5E00075D34 /* Sources */,
+				397429D32148FA5E00075D34 /* Frameworks */,
+				397429D42148FA5E00075D34 /* Resources */,
+				178F00AF947A071798BF6947 /* [CP] Embed Pods Frameworks */,
+				39AD987D16A46677147AE03E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				397429D82148FA5E00075D34 /* PBXTargetDependency */,
+			);
+			name = DukeHealthiOSSDKUITests;
+			productName = DukeHealthiOSSDKUITests;
+			productReference = 397429D62148FA5E00075D34 /* DukeHealthiOSSDKUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		397429AC2148FA5D00075D34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Swathi;
+				TargetAttributes = {
+					397429B32148FA5D00075D34 = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = ZH23RD7X9Y;
+						ProvisioningStyle = Manual;
+					};
+					397429CA2148FA5E00075D34 = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = ZH23RD7X9Y;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 397429B32148FA5D00075D34;
+					};
+					397429D52148FA5E00075D34 = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = ZH23RD7X9Y;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 397429B32148FA5D00075D34;
+					};
+				};
+			};
+			buildConfigurationList = 397429AF2148FA5D00075D34 /* Build configuration list for PBXProject "DukeHealthiOSSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 397429AB2148FA5D00075D34;
+			productRefGroup = 397429B52148FA5D00075D34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				397429B32148FA5D00075D34 /* DukeHealthiOSSDK */,
+				397429CA2148FA5E00075D34 /* DukeHealthiOSSDKTests */,
+				397429D52148FA5E00075D34 /* DukeHealthiOSSDKUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		397429B22148FA5D00075D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				397429C52148FA5E00075D34 /* LaunchScreen.storyboard in Resources */,
+				397429C22148FA5E00075D34 /* Assets.xcassets in Resources */,
+				397429BD2148FA5D00075D34 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429C92148FA5E00075D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429D42148FA5E00075D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11220B2E4293505C529444D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		178F00AF947A071798BF6947 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		388D9E67CDEFC01103CDF34C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39AD987D16A46677147AE03E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6224C79E8E6D53BC8BFB5B63 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CBFED73240F52CDCC0C95C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeHealthiOSSDKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BA42452A526BC3438F2812D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/JOSESwift/JOSESwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
+				"${BUILT_PRODUCTS_DIR}/ZAlertView/ZAlertView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JOSESwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZAlertView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96C9CF8F86719899CA4EB221 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeHealthiOSSDKUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB4129A80047F9B16649D66A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DukeHealthiOSSDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		397429B02148FA5D00075D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39742A282149321200075D34 /* ActionButtonCollectionViewCell.swift in Sources */,
+				39F900FE214BE06A00339E78 /* LogItemCollectionViewCell.swift in Sources */,
+				39FBA0FB2158AF2300F03B3C /* HouseKeepingCallsHandler.swift in Sources */,
+				39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */,
+				39F900FC214BDEAE00339E78 /* ShowLogCollectionViewController.swift in Sources */,
+				397429B82148FA5D00075D34 /* AppDelegate.swift in Sources */,
+				39FBA0FF2159019400F03B3C /* SpookApiHandler.swift in Sources */,
+				397429F621490E9D00075D34 /* APIListViewController.swift in Sources */,
+				39F872162154F34C009E2D67 /* DirectClientRegistrationHandler.swift in Sources */,
+				39EEAE7B214F6284002E081B /* CryptoExportImportManager.swift in Sources */,
+				397429FD21491CA500075D34 /* Helpers.swift in Sources */,
+				39D3D6CF214B62E3009C8C39 /* DukeHealthApiHandler.swift in Sources */,
+				39FBA1012159202200F03B3C /* Package.swift in Sources */,
+				397429F321490CD500075D34 /* Config.swift in Sources */,
+				39D3D6CD214B5518009C8C39 /* WebServiceHandler.swift in Sources */,
+				39D3D6E1214B9FF5009C8C39 /* LaunchViewController.swift in Sources */,
+				397429C02148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld in Sources */,
+				397429F8214919C900075D34 /* ApiItemTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429C72148FA5E00075D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				397429D02148FA5E00075D34 /* DukeHealthiOSSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397429D22148FA5E00075D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				397429DB2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		397429CD2148FA5E00075D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 397429B32148FA5D00075D34 /* DukeHealthiOSSDK */;
+			targetProxy = 397429CC2148FA5E00075D34 /* PBXContainerItemProxy */;
+		};
+		397429D82148FA5E00075D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 397429B32148FA5D00075D34 /* DukeHealthiOSSDK */;
+			targetProxy = 397429D72148FA5E00075D34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		397429BB2148FA5D00075D34 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				397429BC2148FA5D00075D34 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		397429C32148FA5E00075D34 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				397429C42148FA5E00075D34 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		397429DD2148FA5E00075D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		397429DE2148FA5E00075D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		397429E02148FA5E00075D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07535FCA69E691C10A0C762D /* Pods-DukeHealthiOSSDK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JOSESwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICKeyChainStore\"",
+				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/OpenSSL/include";
+				INFOPLIST_FILE = DukeHealthiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/lib";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"JOSESwift\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UICKeyChainStore\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "aa53e447-3b54-443e-aa96-b72cf80d24e6";
+				PROVISIONING_PROFILE_SPECIFIER = riktamDevelopmentProfile;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		397429E12148FA5E00075D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E3C84CBCAA344D3EE90F4C0 /* Pods-DukeHealthiOSSDK.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = MFNQCB8TJX;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/OpenSSL/include";
+				INFOPLIST_FILE = DukeHealthiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/lib";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"JOSESwift\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UICKeyChainStore\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "cfa229ac-a2b2-4590-9c8b-da453cef28c5";
+				PROVISIONING_PROFILE_SPECIFIER = RiktamEnterpriseDistributionProfile;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		397429E32148FA5E00075D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28B375DF7610FD0A0E7F5B60 /* Pods-DukeHealthiOSSDKTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				INFOPLIST_FILE = DukeHealthiOSSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeHealthiOSSDK.app/DukeHealthiOSSDK";
+			};
+			name = Debug;
+		};
+		397429E42148FA5E00075D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65EA2DF0F88383702AFE6DAB /* Pods-DukeHealthiOSSDKTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				INFOPLIST_FILE = DukeHealthiOSSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeHealthiOSSDK.app/DukeHealthiOSSDK";
+			};
+			name = Release;
+		};
+		397429E62148FA5E00075D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 773C4E1608D7B400A61A45C4 /* Pods-DukeHealthiOSSDKUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				INFOPLIST_FILE = DukeHealthiOSSDKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDKUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DukeHealthiOSSDK;
+			};
+			name = Debug;
+		};
+		397429E72148FA5E00075D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47991C849293BE286DFF8077 /* Pods-DukeHealthiOSSDKUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				INFOPLIST_FILE = DukeHealthiOSSDKUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDKUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DukeHealthiOSSDK;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		397429AF2148FA5D00075D34 /* Build configuration list for PBXProject "DukeHealthiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				397429DD2148FA5E00075D34 /* Debug */,
+				397429DE2148FA5E00075D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		397429DF2148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				397429E02148FA5E00075D34 /* Debug */,
+				397429E12148FA5E00075D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		397429E22148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				397429E32148FA5E00075D34 /* Debug */,
+				397429E42148FA5E00075D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		397429E52148FA5E00075D34 /* Build configuration list for PBXNativeTarget "DukeHealthiOSSDKUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				397429E62148FA5E00075D34 /* Debug */,
+				397429E72148FA5E00075D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		397429BE2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				397429BF2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodel */,
+			);
+			currentVersion = 397429BF2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodel */;
+			path = DukeHealthiOSSDK.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 397429AC2148FA5D00075D34 /* Project object */;
+}

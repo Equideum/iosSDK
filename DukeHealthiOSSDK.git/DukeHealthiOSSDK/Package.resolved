@@ -1,0 +1,88 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CLibreSSL",
+        "repositoryURL": "https://github.com/vapor/clibressl.git",
+        "state": {
+          "branch": null,
+          "revision": "23ddb296981d17a8ee6c7418742a40cad5d2f9d0",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Core",
+        "repositoryURL": "https://github.com/vapor/core.git",
+        "state": {
+          "branch": null,
+          "revision": "661a105e25a8d84cb61f268c0b6ed85834493761",
+          "version": "1.1.2"
+        }
+      },
+      {
+        "package": "Crypto",
+        "repositoryURL": "https://github.com/vapor/crypto.git",
+        "state": {
+          "branch": null,
+          "revision": "f55ce8fa7c8c42c4219091d031dbf97b6177ab8e",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "JSON",
+        "repositoryURL": "https://github.com/vapor/json.git",
+        "state": {
+          "branch": null,
+          "revision": "44bd19b27c4eafbb1b18f1fe14fec712fc545bed",
+          "version": "1.0.6"
+        }
+      },
+      {
+        "package": "Jay",
+        "repositoryURL": "https://github.com/DanToml/Jay.git",
+        "state": {
+          "branch": null,
+          "revision": "833125251b2d026bee6afa0aff2967a90eb63cd0",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Node",
+        "repositoryURL": "https://github.com/vapor/node.git",
+        "state": {
+          "branch": null,
+          "revision": "4cf8c76c1195b29e36c7d37ca056d8fa5433e957",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "PathIndexable",
+        "repositoryURL": "https://github.com/vapor/path-indexable.git",
+        "state": {
+          "branch": null,
+          "revision": "0aa6f6eb151ce5747509ca6591cf6a4379e72851",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Polymorphic",
+        "repositoryURL": "https://github.com/vapor/polymorphic.git",
+        "state": {
+          "branch": null,
+          "revision": "43ad0c4ce02cff79fbdf33977c2a9599835d4dde",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "VaporJWT",
+        "repositoryURL": "https://github.com/vapor/jwt.git",
+        "state": {
+          "branch": null,
+          "revision": "38de0995a368093ce3d9e608616d6f94b4beb1de",
+          "version": "0.6.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

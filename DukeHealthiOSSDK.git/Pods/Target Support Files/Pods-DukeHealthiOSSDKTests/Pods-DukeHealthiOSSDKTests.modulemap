@@ -1,0 +1,6 @@
+framework module Pods_DukeHealthiOSSDKTests {
+  umbrella header "Pods-DukeHealthiOSSDKTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

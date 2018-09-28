@@ -30,6 +30,7 @@
 		39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */; };
 		39FBA0FF2159019400F03B3C /* SpookApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */; };
 		39FBA1012159202200F03B3C /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA1002159202200F03B3C /* Package.swift */; };
+		39FEFF8E215E0F9B00083410 /* Uitilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FEFF8D215E0F9B00083410 /* Uitilities.swift */; };
 		3EB3F8F6D86C1E5B1EABCF26 /* Pods_DukeHealthiOSSDKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */; };
 		68F31665FA3DA3F03DB07BDF /* Pods_DukeHealthiOSSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */; };
 		AAF0B471D4F2D9FBD25A75D0 /* Pods_DukeHealthiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */; };
@@ -88,6 +89,7 @@
 		39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyUtils.swift; sourceTree = "<group>"; };
 		39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpookApiHandler.swift; sourceTree = "<group>"; };
 		39FBA1002159202200F03B3C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		39FEFF8D215E0F9B00083410 /* Uitilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uitilities.swift; sourceTree = "<group>"; };
 		47991C849293BE286DFF8077 /* Pods-DukeHealthiOSSDKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests.release.xcconfig"; sourceTree = "<group>"; };
 		65EA2DF0F88383702AFE6DAB /* Pods-DukeHealthiOSSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		773C4E1608D7B400A61A45C4 /* Pods-DukeHealthiOSSDKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */,
 				397429FC21491CA500075D34 /* Helpers.swift */,
 				39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */,
+				39FEFF8D215E0F9B00083410 /* Uitilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -518,18 +521,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JOSESwift/JOSESwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/ZAlertView/ZAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/base64url/base64url.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JOSESwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/base64url.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -581,6 +584,7 @@
 			files = (
 				39742A282149321200075D34 /* ActionButtonCollectionViewCell.swift in Sources */,
 				39F900FE214BE06A00339E78 /* LogItemCollectionViewCell.swift in Sources */,
+				39FEFF8E215E0F9B00083410 /* Uitilities.swift in Sources */,
 				39FBA0FB2158AF2300F03B3C /* HouseKeepingCallsHandler.swift in Sources */,
 				39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */,
 				39F900FC214BDEAE00339E78 /* ShowLogCollectionViewController.swift in Sources */,
@@ -776,21 +780,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/JOSESwift\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICKeyChainStore\"",
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/OpenSSL/include";
 				INFOPLIST_FILE = DukeHealthiOSSDK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/lib";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					"\"Alamofire\"",
-					"-framework",
-					"\"JOSESwift\"",
 					"-framework",
 					"\"SwiftyJSON\"",
 					"-framework",
@@ -817,15 +818,13 @@
 				DEVELOPMENT_TEAM = MFNQCB8TJX;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/OpenSSL/include";
 				INFOPLIST_FILE = DukeHealthiOSSDK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/OpenSSL/lib";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					"\"Alamofire\"",
-					"-framework",
-					"\"JOSESwift\"",
 					"-framework",
 					"\"SwiftyJSON\"",
 					"-framework",

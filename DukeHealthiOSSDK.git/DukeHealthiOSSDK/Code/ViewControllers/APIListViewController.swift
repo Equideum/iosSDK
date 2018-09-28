@@ -8,6 +8,7 @@
 
 import UIKit
 import ZAlertView
+import base64url
 
 
 var responseList = [Any?]()
@@ -136,6 +137,7 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
             let keys = KeyUtils.generateKeys()
             clientKey = keys.publicKey
             privateKey = keys.privateKey
+            
             clientJwk = KeyUtils.convertSecKeyToJwk(key: clientKey!)
             var mapData = [String: String] ()
             mapData["api"] = "KeyPair Generation"
@@ -148,6 +150,8 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.apiListTableView.reloadRows(at: [indexPath], with: .automatic)
             break;
         case 5:
+            print("client jwk")
+            print(clientJwk)
             DirectClientRegistrationHandler.doRegister(clientJwk: clientJwk, userName: "ios sdk") { (dcrResponse) in
                 if dcrResponse["success"] == "true" {
                     apiResponseItems[5] = true
@@ -167,24 +171,27 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let dialog = ZAlertView(title: "", message: "Enter message to sign", closeButtonText: "Ok") { alertView in
                     alertView.dismissAlertView()
                     let textfield = alertView.getTextFieldWithIdentifier("Message")
-                    
+                    print("message")
+                    print(textfield?.text)
                     let (jwsPayload, resultList) = KeyUtils.signMessage(message: (textfield?.text)!, privateKey: privateKey!, publicKey: clientKey!)
                     for item in resultList {
                         responseList.append(item)
                     }
-                    let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\""+clientJwk["y"]! + "\"}"
+        let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\", \"z\":\"" + clientJwk["z"]! + "\"}"
                     let jwkPayload = (jwkString.data(using: String.Encoding.utf8))?.base64EncodedString() as! String
                     //let jwkPayload = KeyUtils.dictToBase64String(dictData: clientJwk) as! String
+                    print("jwo payload")
                     print(jwsPayload)
+                    print("jwk payload")
                     print(jwkPayload)
                     SpookApiHandler.sendSignedMessageToFBC(body: ["jwo" : jwsPayload, "jwk": jwkPayload]) { (fbcResponse) in
-                        print("dcr response")
+                        print("fbc response")
                         print(fbcResponse)
                         if fbcResponse["success"] == "true" {
                             apiResponseItems[6] = true
                         } else {
                             apiResponseItems[6] = false
-                             print("dcr false")
+                             print("fbc false")
                         }
                        
                         responseList.append(fbcResponse)

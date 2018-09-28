@@ -10,8 +10,7 @@
 #endif
 #endif
 
-#import "JOSESwift.h"
 
-FOUNDATION_EXPORT double JOSESwiftVersionNumber;
-FOUNDATION_EXPORT const unsigned char JOSESwiftVersionString[];
+FOUNDATION_EXPORT double base64urlVersionNumber;
+FOUNDATION_EXPORT const unsigned char base64urlVersionString[];
 

@@ -29,7 +29,7 @@ extension Config {
     
     struct WebAPI {
         
-        static let baseURL = "http://poc-node-1.fhirblocks.io:8080"
+        static let baseURL = "http://poc-node-1.fhirblocks.io:3002"
         
         struct Util {
             

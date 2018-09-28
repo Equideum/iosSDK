@@ -10,8 +10,8 @@ target 'DukeHealthiOSSDK' do
 	pod 'Alamofire', '~> 4.7'
     pod 'SwiftyJSON', '~> 4.0'
     pod 'UICKeyChainStore'
-    pod 'JOSESwift'
     pod 'ZAlertView'
+    pod 'base64url', '~> 1.0'
 
   target 'DukeHealthiOSSDKTests' do
     inherit! :search_paths

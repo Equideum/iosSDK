@@ -23,7 +23,7 @@ class WebServiceHandler: NSObject, RequestRetrier {
         var info:NSDictionary?
         let responseData = response.data
         
-        print(response.request)
+        print(response)
         var data = [String: Any?]()
         data["url"] = response.request?.url?.absoluteString as! String
         
@@ -97,7 +97,10 @@ class WebServiceHandler: NSObject, RequestRetrier {
     {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        let headers = WebServiceHandler.appDefaultURLRequestHeaders()
+        var headers = WebServiceHandler.appDefaultURLRequestHeaders()
+        if (request == Config.WebAPI.Util.sendMessageToFBC) {
+            headers["Accept"] = "application/json"
+        }
 
         var parameterEncoding:ParameterEncoding = URLEncoding.default
         if(method == .get) {
@@ -118,7 +121,8 @@ class WebServiceHandler: NSObject, RequestRetrier {
         var headers = [String:String]()
         headers["Content-Type"] = "application/json"
         headers["Accept-Encoding"] = "application/json"
-        headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8,application/json"
+        
 //        if let userSession = UserDefaults.standard.string(forKey: Config.UserDefaultConstants.userSessionKey) {
 //            headers["X-Auth-Token"] = userSession
 //        }

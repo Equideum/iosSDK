@@ -68,7 +68,7 @@ class KeyUtils {
         let attr = SecKeyCopyAttributes(key)
         var encodedX : String = ""
         var encodedY : String = ""
-        var jwk : [String: String] = ["kty":"EC", "crv":"P-256", "x":"", "y":""]
+        var jwk : [String: String] = ["crv":"P-256", "kty":"EC", "x":"", "y":"", "z":""]
         if let dict = attr as? [String: AnyObject] {
             let xAndY = dict["v_Data"] as! NSData
             let stringData = (xAndY .description).replacingOccurrences(of: " ", with: "") as String
@@ -81,6 +81,7 @@ class KeyUtils {
             
             jwk["x"] = encodedX
             jwk["y"] = encodedY
+            jwk["z"] = KeyUtils.convertKeyToDerBase64(key: key)
         }
         
         return jwk
@@ -177,54 +178,78 @@ class KeyUtils {
     class func signMessage(message: String, privateKey: SecKey, publicKey: SecKey) -> (String, [Any?]) {
         var responseList = [Any?]()
         
+        
+        let base64Header = KeyUtils.createJWsHeader()
+        var base64HeaderPayload = [String:Any]()
+        base64HeaderPayload["api"] = "Base64Url converted header";
+        base64HeaderPayload["response"] = base64Header
+        base64HeaderPayload["success"] = "true"
+        base64HeaderPayload["url"] = ""
+        responseList.append(base64HeaderPayload)
+         print("base64urlEncoded header")
+        print(base64Header)
+        
         let messageInData = message.data(using: String.Encoding.utf8) // utf8 converted message
-        let base64Payload = messageInData?.base64EncodedString() as! String
+        let base64Payload = messageInData?.base64urlEncodedString()
         var messagePayload = [String:Any]()
-        messagePayload["api"] = "Base64 converted message";
+        messagePayload["api"] = "Base64Url converted message";
         messagePayload["response"] = base64Payload
         messagePayload["success"] = "true"
         messagePayload["url"] = ""
         responseList.append(messagePayload)
         
-        let base64Header = KeyUtils.createJWsHeader()
-        var base64HeaderPayload = [String:Any]()
-        base64HeaderPayload["api"] = "Base64 converted header";
-        base64HeaderPayload["response"] = base64Header
-        base64HeaderPayload["success"] = "true"
-        base64HeaderPayload["url"] = ""
-        responseList.append(base64HeaderPayload)
+        print("base64urlEncoded message")
+        print(base64Payload)
         
-        let signature = createSignature(privateKey: privateKey, value: base64Header + "." + base64Payload)
-        
+        let signature = createSignature(privateKey: privateKey, value: base64Header + "." + base64Payload!)
+         let base64Signature = signature?.base64urlEncodedString()
         var signaturePayload = [String:Any]()
-        signaturePayload["api"] = "Base64 converted message";
-        signaturePayload["response"] = ((base64Header + "." + base64Payload).data(using: String.Encoding.utf8))?.base64EncodedString()
+        signaturePayload["api"] = "Base64Url converted message";
+        signaturePayload["response"] = base64Signature
         signaturePayload["success"] = "true"
         signaturePayload["url"] = ""
         responseList.append(signaturePayload)
         
-        KeyUtils.verifySignature(privateKey: publicKey, signature: signature!, value: base64Header + "." + base64Payload)
-        let base64Signature = signature?.base64EncodedString()
+        print("base64urlEncoded signature")
+        print(base64Signature)
+        
+        KeyUtils.verifySignature(privateKey: publicKey, signature: signature!, value: base64Header + "." + base64Payload!)
+       
         
         var jwoPayload = [String:Any]()
         jwoPayload["api"] = "JWS object ";
-        jwoPayload["response"] = base64Header + "." + base64Payload + "." + base64Signature!
+        jwoPayload["response"] = base64Header + "." + base64Payload! + "." + base64Signature!
         jwoPayload["success"] = "true"
         jwoPayload["url"] = ""
         responseList.append(jwoPayload)
         
-        return ((base64Header + "." + base64Payload + "." + base64Signature!), responseList)
+        return ((base64Header + "." + base64Payload! + "." + base64Signature!), responseList)
     }
     
     class func createJWsHeader() -> String {
         let header = "{\"alg\":\"ES256\"}"
-        print((header.data(using: String.Encoding.utf8))?.base64EncodedString() as! String)
-        return (header.data(using: String.Encoding.utf8))?.base64EncodedString() as! String
+        print((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())
+        return ((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())!
     }
     
-    class func dictToBase64String(dictData: [String: String]) -> String? {
-         let jsonData = KeyUtils.convertDictToJson(dictData: dictData)
-        return jsonData!.base64EncodedString() as String
+//    class func dictToBase64String(dictData: [String: String]) -> String? {
+//         let jsonData = KeyUtils.convertDictToJson(dictData: dictData)
+//        return jsonData!.base64EncodedString() as String
+//    }
+    
+    /**
+     * converts key to DER then encodes in base64
+     **/
+    class func convertKeyToDerBase64(key: SecKey) -> String {
+        // converting public key to DER format
+        var error: Unmanaged<CFError>?
+        let publicKeyDataAPI = SecKeyCopyExternalRepresentation(key, &error)! as Data
+        let exportImportManager = CryptoExportImportManager.init()
+        let exportableDERKey = exportImportManager.exportPublicKeyToDER((publicKeyDataAPI as NSData) as Data, keyType: kSecAttrKeyTypeEC as String, keySize: 256)
+        let publicKeyDerKeyString = exportableDERKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+        print("public key der string")
+        print(publicKeyDerKeyString)
+        return publicKeyDerKeyString!
     }
 }
 

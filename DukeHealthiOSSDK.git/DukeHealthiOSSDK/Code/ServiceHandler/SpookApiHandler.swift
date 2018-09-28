@@ -16,8 +16,8 @@ class SpookApiHandler {
             var responseMap : [String: String] = ["api":"FBC Handshake api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
-                responseMap["url"] = (data!["url"] as! String)
-                 responseMap["response"] = error.debugDescription ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                 responseMap["response"] = "\nResponse:\n" + error.debugDescription ?? ""
                 print("in else")
                 completion(responseMap)
                 return;
@@ -25,8 +25,8 @@ class SpookApiHandler {
             do {
                 let data1 =  try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
                 let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-                responseMap["url"] = (data!["url"] as! String)
-                responseMap["response"] = convertedString ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                responseMap["response"] = "Params: \n" + Utilities.convertDictToJson(dictData:body)! + "\n Response: \n" +  (convertedString ?? "")
                 responseMap["success"] = (data!["success"] as! String)
                 print("response over")
             } catch let myJSONError {

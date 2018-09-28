@@ -68,10 +68,10 @@ class ShowLogCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCell", for: indexPath) as! LogCell
 
         
-        cell.apiNameLbl.text  = " *** start of " + (data?[indexPath.row]["api"] as! String) + " *** "
-        cell.urlTextLbl.text = data?[indexPath.row]["url"] as? String
+        cell.apiNameLbl.text  = "\n *** start of " + (data?[indexPath.row]["api"] as! String) + " *** "
+        cell.urlTextLbl.text = (data?[indexPath.row]["url"] as? String)!
         cell.responseLbl.text = data?[indexPath.row]["response"] as? String
-        cell.endApiLbl.text = " *** End of " + (data?[indexPath.row]["api"] as! String) + " ***"
+        cell.endApiLbl.text = " *** End of " + (data?[indexPath.row]["api"] as! String) + " ***\n"
 //        if(indexPath.row%2 == 0 ){
 //            cell.backgroundColor = UIColor.red
 //        }else{

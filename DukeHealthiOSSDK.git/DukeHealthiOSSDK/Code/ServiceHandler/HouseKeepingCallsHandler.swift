@@ -17,14 +17,14 @@ class HouseKeepingCallsHandler {
             var responseMap : [String: String] = ["api":"Ping api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
-                responseMap["url"] = (data!["url"] as! String)
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
                 return;
             }
             do {
                 let data1 =  try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
                 let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-                responseMap["url"] = (data!["url"] as! String)
-                responseMap["response"] = convertedString ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                responseMap["response"] = "\nResponse:\n" + ( convertedString ?? "") + "\n"
                 responseMap["success"] = (data!["success"] as! String)
             } catch let myJSONError {
                 print(myJSONError)
@@ -42,14 +42,14 @@ class HouseKeepingCallsHandler {
             var responseMap : [String: String] = ["api":"Get Time api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
-                responseMap["url"] = (data!["url"] as! String)
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
                 return;
             }
             do {
                 let data1 =  try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
                 let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-                responseMap["url"] = (data!["url"] as! String)
-                responseMap["response"] = convertedString ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                responseMap["response"] = "\nResponse:\n" + (convertedString ?? "")
                 responseMap["success"] = (data!["success"] as! String)
             } catch let myJSONError {
                 print(myJSONError)
@@ -66,14 +66,14 @@ class HouseKeepingCallsHandler {
             var responseMap : [String: String] = ["api":"Get Nodes api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
-                responseMap["url"] = (data!["url"] as! String)
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
                 return;
             }
             do {
                 let data1 =  try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
                 let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-                responseMap["url"] = (data!["url"] as! String)
-                responseMap["response"] = convertedString ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                responseMap["response"] = "\nResponse:\n" +  (convertedString ?? "")
                 responseMap["success"] = (data!["success"] as! String)
             } catch let myJSONError {
                 print(myJSONError)
@@ -90,14 +90,14 @@ class HouseKeepingCallsHandler {
             var responseMap : [String: String] = ["api":"Get Institutions api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
-                responseMap["url"] = (data!["url"] as! String)
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
                 return;
             }
             do {
                 let data1 =  try JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
                 let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-                responseMap["url"] = (data!["url"] as! String)
-                responseMap["response"] = convertedString ?? ""
+                responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
+                responseMap["response"] = "\nResponse:\n" + (convertedString ?? "")
                 responseMap["success"] = (data!["success"] as! String)
             } catch let myJSONError {
                 print(myJSONError)

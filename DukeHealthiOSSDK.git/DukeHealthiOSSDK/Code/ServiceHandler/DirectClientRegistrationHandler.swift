@@ -11,8 +11,9 @@ class DirectClientRegistrationHandler {
     /**
      * Calls DCR api
      **/
-    class func doRegister(clientJwk:[String:String], userName: String , completion:@escaping ([String: String]) -> Void) {
-        let dcrBody = getDcrBodyObject(clientJwk: clientJwk, userName: userName)
+    class func doRegister(pubKey: SecKey, clientJwk:[String:String], userName: String , completion:@escaping ([String: String]) -> Void) {
+        let base64PubKey = DirectClientRegistrationHandler.convertKeyToDerBase64(key: pubKey)
+        let dcrBody = getDcrBodyObject(pubKey: base64PubKey, clientJwk: clientJwk, userName: userName)
         print("dcr body")
         print(dcrBody as Any)
         DukeHealthApiHandler.doRegister (parameters: dcrBody as [String : AnyObject]) { (response, error, data) in
@@ -45,14 +46,42 @@ class DirectClientRegistrationHandler {
     /**
      * Prepares dcr body object
      **/
-    class func getDcrBodyObject(clientJwk: [String: String], userName: String) -> [String: Any] {
+    class func getDcrBodyObject(pubKey: String, clientJwk: [String: String], userName: String) -> [String: Any] {
         var dcrBody: [String: Any] = DirectClientRegistrationHandler.getDCRStaticBody()
         var ja  = [String]()
         ja.append(userName)
         dcrBody["contacts"] = ja
         dcrBody["software_id"] = "sdk"
         
-        dcrBody["jwks"] = ["keys":[clientJwk]]
+        
+        
+        var keys = [Any?]()
+        keys.append(clientJwk);
+        
+        var addtionalMembers  = [String: Any] ()
+        addtionalMembers["z"] = pubKey
+        
+        var jwks = [String: Any] ()
+        jwks["keys"] = keys
+        jwks["additionalMembers"] = addtionalMembers
+        
+        dcrBody["jwks"] = jwks
         return dcrBody
     }
+    
+    /**
+     * converts key to DER then encodes in base64
+     **/
+    class func convertKeyToDerBase64(key: SecKey) -> String {
+        // converting public key to DER format
+        var error: Unmanaged<CFError>?
+        let publicKeyDataAPI = SecKeyCopyExternalRepresentation(key, &error)! as Data
+        let exportImportManager = CryptoExportImportManager.init()
+        let exportableDERKey = exportImportManager.exportPublicKeyToDER((publicKeyDataAPI as NSData) as Data, keyType: kSecAttrKeyTypeEC as String, keySize: 256)
+        let publicKeyDerKeyString = exportableDERKey?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+        print("public key der string")
+        print(publicKeyDerKeyString)
+        return publicKeyDerKeyString!
+    }
+
 }

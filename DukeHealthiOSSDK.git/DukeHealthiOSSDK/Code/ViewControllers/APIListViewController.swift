@@ -152,7 +152,7 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 5:
             print("client jwk")
             print(clientJwk)
-            DirectClientRegistrationHandler.doRegister(clientJwk: clientJwk, userName: "ios sdk") { (dcrResponse) in
+            DirectClientRegistrationHandler.doRegister(pubKey: clientKey!, clientJwk: clientJwk, userName: "ios sdk") { (dcrResponse) in
                 if dcrResponse["success"] == "true" {
                     apiResponseItems[5] = true
                 } else {
@@ -177,7 +177,9 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
                     for item in resultList {
                         responseList.append(item)
                     }
-        let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\", \"z\":\"" + clientJwk["z"]! + "\"}"
+                    let z = KeyUtils.convertKeyToDerBase64(key: clientKey!)
+                    let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\", \"z\":\"" + z + "\"}"
+                    //let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\"}"
                     let jwkPayload = (jwkString.data(using: String.Encoding.utf8))?.base64EncodedString() as! String
                     //let jwkPayload = KeyUtils.dictToBase64String(dictData: clientJwk) as! String
                     print("jwo payload")

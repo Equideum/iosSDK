@@ -12,6 +12,7 @@ class SpookApiHandler {
      * Calls spook api
      **/
     class func sendSignedMessageToFBC(body:[String:String], completion:@escaping ([String: String]) -> Void) {
+        print(body as Any)
         DukeHealthApiHandler.sendSignedMessageToFBC (parameters: body as [String : AnyObject]) { (response, error, data) in
             var responseMap : [String: String] = ["api":"FBC Handshake api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {

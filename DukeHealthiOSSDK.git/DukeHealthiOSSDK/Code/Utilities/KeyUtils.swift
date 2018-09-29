@@ -68,7 +68,7 @@ class KeyUtils {
         let attr = SecKeyCopyAttributes(key)
         var encodedX : String = ""
         var encodedY : String = ""
-        var jwk : [String: String] = ["crv":"P-256", "kty":"EC", "x":"", "y":"", "z":""]
+        var jwk : [String: String] = ["crv":"P-256", "kty":"EC", "x":"", "y":""]
         if let dict = attr as? [String: AnyObject] {
             let xAndY = dict["v_Data"] as! NSData
             let stringData = (xAndY .description).replacingOccurrences(of: " ", with: "") as String
@@ -76,16 +76,56 @@ class KeyUtils {
             let substringData = stringData[..<endIndex]
             let y = substringData.suffix(64)
             let x = substringData.replacingOccurrences(of: y, with: "").suffix(64)
-            encodedX = KeyUtils.convertToServerEncodedData(hexData: String(x))
-            encodedY = KeyUtils.convertToServerEncodedData(hexData: String(y))
-            
+           // encodedX = KeyUtils.convertToServerEncodedData(hexData: String(x))
+           // encodedY = KeyUtils.convertToServerEncodedData(hexData: String(y))
+            (encodedX, encodedY) = getXAndYFromVData(vData: xAndY as Data)
             jwk["x"] = encodedX
             jwk["y"] = encodedY
-            jwk["z"] = KeyUtils.convertKeyToDerBase64(key: key)
+           // jwk["z"] = KeyUtils.convertKeyToDerBase64(key: key)
+            
+            
         }
-        
         return jwk
-    }    
+    }
+    
+    class func getXAndYFromVData(vData: Data) -> (String, String) {
+        print(vData as NSData)
+        print(vData[0])
+        let l = ((vData.count) - 1) / 2
+        print(l)
+        let x = vData.subdata(in: Range(1..<l+1))
+        print(x.base64EncodedString(options:[.lineLength76Characters, .endLineWithCarriageReturn, .endLineWithLineFeed]))
+        print(x.count)
+        
+        let y = vData.subdata(in: Range(l+1..<vData.count))
+        print(y.base64EncodedString(options:[.lineLength76Characters, .endLineWithCarriageReturn, .endLineWithLineFeed]))
+        print(y.count)
+        
+         return (x.base64EncodedString(options:[.lineLength76Characters, .endLineWithCarriageReturn, .endLineWithLineFeed]), y.base64EncodedString(options:[.lineLength76Characters, .endLineWithCarriageReturn, .endLineWithLineFeed]))
+    }
+    
+    class func getXAndYFromPubKey(key: SecKey) -> (String, String){
+        var error: Unmanaged<CFError>?
+        let publicKeyDataAPI = SecKeyCopyExternalRepresentation(key, &error)! as Data
+        
+        let l = ((publicKeyDataAPI.count) - 1) / 2
+        let x = publicKeyDataAPI.subdata(in: Range(0..<l))
+        print(x.base64EncodedString())
+       
+        
+        let y = publicKeyDataAPI.subdata(in: Range(l..<publicKeyDataAPI.count))
+         print(y.base64EncodedString())
+        print(publicKeyDataAPI[0])
+        let exportImportManager = CryptoExportImportManager.init()
+        let exportableDERKey = exportImportManager.exportPublicKeyToDER((publicKeyDataAPI as NSData) as Data, keyType: kSecAttrKeyTypeEC as String, keySize: 256)
+        
+        let length = ((exportableDERKey?.count)! - 1) / 2
+        let xInBytes = exportableDERKey?.subdata(in: Range(1..<length + 1))
+        let YInBytes = exportableDERKey?.subdata(in: Range(length + 1..<(exportableDERKey?.count)!))
+        print(xInBytes?.base64EncodedString())
+        print(YInBytes?.base64EncodedString())
+        return (x.base64EncodedString(), y.base64EncodedString())
+    }
     
     /**
      * Converts hexaDecimal data to base64encoded string

@@ -50,7 +50,7 @@ extension Config {
             
             /* /institution
              GET */
-            static let getInstitutions = WebAPI.baseURL + "/institution"
+            static let getInstitutions = WebAPI.baseURL + "/organization"
             
             /* /test/securityTest*/
             static let sendMessageToFBC = WebAPI.baseURL + "/test/securityTest"

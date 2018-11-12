@@ -216,6 +216,9 @@ class KeyUtils {
      *  5. form jwo with base64header.base64message.signature
      **/
     class func signMessage(message: String, privateKey: SecKey, publicKey: SecKey) -> (String, [Any?]) {
+        let name = "{\"name\":\"tom\"}"
+        var d : [String: String] = [:]
+        d["name"] = "tom"
         var responseList = [Any?]()
         
         
@@ -229,7 +232,7 @@ class KeyUtils {
          print("base64urlEncoded header")
         print(base64Header)
         
-        let messageInData = message.data(using: String.Encoding.utf8) // utf8 converted message
+        let messageInData = KeyUtils.convertDictToJson(dictData: d)//.data(using: String.Encoding.utf8) // utf8 converted message
         let base64Payload = messageInData?.base64urlEncodedString()
         var messagePayload = [String:Any]()
         messagePayload["api"] = "Base64Url converted message";
@@ -267,7 +270,7 @@ class KeyUtils {
     }
     
     class func createJWsHeader() -> String {
-        let header = "{\"alg\":\"ES256\"}"
+        let header = "{\"typ\":\"JWT\",\"alg\":\"ES256\"}"
         print((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())
         return ((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())!
     }

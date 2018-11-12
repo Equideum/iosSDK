@@ -179,14 +179,15 @@ class APIListViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     let z = KeyUtils.convertKeyToDerBase64(key: clientKey!)
                     let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\", \"z\":\"" + z + "\"}"
+                    let tempString = "{\"keys\":[{\"key_type\":{\"requirement\":\"RECOMMENDED\",\"value\":\"EC\"},\"crv\":\"P-256\",\"kid\":\"ID1\",\"x\":\"" + clientJwk["x"]! + "\",\"required_params\":{\"kty\":\"EC\",\"crv\":\"P-256\",\"x\":\"" + clientJwk["x"]! + "\",\"y\":\"" + clientJwk["y"]! + "\"},\"y\":\"" + clientJwk["y"]! + "\",\"key_Type\":{\"requirement\":\"RECOMMENDED\",\"value\":\"EC\"}}],\"z\":\"" + z + "\"}";
                     //let jwkString = "{\"kty\":\"EC\", \"crv\":\"P-256\", \"x\":\"" + clientJwk["x"]! + "\", \"y\":\"" + clientJwk["y"]! + "\"}"
-                    let jwkPayload = (jwkString.data(using: String.Encoding.utf8))?.base64EncodedString() as! String
+                    let jwkPayload = (tempString.data(using: String.Encoding.utf8))?.base64urlEncodedString()
                     //let jwkPayload = KeyUtils.dictToBase64String(dictData: clientJwk) as! String
                     print("jwo payload")
                     print(jwsPayload)
                     print("jwk payload")
                     print(jwkPayload)
-                    SpookApiHandler.sendSignedMessageToFBC(body: ["jwo" : jwsPayload, "jwk": jwkPayload]) { (fbcResponse) in
+                    SpookApiHandler.sendSignedMessageToFBC(body: ["jwo" : jwsPayload, "jwks": jwkPayload!]) { (fbcResponse) in
                         print("fbc response")
                         print(fbcResponse)
                         if fbcResponse["success"] == "true" {

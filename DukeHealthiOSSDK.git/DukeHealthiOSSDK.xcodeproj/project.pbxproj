@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BEC81A218C6EF300C6D0A9 /* HttpAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC819218C6EF200C6D0A9 /* HttpAdapter.swift */; };
+		04BEC81E218C722F00C6D0A9 /* HttpAdapterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC81D218C722E00C6D0A9 /* HttpAdapterImpl.swift */; };
 		397429B82148FA5D00075D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429B72148FA5D00075D34 /* AppDelegate.swift */; };
-		397429BD2148FA5D00075D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397429BB2148FA5D00075D34 /* Main.storyboard */; };
 		397429C02148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 397429BE2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld */; };
 		397429C22148FA5E00075D34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 397429C12148FA5E00075D34 /* Assets.xcassets */; };
 		397429C52148FA5E00075D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397429C32148FA5E00075D34 /* LaunchScreen.storyboard */; };
@@ -19,21 +20,97 @@
 		397429F8214919C900075D34 /* ApiItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F7214919C900075D34 /* ApiItemTableViewCell.swift */; };
 		397429FD21491CA500075D34 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429FC21491CA500075D34 /* Helpers.swift */; };
 		39742A282149321200075D34 /* ActionButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */; };
-		39D3D6CD214B5518009C8C39 /* WebServiceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */; };
 		39D3D6CF214B62E3009C8C39 /* DukeHealthApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */; };
 		39D3D6E1214B9FF5009C8C39 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */; };
 		39EEAE7B214F6284002E081B /* CryptoExportImportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */; };
 		39F872162154F34C009E2D67 /* DirectClientRegistrationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */; };
 		39F900FC214BDEAE00339E78 /* ShowLogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */; };
 		39F900FE214BE06A00339E78 /* LogItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */; };
-		39FBA0FB2158AF2300F03B3C /* HouseKeepingCallsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */; };
+		39FBA0FB2158AF2300F03B3C /* UtilApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FA2158AF2300F03B3C /* UtilApiHandler.swift */; };
 		39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */; };
 		39FBA0FF2159019400F03B3C /* SpookApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */; };
 		39FBA1012159202200F03B3C /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA1002159202200F03B3C /* Package.swift */; };
 		39FEFF8E215E0F9B00083410 /* Uitilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FEFF8D215E0F9B00083410 /* Uitilities.swift */; };
 		3EB3F8F6D86C1E5B1EABCF26 /* Pods_DukeHealthiOSSDKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */; };
 		68F31665FA3DA3F03DB07BDF /* Pods_DukeHealthiOSSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */; };
-		AAF0B471D4F2D9FBD25A75D0 /* Pods_DukeHealthiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */; };
+		8FEA9335B7AF3906FCE826F2 /* Pods_DukeHealthiOSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */; };
+		ED675F6921B3DDCD002BE501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED675F6821B3DDCD002BE501 /* Constants.swift */; };
+		ED675F6A21B3DDCD002BE501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED675F6821B3DDCD002BE501 /* Constants.swift */; };
+		ED675F6B21B3DDCD002BE501 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED675F6821B3DDCD002BE501 /* Constants.swift */; };
+		ED675F6D21B3F4EF002BE501 /* LogItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */; };
+		ED675F6E21B3F4EF002BE501 /* LogItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */; };
+		ED758ABC21A67AD20008003A /* ConsentApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABB21A67AD20008003A /* ConsentApiHandler.swift */; };
+		ED758ABD21A67AD20008003A /* ConsentApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABB21A67AD20008003A /* ConsentApiHandler.swift */; };
+		ED758ABE21A67AD20008003A /* ConsentApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABB21A67AD20008003A /* ConsentApiHandler.swift */; };
+		ED758AC021A6C2FD0008003A /* ProvenanccUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABF21A6C2FD0008003A /* ProvenanccUtils.swift */; };
+		ED758AC121A6C2FD0008003A /* ProvenanccUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABF21A6C2FD0008003A /* ProvenanccUtils.swift */; };
+		ED758AC221A6C2FD0008003A /* ProvenanccUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758ABF21A6C2FD0008003A /* ProvenanccUtils.swift */; };
+		ED758AC421A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC321A6DE2F0008003A /* ProvenanceApiHandler.swift */; };
+		ED758AC521A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC321A6DE2F0008003A /* ProvenanceApiHandler.swift */; };
+		ED758AC621A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC321A6DE2F0008003A /* ProvenanceApiHandler.swift */; };
+		ED758AC821A6EDA40008003A /* AuditUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC721A6EDA40008003A /* AuditUtils.swift */; };
+		ED758AC921A6EDA40008003A /* AuditUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC721A6EDA40008003A /* AuditUtils.swift */; };
+		ED758ACA21A6EDA40008003A /* AuditUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED758AC721A6EDA40008003A /* AuditUtils.swift */; };
+		ED8F3C0321AD1CAB0062BB07 /* AssertionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F3C0221AD1CAB0062BB07 /* AssertionUtils.swift */; };
+		ED8F3C0421AD1CAB0062BB07 /* AssertionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F3C0221AD1CAB0062BB07 /* AssertionUtils.swift */; };
+		ED8F3C0521AD1CAB0062BB07 /* AssertionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F3C0221AD1CAB0062BB07 /* AssertionUtils.swift */; };
+		ED908B6921940B8B00AE64D1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F221490CD500075D34 /* Config.swift */; };
+		ED908B6A21940B8C00AE64D1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F221490CD500075D34 /* Config.swift */; };
+		ED908B6B21940B9700AE64D1 /* ShowLogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */; };
+		ED908B6C21940B9800AE64D1 /* ShowLogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */; };
+		ED98E8C521ABC27B00977D1A /* DemoDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98E8C421ABC27B00977D1A /* DemoDataUtils.swift */; };
+		ED98E8C621ABC27B00977D1A /* DemoDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98E8C421ABC27B00977D1A /* DemoDataUtils.swift */; };
+		ED98E8C721ABC27B00977D1A /* DemoDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED98E8C421ABC27B00977D1A /* DemoDataUtils.swift */; };
+		ED9EB90D21B5017D00349A09 /* ViewBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9EB90C21B5017D00349A09 /* ViewBadgeViewController.swift */; };
+		ED9EB90E21B516E400349A09 /* ViewBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9EB90C21B5017D00349A09 /* ViewBadgeViewController.swift */; };
+		ED9EB90F21B516E500349A09 /* ViewBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9EB90C21B5017D00349A09 /* ViewBadgeViewController.swift */; };
+		EDA7525A21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525921A527CD00E9E3A1 /* ConformanceApiHandler.swift */; };
+		EDA7525B21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525921A527CD00E9E3A1 /* ConformanceApiHandler.swift */; };
+		EDA7525C21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525921A527CD00E9E3A1 /* ConformanceApiHandler.swift */; };
+		EDA7525E21A5370900E9E3A1 /* ConsentUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525D21A5370900E9E3A1 /* ConsentUtils.swift */; };
+		EDA7525F21A5370900E9E3A1 /* ConsentUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525D21A5370900E9E3A1 /* ConsentUtils.swift */; };
+		EDA7526021A5370900E9E3A1 /* ConsentUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA7525D21A5370900E9E3A1 /* ConsentUtils.swift */; };
+		EDAE92C221956BA400527B81 /* UtilApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FA2158AF2300F03B3C /* UtilApiHandler.swift */; };
+		EDAE92C321956BA500527B81 /* UtilApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FA2158AF2300F03B3C /* UtilApiHandler.swift */; };
+		EDAE92C52195749400527B81 /* ExecuteAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAE92C42195749400527B81 /* ExecuteAuthViewController.swift */; };
+		EDAE92C62195749400527B81 /* ExecuteAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAE92C42195749400527B81 /* ExecuteAuthViewController.swift */; };
+		EDAE92C72195749400527B81 /* ExecuteAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAE92C42195749400527B81 /* ExecuteAuthViewController.swift */; };
+		EDCB4C39218E0E6B006127DB /* FooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C38218E0E6B006127DB /* FooterViewCell.swift */; };
+		EDCB4C3A218E0E6B006127DB /* FooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C38218E0E6B006127DB /* FooterViewCell.swift */; };
+		EDCB4C3B218E0E6B006127DB /* FooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C38218E0E6B006127DB /* FooterViewCell.swift */; };
+		EDCB4C3D218E0EDC006127DB /* VcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C3C218E0EDC006127DB /* VcCell.swift */; };
+		EDCB4C3E218E0EDC006127DB /* VcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C3C218E0EDC006127DB /* VcCell.swift */; };
+		EDCB4C3F218E0EDC006127DB /* VcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C3C218E0EDC006127DB /* VcCell.swift */; };
+		EDCB4C41218E1548006127DB /* ShowLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C40218E1548006127DB /* ShowLogListViewController.swift */; };
+		EDCB4C42218E1548006127DB /* ShowLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C40218E1548006127DB /* ShowLogListViewController.swift */; };
+		EDCB4C43218E1548006127DB /* ShowLogListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCB4C40218E1548006127DB /* ShowLogListViewController.swift */; };
+		EDD98A5F219ACCCB00397A89 /* DropDownListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5D219ACCCA00397A89 /* DropDownListCell.swift */; };
+		EDD98A60219ACCCB00397A89 /* DropDownListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5D219ACCCA00397A89 /* DropDownListCell.swift */; };
+		EDD98A61219ACCCB00397A89 /* DropDownListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5D219ACCCA00397A89 /* DropDownListCell.swift */; };
+		EDD98A62219ACCCB00397A89 /* DropDownListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5E219ACCCB00397A89 /* DropDownListViewController.swift */; };
+		EDD98A63219ACCCB00397A89 /* DropDownListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5E219ACCCB00397A89 /* DropDownListViewController.swift */; };
+		EDD98A64219ACCCB00397A89 /* DropDownListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD98A5E219ACCCB00397A89 /* DropDownListViewController.swift */; };
+		EDEA0E2F2195C4ED00DC70B6 /* APIListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F521490E9D00075D34 /* APIListViewController.swift */; };
+		EDEA0E302195C4EE00DC70B6 /* APIListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F521490E9D00075D34 /* APIListViewController.swift */; };
+		EDEA0E312195C50400DC70B6 /* ApiItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F7214919C900075D34 /* ApiItemTableViewCell.swift */; };
+		EDEA0E322195C50400DC70B6 /* ApiItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397429F7214919C900075D34 /* ApiItemTableViewCell.swift */; };
+		EDEA0E332195C54600DC70B6 /* KeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */; };
+		EDEA0E342195C54700DC70B6 /* KeyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */; };
+		EDEA0E352195C55500DC70B6 /* DirectClientRegistrationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */; };
+		EDEA0E362195C55600DC70B6 /* DirectClientRegistrationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */; };
+		EDEA0E372195C56A00DC70B6 /* SpookApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */; };
+		EDEA0E382195C56B00DC70B6 /* SpookApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */; };
+		EDEA0E392195C57500DC70B6 /* ActionButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */; };
+		EDEA0E3A2195C57600DC70B6 /* ActionButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */; };
+		EDEA0E3B2195C85100DC70B6 /* DukeHealthApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */; };
+		EDEA0E3C2195C85200DC70B6 /* DukeHealthApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */; };
+		EDEA0E3D2195C86000DC70B6 /* HttpAdapterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC81D218C722E00C6D0A9 /* HttpAdapterImpl.swift */; };
+		EDEA0E3E2195C86100DC70B6 /* HttpAdapterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC81D218C722E00C6D0A9 /* HttpAdapterImpl.swift */; };
+		EDEA0E3F2195C86800DC70B6 /* HttpAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC819218C6EF200C6D0A9 /* HttpAdapter.swift */; };
+		EDEA0E402195C86900DC70B6 /* HttpAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BEC819218C6EF200C6D0A9 /* HttpAdapter.swift */; };
+		EDEA0E4B2195DDFE00DC70B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDEA0E492195DDFE00DC70B6 /* Main.storyboard */; };
+		EDEA0E4C2195DDFE00DC70B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDEA0E492195DDFE00DC70B6 /* Main.storyboard */; };
+		EDEA0E4D2195DDFE00DC70B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDEA0E492195DDFE00DC70B6 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +131,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046405E3218AE4430042EA7F /* DukeHealthiOSSDK.git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DukeHealthiOSSDK.git; sourceTree = "<group>"; };
+		046405E5218AE4610042EA7F /* UICKeyChainStore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = UICKeyChainStore; path = Pods/UICKeyChainStore; sourceTree = "<group>"; };
+		04BEC819218C6EF200C6D0A9 /* HttpAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAdapter.swift; sourceTree = "<group>"; };
+		04BEC81D218C722E00C6D0A9 /* HttpAdapterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAdapterImpl.swift; sourceTree = "<group>"; };
 		07535FCA69E691C10A0C762D /* Pods-DukeHealthiOSSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK.debug.xcconfig"; sourceTree = "<group>"; };
 		0993371356B3C8129270586F /* Pods_DukeHealthiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B375DF7610FD0A0E7F5B60 /* Pods-DukeHealthiOSSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,7 +143,6 @@
 		3939A6D6215122AB00AB7B19 /* libchilkatIos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchilkatIos.a; path = "../../../../../Downloads/chilkat-9.5.0-ios9/lib/libchilkatIos.a"; sourceTree = "<group>"; };
 		397429B42148FA5D00075D34 /* DukeHealthiOSSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeHealthiOSSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397429B72148FA5D00075D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		397429BC2148FA5D00075D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		397429BF2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DukeHealthiOSSDK.xcdatamodel; sourceTree = "<group>"; };
 		397429C12148FA5E00075D34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		397429C42148FA5E00075D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,14 +158,13 @@
 		397429F7214919C900075D34 /* ApiItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiItemTableViewCell.swift; sourceTree = "<group>"; };
 		397429FC21491CA500075D34 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonCollectionViewCell.swift; sourceTree = "<group>"; };
-		39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHandler.swift; sourceTree = "<group>"; };
 		39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeHealthApiHandler.swift; sourceTree = "<group>"; };
 		39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoExportImportManager.swift; sourceTree = "<group>"; };
 		39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectClientRegistrationHandler.swift; sourceTree = "<group>"; };
 		39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogCollectionViewController.swift; sourceTree = "<group>"; };
-		39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogItemCollectionViewCell.swift; path = Code/LogItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseKeepingCallsHandler.swift; sourceTree = "<group>"; };
+		39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		39FBA0FA2158AF2300F03B3C /* UtilApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilApiHandler.swift; sourceTree = "<group>"; };
 		39FBA0FC2158BF2500F03B3C /* KeyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyUtils.swift; sourceTree = "<group>"; };
 		39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpookApiHandler.swift; sourceTree = "<group>"; };
 		39FBA1002159202200F03B3C /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -96,6 +175,24 @@
 		8E3C84CBCAA344D3EE90F4C0 /* Pods-DukeHealthiOSSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DukeHealthiOSSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK.release.xcconfig"; sourceTree = "<group>"; };
 		B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83E56E699DF7AB03022E0A4 /* Pods_DukeHealthiOSSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DukeHealthiOSSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED675F6821B3DDCD002BE501 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ED758ABB21A67AD20008003A /* ConsentApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentApiHandler.swift; sourceTree = "<group>"; };
+		ED758ABF21A6C2FD0008003A /* ProvenanccUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanccUtils.swift; sourceTree = "<group>"; };
+		ED758AC321A6DE2F0008003A /* ProvenanceApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvenanceApiHandler.swift; sourceTree = "<group>"; };
+		ED758AC721A6EDA40008003A /* AuditUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditUtils.swift; sourceTree = "<group>"; };
+		ED8F3C0221AD1CAB0062BB07 /* AssertionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssertionUtils.swift; sourceTree = "<group>"; };
+		ED98E8C421ABC27B00977D1A /* DemoDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoDataUtils.swift; sourceTree = "<group>"; };
+		ED9EB90C21B5017D00349A09 /* ViewBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBadgeViewController.swift; sourceTree = "<group>"; };
+		EDA7525921A527CD00E9E3A1 /* ConformanceApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConformanceApiHandler.swift; sourceTree = "<group>"; };
+		EDA7525D21A5370900E9E3A1 /* ConsentUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentUtils.swift; sourceTree = "<group>"; };
+		EDAE92C42195749400527B81 /* ExecuteAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteAuthViewController.swift; sourceTree = "<group>"; };
+		EDB2509D219ACA2E00DB27C7 /* DukeHealthiOSSDK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DukeHealthiOSSDK.entitlements; sourceTree = "<group>"; };
+		EDCB4C38218E0E6B006127DB /* FooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterViewCell.swift; sourceTree = "<group>"; };
+		EDCB4C3C218E0EDC006127DB /* VcCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VcCell.swift; sourceTree = "<group>"; };
+		EDCB4C40218E1548006127DB /* ShowLogListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLogListViewController.swift; sourceTree = "<group>"; };
+		EDD98A5D219ACCCA00397A89 /* DropDownListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownListCell.swift; sourceTree = "<group>"; };
+		EDD98A5E219ACCCB00397A89 /* DropDownListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownListViewController.swift; sourceTree = "<group>"; };
+		EDEA0E4A2195DDFE00DC70B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF0B471D4F2D9FBD25A75D0 /* Pods_DukeHealthiOSSDK.framework in Frameworks */,
+				8FEA9335B7AF3906FCE826F2 /* Pods_DukeHealthiOSSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +236,55 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		04BEC815218C6C3000C6D0A9 /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				397429F921491C5E00075D34 /* Utilities */,
+				04BEC817218C6C6F00C6D0A9 /* Http */,
+				04BEC816218C6C6200C6D0A9 /* Handler */,
+			);
+			path = Rest;
+			sourceTree = "<group>";
+		};
+		04BEC816218C6C6200C6D0A9 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */,
+				39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */,
+				39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */,
+				39FBA0FA2158AF2300F03B3C /* UtilApiHandler.swift */,
+				EDA7525921A527CD00E9E3A1 /* ConformanceApiHandler.swift */,
+				ED758ABB21A67AD20008003A /* ConsentApiHandler.swift */,
+				ED758AC321A6DE2F0008003A /* ProvenanceApiHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		04BEC817218C6C6F00C6D0A9 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				04BEC818218C6DC700C6D0A9 /* Adapter */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		04BEC818218C6DC700C6D0A9 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				04BEC81C218C720900C6D0A9 /* Impl */,
+				04BEC819218C6EF200C6D0A9 /* HttpAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		04BEC81C218C720900C6D0A9 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				04BEC81D218C722E00C6D0A9 /* HttpAdapterImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
 		397429AB2148FA5D00075D34 = {
 			isa = PBXGroup;
 			children = (
@@ -164,10 +310,10 @@
 		397429B62148FA5D00075D34 /* DukeHealthiOSSDK */ = {
 			isa = PBXGroup;
 			children = (
+				EDB2509D219ACA2E00DB27C7 /* DukeHealthiOSSDK.entitlements */,
 				397429E821490CAE00075D34 /* Code */,
-				397429BB2148FA5D00075D34 /* Main.storyboard */,
-				39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */,
 				397429C12148FA5E00075D34 /* Assets.xcassets */,
+				EDEA0E492195DDFE00DC70B6 /* Main.storyboard */,
 				397429C32148FA5E00075D34 /* LaunchScreen.storyboard */,
 				397429C62148FA5E00075D34 /* Info.plist */,
 				397429BE2148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld */,
@@ -197,14 +343,11 @@
 		397429E821490CAE00075D34 /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				39F872022154B820009E2D67 /* apis */,
+				ED675F6C21B3F4C0002BE501 /* UI */,
+				04BEC815218C6C3000C6D0A9 /* Rest */,
 				397429EE21490CAE00075D34 /* AppDelegate */,
 				397429E921490CAE00075D34 /* Config */,
-				397429EA21490CAE00075D34 /* ServiceHandler */,
-				397429F921491C5E00075D34 /* Utilities */,
 				397429F421490E5900075D34 /* ViewControllers */,
-				397429F7214919C900075D34 /* ApiItemTableViewCell.swift */,
-				39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -212,21 +355,10 @@
 		397429E921490CAE00075D34 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				ED675F6821B3DDCD002BE501 /* Constants.swift */,
 				397429F221490CD500075D34 /* Config.swift */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		397429EA21490CAE00075D34 /* ServiceHandler */ = {
-			isa = PBXGroup;
-			children = (
-				39F872152154F34C009E2D67 /* DirectClientRegistrationHandler.swift */,
-				39D3D6CB214B5517009C8C39 /* WebServiceHandler.swift */,
-				39D3D6CE214B62E3009C8C39 /* DukeHealthApiHandler.swift */,
-				39FBA0FA2158AF2300F03B3C /* HouseKeepingCallsHandler.swift */,
-				39FBA0FE2159019400F03B3C /* SpookApiHandler.swift */,
-			);
-			path = ServiceHandler;
 			sourceTree = "<group>";
 		};
 		397429EE21490CAE00075D34 /* AppDelegate */ = {
@@ -240,9 +372,13 @@
 		397429F421490E5900075D34 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EDD98A5E219ACCCB00397A89 /* DropDownListViewController.swift */,
 				397429F521490E9D00075D34 /* APIListViewController.swift */,
 				39D3D6E0214B9FF5009C8C39 /* LaunchViewController.swift */,
 				39F900FB214BDEAE00339E78 /* ShowLogCollectionViewController.swift */,
+				EDCB4C40218E1548006127DB /* ShowLogListViewController.swift */,
+				EDAE92C42195749400527B81 /* ExecuteAuthViewController.swift */,
+				ED9EB90C21B5017D00349A09 /* ViewBadgeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -254,20 +390,20 @@
 				397429FC21491CA500075D34 /* Helpers.swift */,
 				39EEAE7A214F6284002E081B /* CryptoExportImportManager.swift */,
 				39FEFF8D215E0F9B00083410 /* Uitilities.swift */,
+				EDA7525D21A5370900E9E3A1 /* ConsentUtils.swift */,
+				ED758ABF21A6C2FD0008003A /* ProvenanccUtils.swift */,
+				ED758AC721A6EDA40008003A /* AuditUtils.swift */,
+				ED98E8C421ABC27B00977D1A /* DemoDataUtils.swift */,
+				ED8F3C0221AD1CAB0062BB07 /* AssertionUtils.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		39F872022154B820009E2D67 /* apis */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = apis;
 			sourceTree = "<group>";
 		};
 		9396750079A1FE6B0357F3BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				046405E5218AE4610042EA7F /* UICKeyChainStore */,
+				046405E3218AE4430042EA7F /* DukeHealthiOSSDK.git */,
 				3939A6D6215122AB00AB7B19 /* libchilkatIos.a */,
 				390B293C2151314000AFAE73 /* libchilkatIos.a */,
 				390B293F2151340400AFAE73 /* libchilkatIos.a */,
@@ -276,6 +412,27 @@
 				B4432AC67906A0C4F4F79AEE /* Pods_DukeHealthiOSSDKUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED675F6C21B3F4C0002BE501 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED675F6F21B3F4F2002BE501 /* Cells */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		ED675F6F21B3F4F2002BE501 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EDCB4C38218E0E6B006127DB /* FooterViewCell.swift */,
+				EDCB4C3C218E0EDC006127DB /* VcCell.swift */,
+				397429F7214919C900075D34 /* ApiItemTableViewCell.swift */,
+				39742A272149321200075D34 /* ActionButtonCollectionViewCell.swift */,
+				39F900FD214BE06A00339E78 /* LogItemCollectionViewCell.swift */,
+				EDD98A5D219ACCCA00397A89 /* DropDownListCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +447,6 @@
 				397429B12148FA5D00075D34 /* Frameworks */,
 				397429B22148FA5D00075D34 /* Resources */,
 				8BA42452A526BC3438F2812D /* [CP] Embed Pods Frameworks */,
-				388D9E67CDEFC01103CDF34C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,8 +465,6 @@
 				397429C72148FA5E00075D34 /* Sources */,
 				397429C82148FA5E00075D34 /* Frameworks */,
 				397429C92148FA5E00075D34 /* Resources */,
-				6224C79E8E6D53BC8BFB5B63 /* [CP] Embed Pods Frameworks */,
-				11220B2E4293505C529444D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -330,8 +484,6 @@
 				397429D22148FA5E00075D34 /* Sources */,
 				397429D32148FA5E00075D34 /* Frameworks */,
 				397429D42148FA5E00075D34 /* Resources */,
-				178F00AF947A071798BF6947 /* [CP] Embed Pods Frameworks */,
-				39AD987D16A46677147AE03E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -349,14 +501,23 @@
 		397429AC2148FA5D00075D34 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = " Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.\nCopyright 2018 BBM Health, LLC - All rights reserved.\nFHIR is registered trademark of HL7 Intl";
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = Swathi;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					397429B32148FA5D00075D34 = {
 						CreatedOnToolsVersion = 9.3.1;
-						DevelopmentTeam = ZH23RD7X9Y;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 3MM2KPGP7B;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 0;
+							};
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					397429CA2148FA5E00075D34 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -397,9 +558,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEA0E4B2195DDFE00DC70B6 /* Main.storyboard in Resources */,
 				397429C52148FA5E00075D34 /* LaunchScreen.storyboard in Resources */,
 				397429C22148FA5E00075D34 /* Assets.xcassets in Resources */,
-				397429BD2148FA5D00075D34 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEA0E4C2195DDFE00DC70B6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,87 +576,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDEA0E4D2195DDFE00DC70B6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11220B2E4293505C529444D2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		178F00AF947A071798BF6947 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		388D9E67CDEFC01103CDF34C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39AD987D16A46677147AE03E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKUITests/Pods-DukeHealthiOSSDKUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6224C79E8E6D53BC8BFB5B63 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDKTests/Pods-DukeHealthiOSSDKTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6CBFED73240F52CDCC0C95C8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -522,6 +610,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-DukeHealthiOSSDK/Pods-DukeHealthiOSSDK-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
 				"${BUILT_PRODUCTS_DIR}/ZAlertView/ZAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/base64url/base64url.framework",
@@ -530,6 +619,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/base64url.framework",
@@ -582,23 +672,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCB4C39218E0E6B006127DB /* FooterViewCell.swift in Sources */,
+				ED758AC421A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */,
+				ED98E8C521ABC27B00977D1A /* DemoDataUtils.swift in Sources */,
 				39742A282149321200075D34 /* ActionButtonCollectionViewCell.swift in Sources */,
+				EDD98A5F219ACCCB00397A89 /* DropDownListCell.swift in Sources */,
+				EDD98A62219ACCCB00397A89 /* DropDownListViewController.swift in Sources */,
 				39F900FE214BE06A00339E78 /* LogItemCollectionViewCell.swift in Sources */,
+				ED758ABC21A67AD20008003A /* ConsentApiHandler.swift in Sources */,
 				39FEFF8E215E0F9B00083410 /* Uitilities.swift in Sources */,
-				39FBA0FB2158AF2300F03B3C /* HouseKeepingCallsHandler.swift in Sources */,
+				39FBA0FB2158AF2300F03B3C /* UtilApiHandler.swift in Sources */,
+				ED8F3C0321AD1CAB0062BB07 /* AssertionUtils.swift in Sources */,
 				39FBA0FD2158BF2500F03B3C /* KeyUtils.swift in Sources */,
+				EDA7525E21A5370900E9E3A1 /* ConsentUtils.swift in Sources */,
+				ED758AC021A6C2FD0008003A /* ProvenanccUtils.swift in Sources */,
+				EDAE92C52195749400527B81 /* ExecuteAuthViewController.swift in Sources */,
 				39F900FC214BDEAE00339E78 /* ShowLogCollectionViewController.swift in Sources */,
 				397429B82148FA5D00075D34 /* AppDelegate.swift in Sources */,
+				EDCB4C41218E1548006127DB /* ShowLogListViewController.swift in Sources */,
 				39FBA0FF2159019400F03B3C /* SpookApiHandler.swift in Sources */,
 				397429F621490E9D00075D34 /* APIListViewController.swift in Sources */,
 				39F872162154F34C009E2D67 /* DirectClientRegistrationHandler.swift in Sources */,
+				ED758AC821A6EDA40008003A /* AuditUtils.swift in Sources */,
 				39EEAE7B214F6284002E081B /* CryptoExportImportManager.swift in Sources */,
+				EDA7525A21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */,
+				EDCB4C3D218E0EDC006127DB /* VcCell.swift in Sources */,
+				ED675F6921B3DDCD002BE501 /* Constants.swift in Sources */,
 				397429FD21491CA500075D34 /* Helpers.swift in Sources */,
 				39D3D6CF214B62E3009C8C39 /* DukeHealthApiHandler.swift in Sources */,
 				39FBA1012159202200F03B3C /* Package.swift in Sources */,
+				ED9EB90D21B5017D00349A09 /* ViewBadgeViewController.swift in Sources */,
 				397429F321490CD500075D34 /* Config.swift in Sources */,
-				39D3D6CD214B5518009C8C39 /* WebServiceHandler.swift in Sources */,
 				39D3D6E1214B9FF5009C8C39 /* LaunchViewController.swift in Sources */,
+				04BEC81E218C722F00C6D0A9 /* HttpAdapterImpl.swift in Sources */,
+				04BEC81A218C6EF300C6D0A9 /* HttpAdapter.swift in Sources */,
 				397429C02148FA5D00075D34 /* DukeHealthiOSSDK.xcdatamodeld in Sources */,
 				397429F8214919C900075D34 /* ApiItemTableViewCell.swift in Sources */,
 			);
@@ -608,7 +715,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCB4C42218E1548006127DB /* ShowLogListViewController.swift in Sources */,
+				EDCB4C3A218E0E6B006127DB /* FooterViewCell.swift in Sources */,
+				EDEA0E312195C50400DC70B6 /* ApiItemTableViewCell.swift in Sources */,
+				EDAE92C221956BA400527B81 /* UtilApiHandler.swift in Sources */,
+				EDEA0E2F2195C4ED00DC70B6 /* APIListViewController.swift in Sources */,
+				EDA7525B21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */,
+				EDEA0E392195C57500DC70B6 /* ActionButtonCollectionViewCell.swift in Sources */,
+				ED908B6B21940B9700AE64D1 /* ShowLogCollectionViewController.swift in Sources */,
+				ED908B6921940B8B00AE64D1 /* Config.swift in Sources */,
+				EDCB4C3E218E0EDC006127DB /* VcCell.swift in Sources */,
+				EDAE92C62195749400527B81 /* ExecuteAuthViewController.swift in Sources */,
+				ED9EB90E21B516E400349A09 /* ViewBadgeViewController.swift in Sources */,
+				ED675F6A21B3DDCD002BE501 /* Constants.swift in Sources */,
+				EDEA0E352195C55500DC70B6 /* DirectClientRegistrationHandler.swift in Sources */,
+				EDEA0E3B2195C85100DC70B6 /* DukeHealthApiHandler.swift in Sources */,
+				EDEA0E3F2195C86800DC70B6 /* HttpAdapter.swift in Sources */,
+				ED758AC521A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */,
+				ED758AC121A6C2FD0008003A /* ProvenanccUtils.swift in Sources */,
+				ED98E8C621ABC27B00977D1A /* DemoDataUtils.swift in Sources */,
+				ED758AC921A6EDA40008003A /* AuditUtils.swift in Sources */,
+				EDD98A63219ACCCB00397A89 /* DropDownListViewController.swift in Sources */,
+				EDA7525F21A5370900E9E3A1 /* ConsentUtils.swift in Sources */,
 				397429D02148FA5E00075D34 /* DukeHealthiOSSDKTests.swift in Sources */,
+				ED8F3C0421AD1CAB0062BB07 /* AssertionUtils.swift in Sources */,
+				EDEA0E372195C56A00DC70B6 /* SpookApiHandler.swift in Sources */,
+				EDEA0E332195C54600DC70B6 /* KeyUtils.swift in Sources */,
+				EDD98A60219ACCCB00397A89 /* DropDownListCell.swift in Sources */,
+				ED758ABD21A67AD20008003A /* ConsentApiHandler.swift in Sources */,
+				ED675F6D21B3F4EF002BE501 /* LogItemCollectionViewCell.swift in Sources */,
+				EDEA0E3D2195C86000DC70B6 /* HttpAdapterImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,7 +752,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCB4C43218E1548006127DB /* ShowLogListViewController.swift in Sources */,
+				EDCB4C3B218E0E6B006127DB /* FooterViewCell.swift in Sources */,
+				EDEA0E322195C50400DC70B6 /* ApiItemTableViewCell.swift in Sources */,
+				EDAE92C321956BA500527B81 /* UtilApiHandler.swift in Sources */,
+				EDEA0E302195C4EE00DC70B6 /* APIListViewController.swift in Sources */,
+				EDA7525C21A527CD00E9E3A1 /* ConformanceApiHandler.swift in Sources */,
+				EDEA0E3A2195C57600DC70B6 /* ActionButtonCollectionViewCell.swift in Sources */,
+				ED908B6C21940B9800AE64D1 /* ShowLogCollectionViewController.swift in Sources */,
+				ED908B6A21940B8C00AE64D1 /* Config.swift in Sources */,
+				EDCB4C3F218E0EDC006127DB /* VcCell.swift in Sources */,
+				EDAE92C72195749400527B81 /* ExecuteAuthViewController.swift in Sources */,
+				ED9EB90F21B516E500349A09 /* ViewBadgeViewController.swift in Sources */,
+				ED675F6B21B3DDCD002BE501 /* Constants.swift in Sources */,
+				EDEA0E362195C55600DC70B6 /* DirectClientRegistrationHandler.swift in Sources */,
+				EDEA0E3C2195C85200DC70B6 /* DukeHealthApiHandler.swift in Sources */,
+				EDEA0E402195C86900DC70B6 /* HttpAdapter.swift in Sources */,
+				ED758AC621A6DE2F0008003A /* ProvenanceApiHandler.swift in Sources */,
+				ED758AC221A6C2FD0008003A /* ProvenanccUtils.swift in Sources */,
+				ED98E8C721ABC27B00977D1A /* DemoDataUtils.swift in Sources */,
+				ED758ACA21A6EDA40008003A /* AuditUtils.swift in Sources */,
+				EDD98A64219ACCCB00397A89 /* DropDownListViewController.swift in Sources */,
+				EDA7526021A5370900E9E3A1 /* ConsentUtils.swift in Sources */,
 				397429DB2148FA5E00075D34 /* DukeHealthiOSSDKUITests.swift in Sources */,
+				ED8F3C0521AD1CAB0062BB07 /* AssertionUtils.swift in Sources */,
+				EDEA0E382195C56B00DC70B6 /* SpookApiHandler.swift in Sources */,
+				EDEA0E342195C54700DC70B6 /* KeyUtils.swift in Sources */,
+				EDD98A61219ACCCB00397A89 /* DropDownListCell.swift in Sources */,
+				ED758ABE21A67AD20008003A /* ConsentApiHandler.swift in Sources */,
+				ED675F6E21B3F4EF002BE501 /* LogItemCollectionViewCell.swift in Sources */,
+				EDEA0E3E2195C86100DC70B6 /* HttpAdapterImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,20 +801,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		397429BB2148FA5D00075D34 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				397429BC2148FA5D00075D34 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		397429C32148FA5E00075D34 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				397429C42148FA5E00075D34 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EDEA0E492195DDFE00DC70B6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDEA0E4A2195DDFE00DC70B6 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -775,8 +940,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ZH23RD7X9Y;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3MM2KPGP7B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
@@ -797,10 +962,11 @@
 					"-framework",
 					"\"UICKeyChainStore\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xts.lions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aa53e447-3b54-443e-aa96-b72cf80d24e6";
-				PROVISIONING_PROFILE_SPECIFIER = riktamDevelopmentProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
@@ -813,9 +979,10 @@
 			baseConfigurationReference = 8E3C84CBCAA344D3EE90F4C0 /* Pods-DukeHealthiOSSDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = MFNQCB8TJX;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3MM2KPGP7B;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/OpenSSL/include";
 				INFOPLIST_FILE = DukeHealthiOSSDK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -830,10 +997,11 @@
 					"-framework",
 					"\"UICKeyChainStore\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.riktam.DukeHealthiOSSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xts.lions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cfa229ac-a2b2-4590-9c8b-da453cef28c5";
-				PROVISIONING_PROFILE_SPECIFIER = RiktamEnterpriseDistributionProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "";

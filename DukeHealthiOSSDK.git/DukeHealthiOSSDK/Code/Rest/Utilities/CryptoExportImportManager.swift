@@ -1,11 +1,11 @@
 //
 //  CryptoExportImportManager
-//  CryptoExportImportManager
+//  DukeHealthiOSSDK
 //
-//  Created by Ignacio Nieto Carvajal on 6/10/15.
-//  Copyright © 2015 Ignacio Nieto Carvajal. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
-
 import UIKit
 
 /* 

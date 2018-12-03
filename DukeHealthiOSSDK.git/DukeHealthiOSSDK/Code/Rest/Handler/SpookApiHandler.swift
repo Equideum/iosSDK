@@ -2,8 +2,9 @@
 //  SpookApiHandler.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 24/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import Foundation
@@ -14,11 +15,14 @@ class SpookApiHandler {
     class func sendSignedMessageToFBC(body:[String:String], completion:@escaping ([String: String]) -> Void) {
         print(body as Any)
         DukeHealthApiHandler.sendSignedMessageToFBC (parameters: body as [String : AnyObject]) { (response, error, data) in
-            var responseMap : [String: String] = ["api":"FBC Handshake api", "response":"{}", "success":"false", "url":""]
+            
+            var responseMap : [String: String] = ["Api":"FBC Handshake Api", "response":"{}", "success":"false", "url":""]
             guard error == nil else {
                 /* error handler */
                 responseMap["url"] = "\nUrl:\n" + (data!["url"] as! String)
-                 responseMap["response"] = "\nResponse:\n" + error.debugDescription ?? ""
+                print(error)
+                
+                responseMap["response"] = "\nResponse:\n" + error.debugDescription ?? ""
                 print("in else")
                 completion(responseMap)
                 return;

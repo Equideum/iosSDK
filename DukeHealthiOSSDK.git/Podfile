@@ -12,7 +12,7 @@ target 'DukeHealthiOSSDK' do
     pod 'UICKeyChainStore'
     pod 'ZAlertView'
     pod 'base64url', '~> 1.0'
-
+    pod 'Toast-Swift', '~> 4.0.0'
   target 'DukeHealthiOSSDKTests' do
     inherit! :search_paths
     # Pods for testing

@@ -2,8 +2,9 @@
 //  ShowLogCollectionViewController.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 14/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import UIKit
@@ -24,15 +25,9 @@ class ShowLogCollectionViewController: UICollectionViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(LogCell.self, forCellWithReuseIdentifier: "LogCell")
-        collectionView?.collectionViewLayout = layout       // self.collectionView?.collectionViewLayout = layout
-        
-        // Do any additional setup after loading the view.
+        collectionView?.collectionViewLayout = layout
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +52,6 @@ class ShowLogCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return (data?.count)!
@@ -72,12 +66,6 @@ class ShowLogCollectionViewController: UICollectionViewController {
         cell.urlTextLbl.text = (data?[indexPath.row]["url"] as? String)!
         cell.responseLbl.text = data?[indexPath.row]["response"] as? String
         cell.endApiLbl.text = " *** End of " + (data?[indexPath.row]["api"] as! String) + " ***\n"
-//        if(indexPath.row%2 == 0 ){
-//            cell.backgroundColor = UIColor.red
-//        }else{
-//            cell.backgroundColor = UIColor.green
-//
-//        }
         return cell
     }
 
@@ -159,13 +147,14 @@ class LogCell: UICollectionViewCell {
         
         contentView.addSubview(urlTextLbl)
         urlTextLbl.topAnchor.constraint(equalTo: apiNameLbl.bottomAnchor, constant: 5).isActive = true
-        urlTextLbl.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        urlTextLbl.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
         urlTextLbl.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        
+       
         
         contentView.addSubview(responseLbl)
         responseLbl.topAnchor.constraint(equalTo: urlTextLbl.bottomAnchor, constant: 5).isActive = true
-        responseLbl.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        responseLbl.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
+        responseLbl.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 15).isActive = true
         responseLbl.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         
         
@@ -200,7 +189,6 @@ class LogCell: UICollectionViewCell {
         return urlTextLbl
     }()
     
-    
     var responseLbl: UILabel = {
         let responseLbl = UILabel()
         responseLbl.backgroundColor = .clear
@@ -218,7 +206,6 @@ class LogCell: UICollectionViewCell {
 
         return endApiLbl
     }()
-    
     
     let customView: UIView = {
         let customView = UIView()

@@ -2,24 +2,26 @@
 //  AppDelegate.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 12/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import UIKit
 import CoreData
 
 @UIApplicationMain
+/// AppDelegate
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().tintColor = Config.AppColor.navigationBarColor
-
+         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .highlighted)
         return true
     }
 

@@ -2,8 +2,9 @@
 //  KeyUtils.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 24/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import Foundation
@@ -166,6 +167,20 @@ class KeyUtils {
         }
         return nil
     }
+    class func getJwt(header: String, message: [String: Any]) -> String {
+        let messageInData = convertDictToJson(dictData: message)
+        var messageString = String(data: messageInData!, encoding: .utf8) as! String
+        messageString = messageString.replacingOccurrences(of: "\\", with: "")
+        let data = messageString.data(using: .utf8)
+        let base64UrlPayload = (data?.base64urlEncodedString())!// + "=="
+        let base64UrlHeader = (header.data(using: String.Encoding.utf8))?.base64urlEncodedString()
+        let signatureInputString = base64UrlHeader! + "." + base64UrlPayload
+        
+        let signature = createSignature(privateKey: Config.privateKey!, value: signatureInputString)
+        let base64Signature = signature?.base64urlEncodedString()
+        
+        return (signatureInputString + "." + base64Signature!)
+    }
     
     /**
      * creates signature with given private key
@@ -216,15 +231,12 @@ class KeyUtils {
      *  5. form jwo with base64header.base64message.signature
      **/
     class func signMessage(message: String, privateKey: SecKey, publicKey: SecKey) -> (String, [Any?]) {
-        let name = "{\"name\":\"tom\"}"
-        var d : [String: String] = [:]
-        d["name"] = "tom"
         var responseList = [Any?]()
         
         
         let base64Header = KeyUtils.createJWsHeader()
         var base64HeaderPayload = [String:Any]()
-        base64HeaderPayload["api"] = "Base64Url converted header";
+        base64HeaderPayload["Api"] = "Base64Url converted header";
         base64HeaderPayload["response"] = base64Header
         base64HeaderPayload["success"] = "true"
         base64HeaderPayload["url"] = ""
@@ -232,10 +244,10 @@ class KeyUtils {
          print("base64urlEncoded header")
         print(base64Header)
         
-        let messageInData = KeyUtils.convertDictToJson(dictData: d)//.data(using: String.Encoding.utf8) // utf8 converted message
+        let messageInData = message.data(using: String.Encoding.utf8) // utf8 converted message
         let base64Payload = messageInData?.base64urlEncodedString()
         var messagePayload = [String:Any]()
-        messagePayload["api"] = "Base64Url converted message";
+        messagePayload["Api"] = "Base64Url converted message";
         messagePayload["response"] = base64Payload
         messagePayload["success"] = "true"
         messagePayload["url"] = ""
@@ -247,7 +259,7 @@ class KeyUtils {
         let signature = createSignature(privateKey: privateKey, value: base64Header + "." + base64Payload!)
          let base64Signature = signature?.base64urlEncodedString()
         var signaturePayload = [String:Any]()
-        signaturePayload["api"] = "Base64Url converted message";
+        signaturePayload["Api"] = "Base64Url converted message";
         signaturePayload["response"] = base64Signature
         signaturePayload["success"] = "true"
         signaturePayload["url"] = ""
@@ -260,7 +272,7 @@ class KeyUtils {
        
         
         var jwoPayload = [String:Any]()
-        jwoPayload["api"] = "JWS object ";
+        jwoPayload["Api"] = "JWS object ";
         jwoPayload["response"] = base64Header + "." + base64Payload! + "." + base64Signature!
         jwoPayload["success"] = "true"
         jwoPayload["url"] = ""
@@ -270,7 +282,7 @@ class KeyUtils {
     }
     
     class func createJWsHeader() -> String {
-        let header = "{\"typ\":\"JWT\",\"alg\":\"ES256\"}"
+        let header = "{\"alg\":\"ES256\"}"
         print((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())
         return ((header.data(using: String.Encoding.utf8))?.base64urlEncodedString())!
     }

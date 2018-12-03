@@ -2,65 +2,183 @@
 //  DukeHealthApiHandler.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 14/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import UIKit
 import UICKeyChainStore
+import Foundation
 
 class DukeHealthApiHandler {
     
-    class func ping(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
-        let url = Config.WebAPI.Util.pingPath
-        WebServiceHandler.init().request(method: .get, request: url, parameters: nil) { (info, error,data) in
+    /**
+     * Request ping api
+     **/
+    class func ping(Url:String,completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.pingPath
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: Url, parameters: nil) { (info, error,data) in
             completion(info, error,data)
         }
     }
-    
-    class func getTime(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
-        let url = Config.WebAPI.Util.getTimePath
-        WebServiceHandler.init().request(method: .get, request: url, parameters: nil) { (info, error, data) in
+    /**
+     * Request getTime api
+     **/
+    class func getTime(Url:String,completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.getTimePath
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: Url, parameters: nil) { (info, error, data) in
             completion(info, error,data)
         }
     }
-    
+    /**
+     * Request getNodes api
+     **/
     class func getNodes(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
         let url = Config.WebAPI.Util.getNodes
-        WebServiceHandler.init().request(method: .get, request: url, parameters: nil) { (info, error,data) in
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: url, parameters: nil) { (info, error,data) in
+            completion(info, error,data)
+        }
+    }
+    /**
+     * Request getInstitutions api
+     **/
+    class func getInstitutions(Url:String,completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: Url, parameters: nil) { (info, error,data) in
             completion(info, error,data)
         }
     }
     
-    class func getInstitutions(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
-        let url = Config.WebAPI.Util.getInstitutions
-        WebServiceHandler.init().request(method: .get, request: url, parameters: nil) { (info, error,data) in
-            completion(info, error,data)
+    /**
+     * Request getPatientResource api
+     **/
+    
+    
+    /**
+     * Request getEula api
+     **/
+    class func getEula(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void)
+    {
+        // let url = Config.WebAPI.Util.getEula
+        guard let url = URL(string: Config.WebAPI.Util.getEula)
+            else {return}
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {
+                    print(error?.localizedDescription ?? "Response Error")
+                    return
+                    
+            }
+            completion(data as AnyObject, response as! Error,error as! [String : Any?])
         }
     }
-    
+    /**
+     * Request sendSignedMessageToFBC api
+     **/
     class func sendSignedMessageToFBC(parameters:[String:AnyObject], completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
         let url = Config.WebAPI.Util.sendMessageToFBC
-        WebServiceHandler.init().request(method: .post, request: url, parameters: parameters) { (info, error,data) in
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .post, request: url, parameters: parameters) { (info, error,data) in
             completion(info, error,data)
         }
     }
-    
+    /**
+     * Request doRegister api
+     **/
     class func doRegister(parameters:[String:AnyObject] , completion:@escaping (AnyObject?, Error?, [String: Any?]?) -> Void) {
         let url = Config.WebAPI.Util.dcr
-        WebServiceHandler.init().request(method: .post, request: url, parameters: parameters) { (info, error,data) in
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .post, request: url, parameters: parameters) { (info, error,data) in
             completion(info, error,data)
         }
     }
-    
+    /**
+     * Request getGUID api
+     **/
     class func getGUID(completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
         let url = Config.WebAPI.Util.getGUIDPath
-        WebServiceHandler.init().request(method: .get, request: url, parameters: nil) { (info, error, data) in
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: url, parameters: nil) { (info, error, data) in
             completion(info, error, data)
         }
     }
     
+    /**
+     * Request getConformanceStatement api
+     **/
+    class func getConformanceStatement(parameters:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.sendMessageToFBC
+        let adapter = HttpAdapterImpl()
+        adapter.request(method: .get, request: parameters, parameters: nil) { (info, error,data) in
+            completion(info, error,data)
+        }
+    }
     
+    /**
+     * Request ConsentBody  api
+     **/
+    class func RequestBody(Authorization:String,parameters:[String:Any],Url:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestConsentBody(method:.post,Authorization:Authorization,request: Url, parameters: parameters as [String : AnyObject]) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
+    class func GetConsentBody(Authorization:String,Url:String,completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        let adapter = HttpAdapterImpl()
+        adapter.GetconsentBody(method:.get,Authorization:Authorization,request: Url, parameters:nil) { (info, error,data) in
+            completion(info, error,data)
+        }
+    }
+    class func RequestAuditBody(parameters:[String:Any],Url:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestFhirIdentifier(method: .post, request: Url, parameters: parameters as [String : AnyObject]) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
+    
+    class  func InsertDemoData(parameters:[String:Any],Url:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestDemoBody(method: .post, request: Url, parameters: parameters as [String : AnyObject]) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
+    
+    class  func FhirIdentifierAssertion(parameters:[String:Any],Url:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestFhirIdentifier(method:.get, request: Url, parameters: parameters as [String : AnyObject]) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
+    
+    class  func FinishAssertion(parameters:[String:Any],Url:String, completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestFhirIdentifier(method:.post, request: Url, parameters: parameters as [String : AnyObject]) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
+    
+    class  func PatientResource(Url:String,Authorization:String,completion:@escaping (AnyObject? , Error?, [String: Any?]?) -> Void) {
+        // let url = Config.WebAPI.Util.ConsentPostURL
+        let adapter = HttpAdapterImpl()
+        adapter.requestPatientResource(method:.get, Authorization:Authorization,request: Url, parameters:nil) { (info, error,data) in
+            completion(info, error,data)
+        }
+        
+    }
     
     /*
      
@@ -179,20 +297,13 @@ class DukeHealthApiHandler {
         mapData["crv"] = "P-256"
         mapData["x"] = "6D722A259364D4F7B86CD82FCF98A0CA32F74F4E98ED1285EDD6321212F00BE7"
         mapData["y"] = "CC59A3C00AC956998EDBA023901BE32CA3C399DD3E781CF205CF0F836AA82D62"
-        //To fetch private key  from keystore  -----    let privateKeyData = UICKeyChainStore.data(forKey: "PrivateKey")
-      //  let jwk = try! RSAPublicKey(publicKey: (publicKey)!)
-//
-//        let json = jwk.jsonString()! // {"kty":"RSA","n":"MHZ4L...uS2d3","e":"QVFBQg"}
-//        print("json")
-//        print(json)
         let exportImportManager = CryptoExportImportManager.init()
-//        let exportableDERKey = exportImportManager.exportPublicKeyToDER((publicKeyDataAPI as NSData) as Data, keyType: kSecAttrKeyTypeEC as String, keySize: 256)
         let e = exportImportManager.exportECPublicKeyToDER((publicKeyDataAPI as NSData) as Data, keyType: kSecAttrKeyTypeECSECPrimeRandom as String, keySize: 256)
         let derKeyString = e.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         print("derkeystring")
         print(e)
         return derKeyString
-        //        NSString * exportablePEMKey = [exportImportManager exportPublicKeyToPEM:exportableDERKey keyType:(NSString*)kSecAttrKeyTypeEC  keySize:256];
+       
         
     }
     
@@ -213,14 +324,14 @@ class DukeHealthApiHandler {
         ]
         
         var error: Unmanaged<CFError>?
-
-         let privKey = SecKeyCreateWithData( privateKeyData as CFData, keyDict as CFDictionary, &error) as SecKey?
+        
+        let privKey = SecKeyCreateWithData( privateKeyData as CFData, keyDict as CFDictionary, &error) as SecKey?
         
         var item: CFTypeRef?
         let status = SecItemCopyMatching(getquery as CFDictionary, &item)
         guard status == errSecSuccess else { print("error") ;return nil }
         let key = item as! SecKey
-         print("private key")
+        print("private key")
         print(privKey as Any)
         let signedMessage = createSignature(privateKey: privKey!, value: "sample message")
         return signedMessage?.base64EncodedString(options: base64EncodingOptions);
@@ -245,10 +356,7 @@ class DukeHealthApiHandler {
             {
                 return nil
             }
-           // print("signed data")
-           // print(signedData.base64EncodedString(options: base64EncodingOptions))
             return signedData
-            //return signedData.base64EncodedString(options: base64EncodingOptions)
         }
         else {
             return nil

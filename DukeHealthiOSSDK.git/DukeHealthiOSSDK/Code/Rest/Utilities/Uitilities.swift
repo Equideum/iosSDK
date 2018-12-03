@@ -2,8 +2,9 @@
 //  Uitilities.swift
 //  DukeHealthiOSSDK
 //
-//  Created by Swathi on 28/09/18.
-//  Copyright © 2018 Swathi. All rights reserved.
+//  Confidential & Proprietary Information of BBM Health, LLC - Not for disclosure without written permission.
+//  Copyright 2018 BBM Health, LLC - All rights reserved.
+//  FHIR is registered trademark of HL7 Intl
 //
 
 import Foundation
